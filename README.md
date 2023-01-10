@@ -26,7 +26,10 @@
 
 ## Version 2 (SMM, Yetkazib berish, Buxgalteriya)
 
+<br>
+<br>
 
-# What you'll use?
-<img src="./fron end/images/cource/cource.jpg" />
+## What you'll use?
+
+<img src="https://raw.githubusercontent.com/DreamLaboratory/Online-shop/master/front%20end/images/cource.jpg" alt='skills' />
 
