@@ -22,6 +22,9 @@
 <li>Payment Gateway Integration (Payme.uz)</li>
 <li>Mahsulotlar bazasi uchun Webscraper (demo.uz) </li>
 <li>Deploying Application on AWS Elastic Beanstalk (EB)</li>
+<li>...</li>
+<li>...</li>
+<li>...</li>
  </ul>
 
 ## Version 2 (SMM, Yetkazib berish, Buxgalteriya)
