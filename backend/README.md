@@ -22,3 +22,10 @@ git clone https://github.com/{repo}
 cd root folder
 python -m venv --prompt="v" .env
 ```
+
+- If *pre commit* has not been installed please install by running following command:
+
+```
+pip install pre-commit
+pre-commit install
+```
