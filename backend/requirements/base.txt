@@ -13,7 +13,6 @@ django-filter==22.1
 pytest-django # https://pytest-django.readthedocs.io/en/latest/
 pytest-cov
 django-phonenumber-field==6.1.0
-phonenumbers==8.12.49
 
 # Postgres
 psycopg2-binary==2.9.2 # https://pypi.org/project/psycopg2-binary/
