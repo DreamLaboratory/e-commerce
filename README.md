@@ -34,5 +34,5 @@
 
 ## What you'll use?
 
-<img src="https://raw.githubusercontent.com/DreamLaboratory/Online-shop/master/front%20end/images/cource.jpg" alt='skills' />
+<img src="https://raw.githubusercontent.com/DreamLaboratory/Online-shop/master/frontend/images/cource.jpg" alt='skills' />
 
