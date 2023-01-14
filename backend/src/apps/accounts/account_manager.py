@@ -11,7 +11,7 @@ class UserManager(BaseUserManager):
             raise ValueError("Usern username bulishi kerak")
 
         user = self.model(phone_number=phone_number, username=username, first_name=first_name, last_name=last_name)
-
+        user.is_active = True
         user.set_password(password)
         user.save(using=self._db)
         return user
@@ -24,7 +24,7 @@ class UserManager(BaseUserManager):
         user.is_admin = True
         user.is_active = True
         user.is_staff = True
-        user.is_superadmin = True
+        user.is_superuser = True
 
         user.save(using=self._db)
         return user
