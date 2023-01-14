@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-ithz@*q#q7z*h1x#0)ia5hc9km1*t1p^lrvffnzr3k8z-knvpl
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -40,10 +40,15 @@ THIRD_APPS = [
 ]
 
 LOCAL_APPS = [
-    "src.apps.accounts",
+    "src.apps.accounts.apps.AccountsConfig",
 ]
 
+
 INSTALLED_APPS = THIRD_APPS + LOCAL_APPS
+
+# after INSTALLED_APPS
+AUTH_USER_MODEL = "accounts.User"
+
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -123,7 +128,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
+
+# static files
 STATIC_URL = "/static/"
+STATIC_ROOT = BASE_DIR / "static"
+STATICFILES_DIRS = [
+    "config/static",
+]
+
+# media config
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
