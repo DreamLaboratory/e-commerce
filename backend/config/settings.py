@@ -30,7 +30,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-THIRD_APPS = [
+INSTALLED_HOME = [
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -39,11 +39,11 @@ THIRD_APPS = [
     "django.contrib.staticfiles",
 ]
 
-LOCAL_APPS = [
-    "src.apps.accounts",
+INSTALLED_OUT=[
+    'src.apps.accounts',
 ]
 
-INSTALLED_APPS = THIRD_APPS + LOCAL_APPS
+INSTALLED_APPS=INSTALLED_HOME+INSTALLED_OUT
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -60,7 +60,7 @@ ROOT_URLCONF = "config.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": ["templates"],
+        "DIRS": ['templates'],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -122,8 +122,16 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
-
+import os
 STATIC_URL = "/static/"
+# STATIC_ROOT=os.path.join(BASE_DIR,'static/')
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+    '/var/www/static/',
+]
+
+MEDIA_URL='/media/'
+MEDIA_ROOT=os.path.join(BASE_DIR,'media/')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
