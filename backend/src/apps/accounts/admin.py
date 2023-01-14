@@ -1,9 +1,39 @@
 # Register your models here.
 
 from django.contrib import admin
-
+from django.contrib.auth.admin import UserAdmin
 from .models import User, UserProfile
 
 
-admin.site.register(User)
-admin.site.register(UserProfile)
+class CustomUserAdmin(UserAdmin):
+    list_display = ("username", "email", "phone_number", "is_staff", "is_active")
+    list_filter = ("is_staff", "is_active")
+    list_display_links = ("username", "email", "phone_number")
+    readonly_fields = ("date_joined", "last_login")
+    filter_horizontal = ("groups", "user_permissions")
+    fieldsets = (
+        ("Personal Info", {"fields": ("username", "email", "phone_number", "password")}),
+        ("Permissions", {"fields": ("is_active", "is_staff", "is_superuser", "groups", "user_permissions")}),
+        ("Important dates", {"fields": ("last_login", "date_joined")}),
+    )
+    add_fieldsets = (
+        (
+            None,
+            {
+                "classes": ("wide",),
+                "fields": ("username", "phone_number", "password1", "password2"),
+            },
+        ),
+    )
+
+
+admin.site.register(User, CustomUserAdmin)
+
+
+class UserProfileAdmin(admin.ModelAdmin):
+    list_display = ("user", "city", "state", "address")
+    list_filter = ("city", "state")
+    list_display_links = ("user", "city", "state", "address")
+
+
+admin.site.register(UserProfile, UserProfileAdmin)

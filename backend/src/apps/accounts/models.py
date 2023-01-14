@@ -1,4 +1,4 @@
-from django.contrib.auth.models import AbstractBaseUser
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -6,9 +6,8 @@ from .account_manager import UserManager
 
 
 #            Accounts
-class User(AbstractBaseUser):
+class User(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
     username = models.CharField(max_length=50, unique=True)
     email = models.EmailField(max_length=100)
     phone_number = models.CharField(max_length=50, unique=True)
@@ -23,12 +22,12 @@ class User(AbstractBaseUser):
 
     USERNAME_FIELD = "phone_number"  # username
 
-    REQUIRED_FIELDS = ["username", "first_name", "last_name"]
+    REQUIRED_FIELDS = ["username", "first_name"]
 
     objects = UserManager()
 
     def __str__(self) -> str:
-        return self.email
+        return self.phone_number
 
     def has_perm(self, perm, obj=None):
         return self.is_admin
@@ -36,23 +35,21 @@ class User(AbstractBaseUser):
     def has_module_perms(self, app_label):
         return True
 
-    class Meta:
-        verbose_name = _("Account")
-        verbose_name_plural = _("Accounts")
 
-
-#            Profile
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    address_1 = models.CharField(blank=True, max_length=100)
-    address_2 = models.CharField(blank=True, max_length=100)
-    profile_picture = models.ImageField(upload_to="userprofile", blank=True)
-    city = models.CharField(max_length=20, blank=True)
-    state = models.CharField(max_length=20, blank=True)
-    country = models.CharField(max_length=20, blank=True)
+    profile_pic = models.ImageField(upload_to="profile_pics", default="profile_pics/default.png")
+    city = models.CharField(max_length=50, blank=True)
+    state = models.CharField(max_length=50, blank=True)
+    address = models.CharField(max_length=50, blank=True)
 
     def __str__(self):
         return self.user.first_name
 
     def full_address(self):
-        return f"{self.address_1} {self.address_2}"
+        return f"{self.address_1}"
+
+    class Meta:
+        verbose_name = _("UserProfile")
+        verbose_name_plural = _("UserProfiles")
+        ordering = ["-id"]
