@@ -1,0 +1,10 @@
+# Accounts App (User) # Date: 2023 14th Yanvar
+
+# Model (BaseUser) #DONE
+# Base Manager (BaseUserManager) #DONE
+# User Admin #DONE
+# Profile Model #DONE
+
+# Home Task
+# Register/Login (email) -> Template
+
