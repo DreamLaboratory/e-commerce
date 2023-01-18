@@ -44,6 +44,7 @@ INSTALLED_OUT=[
 ]
 
 INSTALLED_APPS=INSTALLED_HOME+INSTALLED_OUT
+AUTH_USER_MODEL='accounts.MyUser' 
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -60,7 +61,7 @@ ROOT_URLCONF = "config.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": ['templates'],
+        "DIRS": [BASE_DIR, 'templates'],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [

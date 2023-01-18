@@ -4,3 +4,9 @@ from django.shortcuts import render
 
 def index(request):
     return render(request=request,template_name='index.html')
+
+
+def store(request):
+    return render(request=request,template_name='store.html')
+
+# def views()
