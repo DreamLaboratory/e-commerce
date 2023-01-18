@@ -5,8 +5,8 @@ from .manager import MyUserManager
 
 
 class MyUser(AbstractBaseUser):
-    first_name = models.CharField(verbose_name='first_name',max_length=30)
-    last_name = models.CharField(verbose_name='first_name',max_length=30)
+    first_name = models.CharField(verbose_name='first_name',max_length=30,blank=True,null=True)
+    last_name = models.CharField(verbose_name='first_name',max_length=30,blank=True,null=True)
 
     email = models.CharField(verbose_name="email", max_length=60, unique=True)
     username = models.CharField(max_length=30, unique=True)
