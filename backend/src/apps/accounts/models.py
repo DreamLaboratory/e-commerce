@@ -1,13 +1,15 @@
-# Create your models here.
-from django.contrib.auth.models import AbstractBaseUser
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.db import models
-from .manager import AccoutManager
+from .account_manager import AccountManager
+from django.utils.translation import gettext_lazy as _
 
 
-class Account(AbstractBaseUser):
+class Account(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(verbose_name="email", max_length=60, unique=True)
     username = models.CharField(max_length=30, unique=True)
-    # phone_number = models.CharField(max_length=15, unique=True)
+    phone_number = models.CharField(max_length=15, unique=True)
+    first_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=30)
 
     # required
     date_joined = models.DateTimeField(verbose_name="date joined", auto_now_add=True)
@@ -18,9 +20,9 @@ class Account(AbstractBaseUser):
     is_superuser = models.BooleanField(default=False)
 
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = ["username"]
+    REQUIRED_FIELDS = ["username", 'first_name', 'last_name', 'phone_number']
 
-    objects = AccoutManager()
+    objects = AccountManager()
 
     def __str__(self):
         return self.email
@@ -35,3 +37,22 @@ class Account(AbstractBaseUser):
         # db_name = "accounts"
         verbose_name = "Account"
         verbose_name_plural = "Accounts"
+
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(Account, on_delete=models.CASCADE)
+    profile_pic = models.ImageField(upload_to='profile_pics', default='profile_pics/default.png')
+    city = models.CharField(max_length=50, blank=True)
+    state = models.CharField(max_length=50, blank=True)
+    address = models.CharField(max_length=50, blank=True)
+
+    def __str__(self):
+        return self.user.first_name
+
+    def full_address(self):
+        return f'{self.city} {self.state}'
+
+    class Meta:
+        verbose_name = _("UserProfile")
+        verbose_name_plural = _("UserProfile")
+        ordering = ["-id"]
