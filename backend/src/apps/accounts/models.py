@@ -8,6 +8,7 @@ class Account(AbstractBaseUser):
     email = models.EmailField(verbose_name="email", max_length=60, unique=True)
     username = models.CharField(max_length=30, unique=True)
     # phone_number = models.CharField(max_length=15, unique=True)
+    # first_name = models.CharField(max_length=30) # TODO: hometask
 
     # required
     date_joined = models.DateTimeField(verbose_name="date joined", auto_now_add=True)
