@@ -5,24 +5,26 @@ from django.utils.translation import gettext_lazy as _
 from .account_manager import UserManager
 
 
-#            Accounts
+# Accounts
 class User(AbstractBaseUser, PermissionsMixin):
-    first_name = models.CharField(max_length=50)
+    # first_name = models.CharField(max_length=50)
+    # last_name = models.CharField(max_length=50)
     username = models.CharField(max_length=50, unique=True)
-    email = models.EmailField(max_length=100)
-    phone_number = models.CharField(max_length=50, unique=True)
+    email = models.EmailField(max_length=100, unique=True)
+    phone_number = models.CharField(
+        max_length=50, unique=True, blank=True, null=True)
 
     # talab qilinadi
     date_joined = models.DateTimeField(auto_now_add=True)
     last_login = models.DateTimeField(auto_now_add=True)
     is_admin = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
-    is_active = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
     is_superadmin = models.BooleanField(default=False)
 
-    USERNAME_FIELD = "phone_number"  # username
+    USERNAME_FIELD = "email"  # username
 
-    REQUIRED_FIELDS = ["username", "first_name"]
+    REQUIRED_FIELDS = ['username', 'phone_number']
 
     objects = UserManager()
 
@@ -38,7 +40,8 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    profile_pic = models.ImageField(upload_to="profile_pics", default="profile_pics/default.png")
+    profile_pic = models.ImageField(
+        upload_to="profile_pics", default="profile_pics/default.png")
     city = models.CharField(max_length=50, blank=True)
     state = models.CharField(max_length=50, blank=True)
     address = models.CharField(max_length=50, blank=True)

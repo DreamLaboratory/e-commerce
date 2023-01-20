@@ -6,14 +6,17 @@ from .models import User, UserProfile
 
 
 class CustomUserAdmin(UserAdmin):
-    list_display = ("username", "email", "phone_number", "is_staff", "is_active")
+    list_display = ("username", "email", "phone_number",
+                    "is_staff", "is_active")
     list_filter = ("is_staff", "is_active")
     list_display_links = ("username", "email", "phone_number")
     readonly_fields = ("date_joined", "last_login")
     filter_horizontal = ("groups", "user_permissions")
     fieldsets = (
-        ("Personal Info", {"fields": ("username", "email", "phone_number", "password")}),
-        ("Permissions", {"fields": ("is_active", "is_staff", "is_superuser", "groups", "user_permissions")}),
+        ("Personal Info", {"fields": ("username",
+         "email", "phone_number", "password")}),
+        ("Permissions", {"fields": ("is_active", "is_staff",
+         "is_superuser", "groups", "user_permissions")}),
         ("Important dates", {"fields": ("last_login", "date_joined")}),
     )
     add_fieldsets = (

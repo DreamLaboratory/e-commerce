@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+
+{% load static %}
+
+{% block title %}
+
+Regiter Page
+
+{% endblock %}
+
+
+{% block content %}
+
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-content padding-y">
+
+    <!-- ============================ COMPONENT REGISTER   ================================= -->
+    <div class="card mx-auto" style="max-width:520px; margin-top:40px;">
+        <article class="card-body">
+            <header class="mb-4">
+                <h4 class="card-title" style="text-align: center; font-size: 30px;">Sign up</h4>
+            </header>
+            <form method="post">
+
+                {% csrf_token %}
+
+                {% for form in forms %}
+                {% if form.errors %}
+
+                {% for message in form.errors %}
+
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{message}}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                {% endfor %}
+                {% endif %}
+                {% endfor %}
+
+                {% for form in forms %}
+                {{form.label}}
+                <br>
+                {{form}}
+                <br>
+                {% endfor %}
+                <br>
+                <br>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block"> Register </button>
+                </div>
+
+            </form>
+        </article>
+    </div> <!-- card .// -->
+    <p class="text-center mt-4">Have an account? <a href="">Log In</a></p>
+    <br><br>
+    <!-- ============================ COMPONENT REGISTER  END.// ================================= -->
+
+
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->
+
+{% endblock %}
