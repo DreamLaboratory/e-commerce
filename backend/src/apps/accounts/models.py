@@ -2,12 +2,14 @@
 from django.contrib.auth.models import AbstractBaseUser
 from django.db import models
 from .manager import AccoutManager
+from django.contrib.auth.models import PermissionsMixin
 
 
-class Account(AbstractBaseUser):
+class Account(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(verbose_name="email", max_length=60, unique=True)
     username = models.CharField(max_length=30, unique=True)
-    # phone_number = models.CharField(max_length=15, unique=True)
+    phone_number = models.CharField(max_length=15, unique=True, blank=True, null=True)
+    firstname = models.CharField(max_length=30, blank=True, null=True)
     # first_name = models.CharField(max_length=30) # TODO: hometask
 
     # required
@@ -19,7 +21,7 @@ class Account(AbstractBaseUser):
     is_superuser = models.BooleanField(default=False)
 
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = ["username"]
+    REQUIRED_FIELDS = ["username", "firstname"]
 
     objects = AccoutManager()
 
