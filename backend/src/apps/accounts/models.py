@@ -1,12 +1,12 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser
+from django.contrib.auth.models import AbstractBaseUser,PermissionsMixin
 from .manager import MyUserManager
 
 
 
-class MyUser(AbstractBaseUser):
+class MyUser(AbstractBaseUser,PermissionsMixin):
     first_name = models.CharField(verbose_name='first_name',max_length=30,blank=True,null=True)
-    last_name = models.CharField(verbose_name='first_name',max_length=30,blank=True,null=True)
+    last_name = models.CharField(verbose_name='last_name',max_length=30,blank=True,null=True)
 
     email = models.CharField(verbose_name="email", max_length=60, unique=True)
     username = models.CharField(max_length=30, unique=True)

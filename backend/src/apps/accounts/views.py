@@ -11,12 +11,13 @@ def store(request):
     return render(request=request,template_name='store.html')
 
 def register(request):
-    forms=RegisterForm()
-    print('------------',request.method.post)
-    # if request.method=='POST':
-    #     forms=RegisterForm(request.method.POST)
-    #     if forms.is_valid():
-    #         forms.save()
-    #         return redirect('/login/')
+    # data=request.POST['first_name']
+    
+    forms=RegisterForm(request.method)
+
+    if request.method=='POST':
+        pass
     return render(request=request,template_name='register/register.html',context={"forms":forms})
+        
+   
         
