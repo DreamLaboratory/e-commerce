@@ -2,6 +2,8 @@ from django import forms
 
 from ..models import Account
 
+# UserCreationForm is a built-in form in Django
+
 
 class RegistrationForm(forms.ModelForm):
     password = forms.CharField(
@@ -25,7 +27,7 @@ class RegistrationForm(forms.ModelForm):
 
     class Meta:
         model = Account
-        fields = ("email", "username", "password", "confirm_password")
+        fields = ("email", "username", "firstname", "password", "confirm_password")
 
     def clean(self):
         cleaned_data = super(RegistrationForm, self).clean()
@@ -39,3 +41,4 @@ class RegistrationForm(forms.ModelForm):
         super(RegistrationForm, self).__init__(*args, **kwargs)
         for field in self.fields:
             self.fields[field].widget.attrs["class"] = "form-control"
+        self.fields["password"].widget.attrs["placeholder"] = "Password"

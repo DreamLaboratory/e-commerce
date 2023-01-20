@@ -6,17 +6,16 @@ from django.contrib.auth.models import PermissionsMixin
 
 
 class Account(AbstractBaseUser, PermissionsMixin):
-    email = models.EmailField(verbose_name="email", max_length=60, unique=True)
+    email = models.EmailField(verbose_name="email", max_length=60, unique=True, db_index=True)
     username = models.CharField(max_length=30, unique=True)
     phone_number = models.CharField(max_length=15, unique=True, blank=True, null=True)
     firstname = models.CharField(max_length=30, blank=True, null=True)
-    # first_name = models.CharField(max_length=30) # TODO: hometask
 
     # required
     date_joined = models.DateTimeField(verbose_name="date joined", auto_now_add=True)
     last_login = models.DateTimeField(verbose_name="last login", auto_now=True)
     is_admin = models.BooleanField(default=False)
-    is_active = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
 

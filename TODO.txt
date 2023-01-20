@@ -2,4 +2,7 @@
 
 # 1) Email Register -> activate link -> Login
 
-Model (is_active) -> View(activate_link) -> Url(uuid) -> Template(login.html/regiceter)
+Model (is_active) -> View(activate_link) -> Url(uuid) -> Template(login.html/Register)
+
+
+/activate/uuid/
