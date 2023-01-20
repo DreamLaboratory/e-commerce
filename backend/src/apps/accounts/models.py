@@ -37,3 +37,6 @@ class Account(AbstractBaseUser, PermissionsMixin):
         # db_name = "accounts"
         verbose_name = "Account"
         verbose_name_plural = "Accounts"
+
+
+# TODO Account Profile

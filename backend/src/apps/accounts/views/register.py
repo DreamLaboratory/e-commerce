@@ -31,7 +31,6 @@ def register(request):
 
                     current_site = get_current_site(request)
                     domain = f"http://{current_site.domain}/activate/{urlsafe_base64_encode(force_bytes(new_form))}/"
-                    print("Domen name", domain)
                     subject = "Welcome to the site"
                     message = f"Hi {firstname}, welcome to the site"
                     body = render_to_string(
