@@ -8,6 +8,9 @@ def register(request):
     if request.method == "POST":
         form = RegistrationForm(request.POST)
         if form.is_valid():
+            new_form = form.save()
+            password = form.cleaned_data.get("password")
+            new_form.set_password(password)
             form.save()
             username = form.cleaned_data.get("username")
             messages.success(request, f"Account created for {username}!")
