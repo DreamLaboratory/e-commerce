@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="030e6417-a3de-458e-95ee-717bfed6fc1b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/backend/src/apps/accounts/views/activate.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/templates/accounts/verification.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/templates/includes/message.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/e-commerce.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/e-commerce.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/config/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/config/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/apps/accounts/account_manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/apps/accounts/account_manager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/apps/accounts/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/apps/accounts/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/apps/accounts/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/apps/accounts/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/apps/accounts/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/apps/accounts/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/apps/accounts/views/register.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/apps/accounts/views/register.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/apps/accounts/views/sign_in.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/apps/accounts/views/sign_in.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/templates/accounts/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/templates/accounts/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/templates/accounts/signin.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/templates/accounts/signin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/templates/template_activate_account.html" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2KVAGWME3lXjQDZ783Ovlottj9H" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/media/fn/d/projects/dreamlabs/django/e-commerce/backend/src/apps/accounts/forms&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/backend/src/apps/accounts/forms" />
+      <recent name="$PROJECT_DIR$/backend/src/apps/accounts/views" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/backend/templates/accounts" />
+      <recent name="$PROJECT_DIR$/backend/src/apps/accounts/views" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="030e6417-a3de-458e-95ee-717bfed6fc1b" name="Changes" comment="" />
+      <created>1674049284879</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1674049284879</updated>
+      <workItem from="1674049289309" duration="13622000" />
+      <workItem from="1674112455529" duration="18392000" />
+      <workItem from="1674150262544" duration="696000" />
+      <workItem from="1674154987191" duration="2799000" />
+      <workItem from="1674337759895" duration="4000" />
+      <workItem from="1674371625271" duration="1099000" />
+      <workItem from="1674459262329" duration="24407000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

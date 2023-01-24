@@ -1,8 +1,9 @@
 from django.urls import path
 
 from .views.index import index_page
-from .views.register import register, activate
+from .views.register import register
 from .views.sign_in import sign_in
+from .views.activate import activate
     # , cart_page, dashboard_page, order_complete_page, place_order_page, product_detail_page, register_page, search_result_page, signin_page, store_page
 
 urlpatterns = [
@@ -16,5 +17,5 @@ urlpatterns = [
     # path("search-result/", search_result_page, name="search_result_page"),
     path("sign-in/", sign_in, name="sign_in"),
     # path("store/", store_page, name="store_page"),
-    path("activate/<uuidb64>/<token>", activate, name="activate"),
+    path("activate/<str:uidb64>/", activate, name="activate"),
 ]
