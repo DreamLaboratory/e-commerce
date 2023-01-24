@@ -39,12 +39,12 @@ INSTALLED_HOME = [
     "django.contrib.staticfiles",
 ]
 
-INSTALLED_OUT=[
-    'src.apps.accounts',
+INSTALLED_OUT = [
+    "src.apps.accounts",
 ]
 
-INSTALLED_APPS=INSTALLED_HOME+INSTALLED_OUT
-AUTH_USER_MODEL='accounts.MyUser' 
+INSTALLED_APPS = INSTALLED_HOME + INSTALLED_OUT
+AUTH_USER_MODEL = "accounts.MyUser"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -61,7 +61,7 @@ ROOT_URLCONF = "config.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR, 'templates'],
+        "DIRS": [BASE_DIR, "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -124,11 +124,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 import os
+
 STATIC_URL = "/static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
-MEDIA_URL='/media/'
-MEDIA_ROOT=os.path.join(BASE_DIR,'media/')
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -138,8 +139,8 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # email configration
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST='smtp.gmail.com'
-EMAIL_HOST_USER = os.environ.get("fayzulloh00010003@gmail.com")
-EMAIL_HOST_PASSWORD = os.environ.get("yauwzixxyhcylioi")
-EMAIL_PORT='587'
-EMAIL_USE_TLS=True
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_HOST_USER = "fayzulloh00010003@gmail.com"
+EMAIL_HOST_PASSWORD = "yauwzixxyhcylioi"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
