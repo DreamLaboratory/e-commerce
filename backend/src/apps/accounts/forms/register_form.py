@@ -3,8 +3,6 @@ from django import forms
 from ..models import Account
 
 # UserCreationForm is a built-in form in Django
-
-
 class RegistrationForm(forms.ModelForm):
     password = forms.CharField(
         widget=forms.PasswordInput(
@@ -27,7 +25,7 @@ class RegistrationForm(forms.ModelForm):
 
     class Meta:
         model = Account
-        fields = ("email", "username", "firstname", "password", "confirm_password")
+        fields = ("email", "firstname", "password", "confirm_password")
 
     def clean(self):
         cleaned_data = super(RegistrationForm, self).clean()

@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+import logging.config
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -73,6 +74,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "src.apps.store.category_processors.all_categories",
             ],
         },
     },
@@ -142,6 +144,30 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # Email configuration
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
-EMAIL_HOST_USER = "xackercoder@gmail.com"
-EMAIL_HOST_PASSWORD = "sshsuqqfgmnylray"
+EMAIL_HOST_USER = "fayzulloh00010003@gmail.com"
+EMAIL_HOST_PASSWORD = "yauwzixxyhcylioi"
 EMAIL_USE_TLS = True
+
+
+# log file
+logging.config.dictConfig(
+    {
+        "version": 1,
+        "disable_existing_loggers": False,
+        "formatters": {
+            "file": {"format": "%(asctime)s %(name)-12s %(levelname)-8s %(message)s"},
+        },
+        "handlers": {
+            "file": {
+                "level": "ERROR",
+                "class": "logging.FileHandler",
+                "formatter": "file",
+                "filename": "errors.log",
+            },
+        },
+        "loggers": {
+            "": {"level": "ERROR", "handlers": ["file"]},
+            "django.request": {"level": "INFO", "handlers": ["file"]},
+        },
+    }
+)
