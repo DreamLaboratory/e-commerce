@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import logging
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -40,7 +41,9 @@ THIRD_APPS = [
 ]
 
 LOCAL_APPS = [
-    "src.apps.accounts.apps.AccountsConfig",
+    "src.apps.accounts",
+    "src.apps.common",
+    "src.apps.store",
 ]
 
 
@@ -99,15 +102,15 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
-    {
-        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
-    },
+    # {
+    #     "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
+    # },
+    # {
+    #     "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
+    # },
+    # {
+    #     "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
+    # },
 ]
 
 
@@ -129,8 +132,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'temurbekhamroyev0011@gmail.com'
-EMAIL_HOST_PASSWORD = 'kod#220397'
+EMAIL_HOST_USER = 'temurbekhamroyev41@gmail.com'
+EMAIL_HOST_PASSWORD = 'vhdfvnfgwndxtdld'
 
 
 # Static files (CSS, JavaScript, Images)
@@ -153,3 +156,26 @@ MEDIA_ROOT = BASE_DIR / "media"
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+# logging.config.dictConfig(
+#     {
+#         "version": 1,
+#         "disable_existing_loggers": False,
+#         "formatters": {
+#             "file": {"format": "%(asctime)s %(name)-12s %(levelname)-8s %(message)s"},
+#         },
+#         "handlers": {
+#             "file": {
+#                 "level": "ERROR",
+#                 "class": "logging.FileHandler",
+#                 "formatter": "file",
+#                 "filename": "errors.log",
+#             },
+#         },
+#         "loggers": {
+#             "": {"level": "ERROR", "handlers": ["file"]},
+#             "django.request": {"level": "INFO", "handlers": ["file"]},
+#         },
+#     }
+# )
