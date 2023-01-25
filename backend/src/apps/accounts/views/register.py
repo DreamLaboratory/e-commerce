@@ -1,17 +1,14 @@
 from django.contrib import messages
-from django.contrib.auth import get_user_model
-from django.shortcuts import redirect, render
-from django.utils.html import strip_tags
-
-from ..forms.register_form import RegistrationForm
-from .tokens import account_activation_token
-
-from django.template.loader import render_to_string
 from django.contrib.sites.shortcuts import get_current_site
-from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from django.utils.encoding import force_bytes, force_str
 from django.core.mail import EmailMessage
 from django.db import transaction
+from django.shortcuts import redirect, render
+from django.template.loader import render_to_string
+from django.utils.encoding import force_bytes
+from django.utils.html import strip_tags
+from django.utils.http import urlsafe_base64_encode
+
+from ..forms.register_form import RegistrationForm
 
 
 @transaction.atomic
@@ -23,6 +20,11 @@ def register(request):
             if form.is_valid():
                 with transaction.atomic():
                     new_form = form.save(commit=False)
+
+                    # data
+                    email = form.cleaned_data.get("email")
+                    username = email.split("@")[0]  # get username from email
+                    new_form.username = username
                     password = form.cleaned_data.get("password")
                     new_form.set_password(password)
                     new_form.save()

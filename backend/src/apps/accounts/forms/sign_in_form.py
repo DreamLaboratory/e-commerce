@@ -1,22 +1,18 @@
+from captcha.fields import ReCaptchaField
+from captcha.widgets import ReCaptchaV2Checkbox
 from django import forms
-from ..models import Account
+from django.contrib.auth.forms import AuthenticationForm
 
 
-class SignInForm(forms.Form):
-    confirm_password = forms.CharField(widget=forms.CharField(attrs={
-        'placeholder': 'Email',
-    }), max_length=30)
-    password = forms.CharField(widget=forms.PasswordInput(attrs={
-        'placeholder': 'Confirm Password',
-    }), max_length=30)
+class SignInForm(AuthenticationForm):
+    def __init__(self, *args, **kwargs):
+        super(SignInForm, self).__init__(*args, **kwargs)
 
+    username = forms.CharField(widget=forms.TextInput(
+        attrs={'class': 'form-control', 'placeholder': 'Email'}),
+        label="Email")
 
-    class Meta:
-        model = Account
-        fields = ('email', 'password')
+    password = forms.CharField(widget=forms.PasswordInput(
+        attrs={'class': 'form-control', 'placeholder': 'Password'}))
 
-
-    # def __init__(self, *args, **kwargs):
-    #     super(SignInForm, self).__init__(*args, **kwargs)
-    #     for field in self.fields:
-    #         self.fields[field].widget.attrs['class'] = 'form-control'
+    captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox())
