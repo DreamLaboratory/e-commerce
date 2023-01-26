@@ -1,5 +1,4 @@
 from django.contrib.auth.models import BaseUserManager
-from .models import Account
 
 class AccoutManager(BaseUserManager):
 
