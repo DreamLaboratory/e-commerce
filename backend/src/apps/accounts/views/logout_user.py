@@ -5,4 +5,4 @@ from django.shortcuts import redirect
 
 def logout_user(request):
     logout(request)
-    return redirect("accounts:login")
+    return redirect("accounts:index_page")

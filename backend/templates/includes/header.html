@@ -64,7 +64,7 @@
                             <div class="widget-header">
                             <small class="title text-muted">Welcome {{ user.firstname.title }}</small>
                             <div>
-                                <a href="">Logout</a>
+                                <a href="{% url 'accounts:logout_user' %}">Logout</a>
                             </div>
                         </div>
 
