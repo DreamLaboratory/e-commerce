@@ -1,5 +1,6 @@
 from django.contrib.auth.models import BaseUserManager
 
+
 class AccoutManager(BaseUserManager):
 
     # simple user
@@ -34,6 +35,3 @@ class AccoutManager(BaseUserManager):
         user.is_superuser = True
         user.save(using=self._db)
         return user
-
-
-# Islombek
