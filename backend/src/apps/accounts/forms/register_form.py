@@ -1,6 +1,8 @@
 from django import forms
 
 from ..models import Account
+from django.contrib.auth import authenticate, password_validation
+from django.core.exceptions import ValidationError
 
 # UserCreationForm is a built-in form in Django
 class RegistrationForm(forms.ModelForm):
@@ -34,6 +36,17 @@ class RegistrationForm(forms.ModelForm):
 
         if password != confirm_password:
             raise forms.ValidationError("password and confirm_password does not match")
+
+    def _post_clean(self):
+        super()._post_clean()
+        # Validate the password after self.instance is updated with form data
+        # by super().
+        password = self.cleaned_data.get("password")
+        if password:
+            try:
+                password_validation.validate_password(password, self.instance)
+            except ValidationError as error:
+                self.add_error("password", error)
 
     def __init__(self, *args, **kwargs):
         super(RegistrationForm, self).__init__(*args, **kwargs)
