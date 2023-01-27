@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import Account
+from .models import Account,Profile
 
 class AccountAdmin(UserAdmin):
     search_fields = ('email','username')
@@ -16,6 +16,7 @@ class AccountAdmin(UserAdmin):
         fields = ('email','username','is_staff')
 
 admin.site.register(Account,AccountAdmin)
+admin.site.register(Profile)
 
 
 

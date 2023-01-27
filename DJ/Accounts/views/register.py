@@ -1,7 +1,10 @@
 from django.contrib import messages
 from django.shortcuts import render,redirect
 from ..forms import RegistrationForm
-from ..models import Account
+from ..models import Account,Profile
+import uuid
+from .token_send_mail import send_mail_after
+
 
 
 
@@ -16,8 +19,19 @@ def register_view(request):
             new_form.set_password(password)
             new_form.save()
             username = form.cleaned_data.get('username')
+            phone_number = form.cleaned_data.get('phone_number')
+            auth_token = str(uuid.uuid4())
+            email = form.cleaned_data.get('email')
+            profile_obj = Profile.objects.create(
+                auth_token=auth_token,
+                email = email
+            )
+            profile_obj.save()
+
+            ###Email send
+            send_mail_after(email,auth_token)
             messages.success(request,f"Account Created for {username}")
-            return redirect('login')
+            return redirect('token')
     else:
         form = RegistrationForm()
     return render(
@@ -51,3 +65,9 @@ def register_view(request):
 #         user.save()
 #         if user:
 #             return redirect('login')
+
+
+
+
+
+
