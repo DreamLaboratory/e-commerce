@@ -5,7 +5,7 @@ from django.contrib.auth import logout
 def logut_view(request):
     if request.user.is_authenticated:
         logout(request)
-        return redirect('login')
+        return redirect('index')
 
     return render(
         request,

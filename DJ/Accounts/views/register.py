@@ -30,7 +30,7 @@ def register_view(request):
 
             ###Email send
             send_mail_after(email,auth_token)
-            messages.success(request,f"Account Created for {username}")
+            # messages.success(request,f"Account Created for {username}")
             return redirect('token')
     else:
         form = RegistrationForm()
