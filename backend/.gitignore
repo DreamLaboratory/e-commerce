@@ -274,5 +274,3 @@ env
 
 .ipython/
 .env
-./migrations
-migrations/
