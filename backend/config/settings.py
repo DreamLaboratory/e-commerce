@@ -41,6 +41,8 @@ INSTALLED_HOME = [
 
 INSTALLED_OUT = [
     "src.apps.accounts",
+    "src.apps.common",
+    "src.apps.store",
 ]
 
 INSTALLED_APPS = INSTALLED_HOME + INSTALLED_OUT
