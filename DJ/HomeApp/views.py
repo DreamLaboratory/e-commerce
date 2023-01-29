@@ -1,8 +1,18 @@
 from django.shortcuts import render
+import sys
+sys.path.append("..")
+
+from django.shortcuts import render
+from StoreApp.models.product import Product
 
 
-def IndexView(request):
+
+
+def index_view(request):
+    objects = Product.objects.all()
     return render(
-        request=request,
-        template_name='index.html'
+        request,
+        'index.html',
+        {'products':objects}
     )
+

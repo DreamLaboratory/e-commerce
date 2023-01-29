@@ -12,6 +12,10 @@ urlpatterns = [
     path(
         "",include('Accounts.urls'),
     ),
+    path(
+        "", include('StoreApp.urls'),
+    ),
+
 ]
 
 
