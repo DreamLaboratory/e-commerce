@@ -4,5 +4,11 @@
 
 Model (is_active) -> View(activate_link) -> Url(uuid) -> Template(login.html/Register)
 
+# 2) Email Register -> activate link -> Login
+Model (is_active) -> View(activate_link) -> Url(uuid) -> Template(login.html/Register)
 
-/activate/uuid/
+
+
+# 3) Store Product -> Add to Cart -> Checkout -> Payment -> Order
+
+MVT = Model View Template (url)

@@ -9,8 +9,8 @@ from ...common.models import BaseModel
 class Category(BaseModel):
     name = models.CharField(max_length=50, unique=True)
     slug = models.SlugField(_("Slug"), max_length=100, unique=True, blank=True)
-    description = models.TextField(max_length=255, blank=True)
-    image = models.ImageField(upload_to="categories")
+    description = models.TextField(max_length=255, blank=True)  # TODO: checeditor
+    image = models.ImageField(upload_to="categories", blank=True, null=True)
 
     class Meta:
         verbose_name = "category"
