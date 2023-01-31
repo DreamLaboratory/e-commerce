@@ -7,9 +7,11 @@ from django.core.mail import EmailMessage
 from django.db import transaction
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
-from django.utils.http import urlsafe_base64_encode
-from django.utils.encoding import force_bytes
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.utils.encoding import force_bytes,force_text
 from django.contrib.sites.shortcuts import get_current_site
+from django.contrib.auth import get_user_model
+from .models import MyUser
 
 # Create your views here.
 
@@ -57,7 +59,7 @@ def register(request):
                     )
                     sendmail.send()
                 messages.success(request, f"User created for {username}")
-                return redirect("accounts:login")
+                return redirect("accounts:redirect_login")
         return render(request=request, template_name="register/register.html", context={"forms": forms})
     except Exception as e:
         messages.error(request, f"error {e}")
@@ -76,3 +78,60 @@ def login(request):
         else:
             return HttpResponse("Login Failed")
     return render(request, "register/login.html")
+
+
+def auth_email(request):
+
+    if request.method=='POST':
+        email=request.POST.get('email')
+        # user=auth.authenticate(request=request,email=email)
+        user=MyUser.objects.filter(email=email).exists()
+        print('000000',user)
+        if  user:
+            print('kirdi')
+            subject='Please click below url'
+            current_site=get_current_site(request=request)
+            uuid=urlsafe_base64_encode(force_bytes(email))
+            domain=f'http://{current_site.domain}/forgot_password/{uuid}/'
+            
+            context_message=render_to_string(
+                'register/verifiy_email.html',
+                {
+                    'subject':subject,
+                    'domain':domain,
+                }
+            )
+            body=strip_tags(context_message)
+            sendmail=EmailMessage(
+                subject=subject,
+                body=body,
+                to=[email]
+            )
+            sendmail.send()
+            messages.success(request,'Pleasce check your email')
+            return redirect('accounts:redirect_login')
+    return render(request=request,template_name='register/auth_email.html')
+
+
+def forgot_password(request,uidb64):
+    try:
+        if request.method=='POST':
+            password=request.POST.get('password')
+            confirm_password=request.POST.get('confirm_password')
+            if password == confirm_password:
+                print(password,confirm_password)
+                decode_email=force_text(urlsafe_base64_decode(uidb64))
+                user = MyUser.objects.get(email=decode_email)
+                user.set_password(password)
+                user.save()
+                return redirect('accounts:login')
+    except Exception as ex:
+        return ex
+    
+    return render(request=request,template_name='register/forgot.html')
+
+def redirect_login(request):
+    return render(request=request,template_name='register/redirect_login.html')
+
+
+
