@@ -18,6 +18,7 @@ class ProductListView(ListView):
         data = super(ProductListView, self).get_context_data(**kwargs)
         categories = Category.objects.all()
         data["categories"] = categories
+        print(1111111111, data)
         return data
 
 
