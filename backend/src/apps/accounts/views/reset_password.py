@@ -9,7 +9,10 @@ from django.contrib import messages
 from django.utils.http import urlsafe_base64_decode
 from django.contrib.auth import get_user_model
 from django.shortcuts import get_object_or_404
+from django.contrib.auth import authenticate, password_validation
+from django.core.exceptions import ValidationError
 
+from ..forms.reset_password import ResetPasswordForm
 from ..models import Account
 
 
@@ -45,17 +48,19 @@ def forgot_password(request):
 
 
 def validate_password(request, uidb64):
+    form = ResetPasswordForm()
     if request.method == "POST":
-        password = request.POST.get("password")
-        confirm_password = request.POST.get("confirm_password")
-        if password == confirm_password:
+        form = ResetPasswordForm(request.POST)
+        if form.is_valid():
             User = get_user_model()
             uid = urlsafe_base64_decode(uidb64).decode()
             user = get_object_or_404(User, email=uid)
+            password = form.cleaned_data.get("password")
             user.set_password(password)
             user.save()
             messages.success(request, "Password reset successfully")
             return redirect("accounts:login")
         messages.error(request, "Passwords do not match")
-        return redirect("/")
-    return render(request, "accounts/validate_password.html")
+        # print(44444)
+        # return redirect("/")
+    return render(request, "accounts/validate_password.html", {'form':form})
