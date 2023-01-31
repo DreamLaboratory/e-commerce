@@ -5,6 +5,7 @@ from django.utils.translation import gettext_lazy as _
 from ...common.models import BaseModel
 from ...common.file_renamer import PathAndRename
 from django.utils.text import slugify
+from django.urls import reverse
 
 from .category import Category
 
@@ -26,6 +27,10 @@ class Product(BaseModel):
         verbose_name = "product"
         verbose_name_plural = "products"
         ordering = ["-created_at"]
+
+    @property
+    def get_absolute_url(self):
+        return reverse("store:product_detail_view", args=[self.category.slug, self.slug])
 
     def __str__(self):
         return self.name
