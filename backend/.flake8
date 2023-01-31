@@ -18,7 +18,7 @@ exclude =
     requirements,
     */templates/*,
     */migrations/*
-max-complexity = 10
+max-complexity = 10x
 statistics = True
 dictionaries=en_US,python,technical,django
 whitelist = whitelist.txt

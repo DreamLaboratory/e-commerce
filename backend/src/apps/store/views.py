@@ -1,3 +1,4 @@
+from .models.category import Category
 from .models.product import Product
 from django.views.generic.list import ListView
 
@@ -12,6 +13,12 @@ class ProductListView(ListView):
 
     def get_queryset(self):
         return Product.objects.filter(is_available=True)
+
+    def get_context_data(self, **kwargs):
+        data = super(ProductListView, self).get_context_data(**kwargs)
+        categories = Category.objects.all()
+        data["categories"] = categories
+        return data
 
 
 product_list_view = ProductListView.as_view()
