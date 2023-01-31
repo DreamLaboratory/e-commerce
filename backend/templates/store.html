@@ -41,16 +41,8 @@ Home
                     
                     <ul class="list-menu">
                         {% for category in categories %}
-                            <li><a href="#">{{ category.name}}  </a></li>
+                            <li><a href="{% url 'store:product_list_view' %}?category={{ category.name }}">{{ category.name}}  </a></li>
                         {% endfor %}
-{#                        #}
-{#                    <li><a href="#">People  </a></li>#}
-{#                    <li><a href="#">Watches </a></li>#}
-{#                    <li><a href="#">Cinema  </a></li>#}
-{#                    <li><a href="#">Clothes  </a></li>#}
-{#                    <li><a href="#">Home items </a></li>#}
-{#                    <li><a href="#">Animals</a></li>#}
-{#                    <li><a href="#">People </a></li>#}
                     </ul>
     
                 </div> <!-- card-body.// -->
