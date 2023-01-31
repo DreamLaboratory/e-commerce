@@ -13,13 +13,13 @@ class ProductListView(ListView):
 
     def get_queryset(self):
         category = self.request.GET.get("category")
-        category1 = category
+        category_ = category
         my_list = []
         my_list.append(category)
         category = tuple(my_list)
         categories = Category.objects.values_list('name')
         if category and category in categories:
-            return Product.objects.filter(is_available=True,category__name=category1)
+            return Product.objects.filter(is_available=True,category__name=category_)
         return Product.objects.filter(is_available=True)
 
     def get_context_data(self, **kwargs):
