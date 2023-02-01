@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import RegisterForm
+from .forms.forms import RegisterForm
 from django.contrib import messages
 from django.contrib import auth
 from django.http import HttpResponse
@@ -14,6 +14,7 @@ from django.contrib.auth import get_user_model
 from .models import MyUser
 
 # Create your views here.
+
 
 
 def index(request):

@@ -37,6 +37,8 @@ INSTALLED_HOME = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    'ckeditor',
+    
 ]
 
 INSTALLED_OUT = [

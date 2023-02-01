@@ -1,0 +1,5 @@
+1-store qismini qilish
+descrption fields ni richTextfields qilish : done
+rasimni yukalamaslik, blank=True,null=True : done
+  
+ 

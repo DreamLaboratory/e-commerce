@@ -1,0 +1,9 @@
+.flake8 nima uchun kerak:
+
+
+./migrations
+migrations/    bu ikkalsini farqi nimada
+.sorf.cfg nima uchun kerak va qanday urnatmiz
+start.sh ihlamadi
+BaseCommand xam ishamadi
+get_abdolute_url ishlamadi
