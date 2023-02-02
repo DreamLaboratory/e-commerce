@@ -1,30 +1,17 @@
-from .models.product import Product
-from django.shortcuts import render
-from .models.category import Category
+import logging
+
 from django.core.paginator import Paginator
+from django.db.models import Q
+from django.shortcuts import render
+
+from ..models.category import Category
+from ..models.product import Product, ProductImage
+from ..models.review import Review
 
 # import logging
 
-import logging
 
 logger = logging.getLogger(__name__)
-
-from django.db.models import Q
-
-# class ProductListView(ListView):
-#     model = Product
-#     template_name = "store.html"
-#     context_object_name = "products"
-#     paginate_by = 10
-
-#     def get_queryset(self):
-#         return Product.objects.filter(is_available=True)
-
-
-# product_list_view = ProductListView.as_view()
-
-
-# url/store/list/<slug:category_slug>/?min=100&max=200
 
 
 def product_list_view(request, category_slug=None):
@@ -46,16 +33,23 @@ def product_list_view(request, category_slug=None):
         paginator = Paginator(products, 1)
         products = paginator.get_page(page)
 
-        return render(request, "store.html", {"products": products, "product_count": product_count})
+        return render(request, "store/store.html", {"products": products, "product_count": product_count})
     except Exception as e:
         logger.error(e)
-        return render(request, "store.html", {"products": None, "product_count": 0})
+        return render(request, "store/store.html", {"products": None, "product_count": 0})
 
 
 # url/<slug:category_slug>/<slug:product_slug>/
 def product_detail_view(request, category_slug, product_slug):
     product = Product.objects.get(category__slug=category_slug, slug=product_slug)
-    return render(request, "product.html", {"product": product})
+    product_reviews = Review.objects.filter(product=product)
+    product_images = ProductImage.objects.filter(product=product)
+    context = {
+        "product": product,
+        "product_reviews": product_reviews,
+        "product_images": product_images,
+    }
+    return render(request, "store/product_detail.html", context)
 
 
 def search(request):
@@ -63,10 +57,11 @@ def search(request):
     if "q" in request.GET:
         if q := request.GET["q"]:
             products = products.filter(Q(name__icontains=q) | Q(description__icontains=q))
-            product_count = products.count()
 
+    product_count = products.count()
     context = {
         "products": products,
         "product_count": product_count,
     }
-    return render(request, "store.html", context)
+    print(context)
+    return render(request, "store/store.html", context)
