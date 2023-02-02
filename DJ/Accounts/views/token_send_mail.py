@@ -2,10 +2,11 @@ from django.shortcuts import render,redirect
 from django.conf import settings
 from django.core.mail import send_mail
 from django.contrib import messages
-
-from ..models import Profile
-
-
+from django.contrib.sites.shortcuts import get_current_site
+from ..models import Profile,Account
+from django.utils.http import urlsafe_base64_decode
+from django.utils.http import urlsafe_base64_encode
+from django.utils.encoding import force_bytes
 def token_view(request):
     return render(
         request,
@@ -19,6 +20,8 @@ def send_mail_after(email,token):
     email_form = settings.EMAIL_HOST_USER
     recipient_list = [email]
     send_mail(subject,message,email_form,recipient_list)
+
+
 
 
 def verify(request,auth_token):
@@ -42,4 +45,13 @@ def error_page(request):
         'parts/error.html'
     )
 
+
+def send_reset_password(request,email):
+    user_account = Account.objects.get(email=email)
+    current_sent = get_current_site(request)
+    subject = 'You accounts need to be verified !'
+    message = f"Hi paste the link to reset password :  http://{current_sent.domain}/reset_password/{urlsafe_base64_encode(force_bytes(user_account))}"
+    email_form = settings.EMAIL_HOST_USER
+    recipient_list = [email]
+    send_mail(subject,message,email_form,recipient_list)
 

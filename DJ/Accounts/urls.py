@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import login,logout,register,success,token_send_mail
+from .views import login,logout,register,success,token_send_mail,reset_password
 
 
 urlpatterns = [
@@ -24,4 +24,11 @@ urlpatterns = [
     path(
         "error/",token_send_mail.error_page, name='error',
     ),
+    path(
+        "reset-password/",reset_password.forget_password , name='reset-password',
+    ),
+    path(
+        "reset_password/<uidb64>/", reset_password.reset_password, name='reset_password',
+    ),
 ]
+

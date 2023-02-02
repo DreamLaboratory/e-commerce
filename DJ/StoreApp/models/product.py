@@ -3,6 +3,7 @@ from django.db import models
 import sys
 from .category import Category
 from HomeApp.models import BaseModel
+from django.urls import reverse
 from HomeApp.file_renamer import PathAndRename
 from django.utils.text import slugify
 sys.path.append("...")
@@ -30,6 +31,9 @@ class Product(BaseModel):
 
     def __str__(self):
         return self.name
+    @property
+    def get_absolute_url(self):
+        return reverse("product_detail_view",args = [self.category.slug,self.slug])
 
     def save(self):
         self.slug = slugify(self.name)

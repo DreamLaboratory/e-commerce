@@ -4,8 +4,10 @@ from ..models.category import Category
 
 
 
-def detail_view(request,pk):
-    product = Product.objects.get(id = pk)
+def product_detail_view(request,category_slug=None,product_slug = None):
+    product = Product.objects.get(
+        category__slug = category_slug,slug = product_slug
+    )
     return render(
         request,
         'store/product_detail.html',

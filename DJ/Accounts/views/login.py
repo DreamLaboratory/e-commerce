@@ -5,6 +5,11 @@ from django.contrib import messages
 
 
 def login_view(request):
+    if request.user.is_authenticated:
+        return redirect(
+            'index'
+        )
+
     if request.method == 'POST':
      email = request.POST.get('email',None)
      password = request.POST.get('password',None)
