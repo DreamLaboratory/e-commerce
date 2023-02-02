@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from djrichtextfield.models import RichTextField
 
 # Create your models here.
 from ...common.models import BaseModel
@@ -15,7 +16,7 @@ path_and_rename = PathAndRename("products")
 class Product(BaseModel):
     name = models.CharField(max_length=255, unique=True, db_index=True)
     slug = models.SlugField(_("Slug"), max_length=255, unique=True, db_index=True, blank=True)
-    description = models.TextField(max_length=1000, blank=True)
+    description = RichTextField(max_length=1000, blank=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     image = models.ImageField(upload_to=path_and_rename)
     stock = models.PositiveIntegerField()
