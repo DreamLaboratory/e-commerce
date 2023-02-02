@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import index, register, login,forgot_password,auth_email,redirect_login
+from .views import index, register, login, forgot_password, auth_email, redirect_login
 from .activate import activate_decode
 
 urlpatterns = [
@@ -11,4 +11,3 @@ urlpatterns = [
     path("activate/<uidb64>/", activate_decode, name="activate_decode"),
     path("redirect_login/", redirect_login, name="redirect_login"),
 ]
-
