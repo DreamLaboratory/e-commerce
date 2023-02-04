@@ -11,12 +11,12 @@ def product_detail_view(request,category_slug=None,product_slug = None):
     )
     product_reviews = Review.objects.filter(product = product)
     image_product = ProductImage.objects.filter(product = product)
-    context = {
-        'product': product,
-        'product_reviews':product_reviews,
-        "image_product":image_product
-    }
 
+    context = {
+        'product_reviews':product_reviews,
+        "image_product":image_product,
+        'product':product
+        }
     return render(
         request,
         'store/product_detail.html',
