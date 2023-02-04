@@ -45,7 +45,6 @@ def forgot_password(request):
 
 
 def validate_password(request, uidb64):
-<<<<<<< HEAD
     form = ResetPasswordForm()
     if request.method == "POST":
         form = ResetPasswordForm(request.POST)
@@ -59,10 +58,9 @@ def validate_password(request, uidb64):
             messages.success(request, "Password reset successfully")
             return redirect("accounts:login")
         messages.error(request, "Passwords do not match")
-        # print(44444)
-        # return redirect("/")
+
     return render(request, "accounts/validate_password.html", {'form':form})
-=======
+
     if request.method != "POST":  # guard clause
         return render(request, "accounts/validate_password.html")
     password = request.POST.get("password")
@@ -77,4 +75,3 @@ def validate_password(request, uidb64):
         return redirect("accounts:login")
     messages.error(request, "Passwords do not match")
     return redirect("/")
->>>>>>> master

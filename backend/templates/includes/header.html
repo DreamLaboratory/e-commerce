@@ -59,7 +59,6 @@
                 </div> <!-- col.// -->
                 <div class="col-lg-3 col-sm-6 col-8 order-2 order-lg-3">
                     <div class="d-flex justify-content-end mb-3 mb-lg-0">
-<<<<<<< HEAD
 
                         {% if user.is_authenticated %}
                             <div class="widget-header">
@@ -76,7 +75,6 @@
                                 <a href="{% url 'accounts:login' %}">Sign in</a> <span class="dark-transp"> | </span>
                                 <a href="{% url 'accounts:register' %}"> Register</a>
                             </div>
-=======
                         <div class="widget-header">
                             {% if user.is_authenticated %}
                                 <small class="title text-muted">Welcome {{ user.username }}!</small>
@@ -92,7 +90,6 @@
                                     <a href="{% url 'accounts:register' %}"> Register</a>
                                 </div>
                             {% endif %}
->>>>>>> master
                         </div>
                         {% endif %}
 
