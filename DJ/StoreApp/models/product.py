@@ -1,5 +1,6 @@
 from django.db import models
 # from django.translations import gettext_lazy
+from ckeditor.fields import RichTextField
 import sys
 from .category import Category
 from HomeApp.models import BaseModel
@@ -15,7 +16,7 @@ path_and_rename = PathAndRename('products')
 class Product(BaseModel):
     name = models.CharField(max_length = 200,unique = True,db_index = True)
     slug = models.SlugField(max_length = 200,unique = True,db_index = True,blank =True)
-    descriptions = models.TextField(max_length = 1000,blank = True)
+    descriptions = RichTextField()
     price = models.DecimalField(max_digits = 10,decimal_places = 2)
     image = models.ImageField(upload_to = path_and_rename)
     quantity = models.PositiveIntegerField()
@@ -38,3 +39,5 @@ class Product(BaseModel):
     def save(self):
         self.slug = slugify(self.name)
         super(Product,self).save()
+
+

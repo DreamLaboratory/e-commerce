@@ -18,8 +18,6 @@ def register_view(request):
             password = form.cleaned_data.get('password')
             new_form.set_password(password)
             new_form.save()
-            # username = form.cleaned_data.get('username')
-            # phone_number = form.cleaned_data.get('phone_number')
             auth_token = str(uuid.uuid4())
             email = form.cleaned_data.get('email')
             profile_obj = Profile.objects.create(

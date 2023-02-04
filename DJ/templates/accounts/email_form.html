@@ -4,27 +4,21 @@
 
 <!-- ============================ COMPONENT LOGIN   ================================= -->
 	<div class="card mx-auto" style="max-width: 380px; margin-top:100px">
+
     <div class="text-center" style="color: #00b517">
 
+           {% include 'parts/message.html' %}
+
     </div>
+
+
       <div class="card-body">
-                 {% if messages %}
-<ul class="messages">
-    {% for message in messages %}
-    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
-        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
-        {{ message }}
-    </li>
-       {% endfor %}
-</ul>
-{% endif %}
-      <h4 class="card-title mb-4">Email</h4>
       <form method="post" action="">{% csrf_token %}
           <div class="form-group">
 			 <input type="email" class="form-control" name="email" placeholder="Email Address" >
           </div> <!-- form-group// -->
           <div class="form-group">
-              <button type="submit" class="btn btn-primary btn-block"> Send </button>
+              <button type="submit" class="btn btn-primary btn-block"> Send reset-link</button>
           </div> <!-- form-group// -->
       </form>
       </div> <!-- card-body.// -->
@@ -33,5 +27,6 @@
 
 </section>
 <!-- ========================= SECTION CONTENT END// ========================= -->
+
 
 

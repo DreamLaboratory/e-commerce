@@ -26,7 +26,7 @@ class RegistrationForm(forms.ModelForm):
 
     class Meta:
         model = Account
-        fields = ('first_name','last_name',"email", "username",'phone_number','password')
+        fields = ("email", "username",'phone_number','password')
 
 
     def clean(self):

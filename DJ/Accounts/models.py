@@ -18,7 +18,6 @@ class MyAccountManager(BaseUserManager):
         return user
 
 
-
     def create_superuser(self,email,username,phone_number,password):
         user = self.create_user(
             email = self.normalize_email(email),
@@ -37,8 +36,8 @@ class MyAccountManager(BaseUserManager):
 
 
 class Account(AbstractBaseUser):
-    first_name = models.CharField(verbose_name='first_name',max_length=30)
-    last_name = models.CharField(verbose_name='last_name',max_length=30)
+    first_name = models.CharField(verbose_name='first_name',max_length=30,null=True,blank=True)
+    last_name = models.CharField(verbose_name='last_name',max_length=30,null=True,blank=True)
     email = models.CharField(verbose_name="email", max_length=60, unique=True)
     username = models.CharField(max_length=30, unique=True)
     phone_number = models.CharField(verbose_name='phone_number',max_length=30,null=True,blank=True)

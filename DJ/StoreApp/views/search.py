@@ -10,10 +10,8 @@ def search(request):
 			products = products.filter(
 				Q(name__icontains=q) | Q(descriptions__icontains=q)
 			)
-			# products = products.filter(name__icontains=q)
-			product_count = products.count()
-
-		context = {
+	product_count = products.count()
+	context = {
 		"products":products,
 		"count_products":product_count
 		}
