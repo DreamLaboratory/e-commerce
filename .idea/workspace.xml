@@ -5,21 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="030e6417-a3de-458e-95ee-717bfed6fc1b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/backend/src/apps/store/models/review.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/apps/store/views/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/apps/store/views/product.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/apps/store/views/review.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/e-commerce.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/e-commerce.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/config/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/config/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/apps/store/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/apps/store/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/apps/store/models/category.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/apps/store/models/category.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/apps/store/models/product.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/apps/store/models/product.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/apps/store/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/apps/store/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/apps/store/views.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/templates/includes/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/templates/includes/header.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/templates/product-detail.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/templates/store.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/apps/store/views/review.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/apps/store/views/review.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,21 +38,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/media/fn/d/projects/dreamlabs/django/e-commerce/backend/src/apps/accounts/views&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/media/fn/d/projects/dreamlabs/django/e-commerce/backend/src/apps/accounts/views",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/backend/src/apps/accounts/views" />
@@ -102,7 +90,8 @@
       <workItem from="1675299392493" duration="6174000" />
       <workItem from="1675344634968" duration="7407000" />
       <workItem from="1675423109229" duration="4836000" />
-      <workItem from="1675506439807" duration="5055000" />
+      <workItem from="1675506439807" duration="6313000" />
+      <workItem from="1675525974608" duration="117000" />
     </task>
     <servers />
   </component>
