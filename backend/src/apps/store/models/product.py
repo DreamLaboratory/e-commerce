@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.utils.text import slugify
 
 from ...common.models import BaseModel
@@ -30,6 +31,23 @@ class Product(BaseModel):
     def __str__(self):
         return self.name
 
+    @property
+    def get_absolute_url(self):
+        return reverse("store:product_detail_view", args=[self.category.slug, self.slug])
+
     def save(self):
         self.slug = slugify(self.name)
         super(Product, self).save()
+
+
+class ProductImage(BaseModel):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="prod_imgs")
+    image = models.ImageField(upload_to=path_and_rename)
+
+    class Meta:
+        verbose_name = "Product image"
+        verbose_name_plural = "Product images"
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return str(self.product)

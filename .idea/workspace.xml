@@ -5,38 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="030e6417-a3de-458e-95ee-717bfed6fc1b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/backend/src/apps/accounts/views/log_out.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/apps/accounts/views/reset_password.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/apps/common/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/apps/common/admin.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/apps/common/apps.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/apps/common/file_renamer.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/apps/common/migrations/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/apps/common/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/apps/store/category_processors.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/apps/store/models/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/apps/store/models/category.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/apps/store/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/templates/accounts/forgot_password.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/templates/accounts/reset_password.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/templates/accounts/validate_password.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/apps/store/models/review.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/apps/store/views/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/apps/store/views/product.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/apps/store/views/review.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/e-commerce.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/e-commerce.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/config/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/config/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/config/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/config/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/requirements/base.txt" beforeDir="false" afterPath="$PROJECT_DIR$/backend/requirements/base.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/apps/accounts/forms/register_form.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/apps/accounts/forms/register_form.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/apps/accounts/forms/sign_in_form.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/apps/accounts/forms/sign_in_form.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/apps/accounts/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/apps/accounts/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/apps/accounts/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/apps/accounts/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/apps/accounts/views/activate.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/apps/accounts/views/activate.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/apps/accounts/views/index.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/apps/accounts/views/index.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/apps/accounts/views/register.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/apps/accounts/views/register.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/apps/accounts/views/sign_in.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/apps/accounts/views/sign_in.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/apps/v1.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/apps/v1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/templates/accounts/signin.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/templates/accounts/signin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/apps/store/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/apps/store/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/apps/store/models/category.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/apps/store/models/category.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/apps/store/models/product.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/apps/store/models/product.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/apps/store/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/apps/store/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/apps/store/views.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/templates/includes/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/templates/includes/header.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/templates/store.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/templates/store.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/templates/product-detail.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/templates/store.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,13 +29,16 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/backend/venv/lib/python3.10/site-packages/django/contrib/auth/forms.py" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -88,6 +74,7 @@
       <recent name="$PROJECT_DIR$/backend/src/apps/accounts/forms" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/backend/src/apps/store/views" />
       <recent name="$PROJECT_DIR$/backend/src/apps/store/models" />
       <recent name="$PROJECT_DIR$/backend/src/apps" />
       <recent name="$PROJECT_DIR$/backend/templates/accounts" />
@@ -110,7 +97,12 @@
       <workItem from="1674371625271" duration="1099000" />
       <workItem from="1674459262329" duration="42441000" />
       <workItem from="1674581882885" duration="65000" />
-      <workItem from="1674636172280" duration="5864000" />
+      <workItem from="1674636172280" duration="8084000" />
+      <workItem from="1675181523192" duration="20000" />
+      <workItem from="1675299392493" duration="6174000" />
+      <workItem from="1675344634968" duration="7407000" />
+      <workItem from="1675423109229" duration="4836000" />
+      <workItem from="1675506439807" duration="5055000" />
     </task>
     <servers />
   </component>
