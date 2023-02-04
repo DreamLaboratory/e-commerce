@@ -1,9 +1,9 @@
-from ..command_auto.create_product import BaseCommand
+from ..command_auto.create_product import Command
 from django.db import models
 from ...accounts.models import MyUser
 from .product import Product
 
-class Reviews(BaseCommand):
+class Reviews(Command):
     user=models.ForeignKey(MyUser,on_delete=models.CASCADE)
     product=models.ForeignKey(Product,on_delete=models.CASCADE)
     ip=models.GenericIPAddressField()
