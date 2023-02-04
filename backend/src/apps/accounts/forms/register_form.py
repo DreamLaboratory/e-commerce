@@ -4,7 +4,7 @@ from ..models import Account
 from django.contrib.auth import authenticate, password_validation
 from django.core.exceptions import ValidationError
 
-# UserCreationForm is a built-in form in Django
+
 class RegistrationForm(forms.ModelForm):
     password = forms.CharField(
         widget=forms.PasswordInput(
