@@ -1,6 +1,6 @@
-from .models.product import Product
+from ..models.product import Product
 from django.shortcuts import render
-from .models.category import Category
+from ..models.category import Category
 from django.core.paginator import Paginator
 from django.http import HttpResponse
 from django.db.models import Q 
@@ -39,16 +39,13 @@ def product_list_view(request, category_slug=None):
 
 
 def search_view(request):
+    products=Product.objects.all()
     if 'q' in request.GET:
         if request.method == "GET":
             search_product=request.GET.get('q')
-            # products=Product.objects.filter(is_availabel=True)
-            # if category_slug and search_product:
-            #     category=Category.objects.get(slug=category_slug)
-                # products=products.filter(category=category)
             if search_product:    
                 products=Product.objects.filter(Q(name__icontains=search_product) | Q(description__icontains=search_product) ,is_availabel=True)
-
+        
     else:
         return HttpResponse('You can\'n use any letter other than q  ')
     context={
@@ -56,8 +53,11 @@ def search_view(request):
     }
     return render(request=request,template_name='product/store.html',context=context)
     
+def product_detail_view(request,category_slug=None,product_slug=None):
 
+    products=Product.objects.filter()
 
+    return render(request,template_name='product/detail.html')
 
 
 

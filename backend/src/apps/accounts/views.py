@@ -78,6 +78,9 @@ def login(request):
             return HttpResponse("Login Failed")
     return render(request, "register/login.html")
 
+def logout(request):
+    auth.logout(request)
+    return redirect('accounts:login')
 
 def auth_email(request):
 

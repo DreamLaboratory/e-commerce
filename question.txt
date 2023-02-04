@@ -7,3 +7,5 @@ migrations/    bu ikkalsini farqi nimada
 start.sh ihlamadi
 BaseCommand xam ishamadi
 get_abdolute_url ishlamadi
+logout ishlamadi
+erros.log xam ishlamadi 
