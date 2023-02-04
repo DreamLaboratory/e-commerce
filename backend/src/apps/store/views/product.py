@@ -3,7 +3,8 @@ from django.shortcuts import render
 from ..models.category import Category
 from django.core.paginator import Paginator
 from django.http import HttpResponse
-from django.db.models import Q 
+from django.db.models import Q
+
 # Create your views here.
 
 
@@ -12,8 +13,6 @@ def product_list_view(request, category_slug=None):
     price_min = request.GET.get("min")
     price_max = request.GET.get("max")
     products = Product.objects.filter(is_availabel=True)
-
-    
 
     if price_max and price_min:
         print("min max")
@@ -39,27 +38,25 @@ def product_list_view(request, category_slug=None):
 
 
 def search_view(request):
-    products=Product.objects.all()
-    if 'q' in request.GET:
+    products = Product.objects.all()
+    if "q" in request.GET:
         if request.method == "GET":
-            search_product=request.GET.get('q')
-            if search_product:    
-                products=Product.objects.filter(Q(name__icontains=search_product) | Q(description__icontains=search_product) ,is_availabel=True)
-        
+            search_product = request.GET.get("q")
+            if search_product:
+                products = Product.objects.filter(
+                    Q(name__icontains=search_product) | Q(description__icontains=search_product), is_availabel=True
+                )
+
     else:
-        return HttpResponse('You can\'n use any letter other than q  ')
-    context={
-        'products':products,
+        return HttpResponse("You can'n use any letter other than q  ")
+    context = {
+        "products": products,
     }
-    return render(request=request,template_name='product/store.html',context=context)
-    
-def product_detail_view(request,category_slug=None,product_slug=None):
-
-    products=Product.objects.filter()
-
-    return render(request,template_name='product/detail.html')
+    return render(request=request, template_name="product/store.html", context=context)
 
 
+def product_detail_view(request, category_slug=None, product_slug=None):
 
+    Product.objects.filter()
 
-    
+    return render(request, template_name="product/detail.html")

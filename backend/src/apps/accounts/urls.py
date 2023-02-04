@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import index, register, login, forgot_password, auth_email, redirect_login,logout
+from .views import index, register, login, forgot_password, auth_email, redirect_login, logout
 from .activate import activate_decode
 
 urlpatterns = [
@@ -13,4 +13,3 @@ urlpatterns = [
     path("redirect_login/", redirect_login, name="redirect_login"),
     path("redirect_login/", redirect_login, name="redirect_login"),
 ]
-
