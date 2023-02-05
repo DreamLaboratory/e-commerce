@@ -274,10 +274,8 @@ env
 
 .ipython/
 .env
-<<<<<<< HEAD
 migrations/
 *migrations/
-=======
 ./migrations
-migrations/
->>>>>>> master
+*migrations/
+
