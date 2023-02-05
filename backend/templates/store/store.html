@@ -131,7 +131,7 @@ Home
     
     <header class="border-bottom mb-4 pb-3">
             <div class="form-inline">
-                <span class="mr-md-auto">{{product_count}} Items found </span>
+                <span class="mr-md-auto">{{product_count}} Items found!</span>
                 
             </div>
     </header><!-- sect-heading -->
@@ -144,7 +144,7 @@ Home
             <figure class="card card-product-grid">
                 <div class="img-wrap"> 
                     
-                    <img src="{{ product.image.url }}">
+                    <img src="{{ product.get_image_url }}">
 
                     
                 </div> <!-- img-wrap.// -->

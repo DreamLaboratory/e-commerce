@@ -41,15 +41,27 @@ class Account(AbstractBaseUser, PermissionsMixin):
 
 class UserProfile(models.Model):
     user = models.OneToOneField(Account, on_delete=models.CASCADE)
+<<<<<<< HEAD
     profile_pic = models.ImageField(upload_to='profile_pics', default='profile_pics/default.png')
+=======
+    profile_pic = models.ImageField(upload_to="profile_pics", default="profile_pics/default.png", blank=True, null=True)
+>>>>>>> master
     city = models.CharField(max_length=50, blank=True)
     state = models.CharField(max_length=50, blank=True)
     address = models.CharField(max_length=50, blank=True)
 
     def __str__(self):
+<<<<<<< HEAD
         return self.user
     def full_address(self):
         return f'{self.city} {self.state}'
+=======
+        return str(self.user)
+
+    @property
+    def full_address(self):
+        return f"{self.city} {self.state}"
+>>>>>>> master
 
     class Meta:
         verbose_name = _("UserProfile")
