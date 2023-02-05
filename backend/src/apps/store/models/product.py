@@ -52,3 +52,4 @@ class ProductImage(BaseModel):
 
     def __str__(self):
         return str(self.product)
+
