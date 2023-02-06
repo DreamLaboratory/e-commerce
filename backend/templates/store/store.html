@@ -36,7 +36,7 @@ Home
                     <h6 class="title">Categories</h6>
                 </a>
             </header>
-            <div class="filter-content collapse show" id="collapse_1" style="">
+            <div class="filter-content collapse show" id="collapse_1" >
                 <div class="card-body">
                     
                     <ul class="list-menu">
@@ -55,7 +55,7 @@ Home
                     <h6 class="title">Sizes </h6>
                 </a>
             </header>
-            <div class="filter-content collapse show" id="collapse_4" style="">
+            <div class="filter-content collapse show" id="collapse_4">
                 <div class="card-body">
                   <label class="checkbox-btn">
                     <input type="checkbox">
@@ -131,7 +131,7 @@ Home
     
     <header class="border-bottom mb-4 pb-3">
             <div class="form-inline">
-                <span class="mr-md-auto">{{product_count}} Items found </span>
+                <span class="mr-md-auto">{{product_count}} Items found!</span>
                 
             </div>
     </header><!-- sect-heading -->
@@ -144,7 +144,7 @@ Home
             <figure class="card card-product-grid">
                 <div class="img-wrap"> 
                     
-                    <img src="{{ product.image.url }}">
+                    <img src="{{ product.get_image_url }}">
 
                     
                 </div> <!-- img-wrap.// -->
@@ -195,4 +195,4 @@ Home
     <!-- ========================= SECTION CONTENT END// ========================= -->
 
         
-{% endblock %} 
+{% endblock %}

@@ -5,8 +5,7 @@ from django.db.models import Q
 from django.shortcuts import render
 
 from ..models.category import Category
-from ..models.product import Product, ProductImage
-from ..models.review import Review
+from ..models.product import Product
 
 # import logging
 
@@ -42,8 +41,8 @@ def product_list_view(request, category_slug=None):
 # url/<slug:category_slug>/<slug:product_slug>/
 def product_detail_view(request, category_slug, product_slug):
     product = Product.objects.get(category__slug=category_slug, slug=product_slug)
-    product_reviews = Review.objects.filter(product=product)
-    product_images = ProductImage.objects.filter(product=product)
+    product_reviews = product.reviews.filter(status=True)
+    product_images = product.images.all()
     context = {
         "product": product,
         "product_reviews": product_reviews,

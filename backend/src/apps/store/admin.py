@@ -9,12 +9,13 @@ from .models.product import ProductImage
 
 
 class ReviewAdmin(admin.ModelAdmin):
-    list_display = ("product", "user", "rating", "created_at")
+    list_display = ("product", "user", "rating", "status", "created_at")
     list_filter = ("rating", "created_at")
     search_fields = ("user",)
     # autocomplete_fields = ("product",)
     raw_id_fields = ("user",)
     date_hierarchy = "created_at"
+    list_editable = ("status",)
 
 
 admin.site.register(ProductImage)

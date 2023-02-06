@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.db.models import Avg
 
 # Create your models here.
 from ...common.models import BaseModel
@@ -21,7 +22,7 @@ class Product(BaseModel):
     image = models.ImageField(upload_to=path_and_rename)
     stock = models.PositiveIntegerField()
     is_available = models.BooleanField(default=True, help_text="Is product available?")
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="products", blank=True, null=True)
 
     class Meta:
         verbose_name = "product"
@@ -35,13 +36,23 @@ class Product(BaseModel):
     def __str__(self):
         return self.name
 
-    def save(self):
-        self.slug = slugify(self.name)
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
         super(Product, self).save()
+
+    @property
+    def get_image_url(self):
+        return self.image.url if self.image and hasattr(self.image, "url") else "#"
+
+    @property
+    def average_rating(self):
+        reviews = self.reviews.filter(status=True).aggregate(Avg("rating"))
+        return float(reviews["rating__avg"]) if reviews["rating__avg"] else 0
 
 
 class ProductImage(BaseModel):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="images")
     image = models.ImageField(upload_to=path_and_rename)
 
     class Meta:
@@ -51,3 +62,7 @@ class ProductImage(BaseModel):
 
     def __str__(self):
         return str(self.product)
+
+    @property
+    def get_image_url(self):
+        return self.image.url if self.image and hasattr(self.image, "url") else "#"
