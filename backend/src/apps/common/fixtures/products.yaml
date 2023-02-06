@@ -1,0 +1,21 @@
+- id: '1'
+  name: 'mahsulot 11'
+  description: 'mahsulot 1 haqida'
+  price: 1000
+  stock: 100
+  is_available: True
+  category_id: 1
+- id: '2'
+  name: 'mahsulot 21'
+  description: 'mahsulot 2 haqida'
+  price: 1000
+  stock: 100
+  is_available: True
+  category_id: 1
+- id: '3'
+  name: 'mahsulot 231'
+  description: 'mahsulot 23 haqida'
+  price: 1000
+  stock: 100
+  is_available: True
+  category_id: 1
