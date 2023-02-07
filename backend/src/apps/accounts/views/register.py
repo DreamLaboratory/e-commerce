@@ -14,6 +14,8 @@ import asyncio
 
 @transaction.atomic
 def register(request):
+    if request.user.is_authenticated:
+        return redirect("/")
     try:
         form = RegistrationForm()
         if request.method == "POST":
@@ -27,7 +29,6 @@ def register(request):
                     password = form.cleaned_data.get("password")
                     new_form.username = username
                     new_form.set_password(password)
-                    new_form.save()
                     firstname = form.cleaned_data.get("firstname")
                     # Email data
                     current_site = get_current_site(request)
@@ -44,7 +45,7 @@ def register(request):
                     )
                     html_body = strip_tags(body)
                     asyncio.run(send_email_async(subject, html_body, [email]))
-
+                    new_form.save()
                 messages.success(request, f"Account created for {username}!")
                 return redirect("accounts:login")
         return render(request, "accounts/register.html", {"form": form})

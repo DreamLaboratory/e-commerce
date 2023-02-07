@@ -16,6 +16,8 @@ import asyncio
 
 # @timer
 def forgot_password(request):
+    if request.user.is_authenticated:
+        return redirect("/")
     if request.method != "POST":  # if not post request, Guard Clause style
         return render(request, "accounts/forgot_password.html")
     email = request.POST.get("email")

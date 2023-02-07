@@ -8,7 +8,6 @@ Home
 
 {% endblock %}
 
-
 {% block content %}
 
 <link href="{% static 'css/rate.css' %}" rel="stylesheet" type="text/css"/>
@@ -59,7 +58,7 @@ Home
                  aria-hidden="true"></i>
               <i class="fa fa-star{% if product.average_rating < 4.5 %}-o{% elif product.average_rating >= 4.5 and product.average_rating < 5 %}-half-o {% endif %} "
                  aria-hidden="true"></i>
-      <span>{{ product.countReview }} feedback</span>
+      <span>{{ product.countReview|floatformat:2 }} feedback</span>
       </span>
 </div>
     <div class="mb-3"> 
@@ -136,6 +135,7 @@ Home
           <form method="POST" action="{% url 'store:add_review' product.id %}">
             {% csrf_token %}
             <h5>Wrire your review</h5>
+            {% include 'includes/message.html' %}
             <div>
               <label>
                 How do you rate this product?
