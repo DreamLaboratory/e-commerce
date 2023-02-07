@@ -40,6 +40,7 @@ THIRD_APPS = [
     "django.contrib.messages",
     "django.contrib.humanize",
     "django.contrib.staticfiles",
+    "captcha",
 ]
 
 LOCAL_APPS = [
@@ -149,7 +150,8 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = "mashrapov3030@gmail.com"
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
 EMAIL_USE_TLS = True
-
+RECAPTCHA_PUBLIC_KEY = os.environ.get("RECAPTCHA_PUBLIC_KEY")
+RECAPTCHA_PRIVATE_KEY = os.environ.get("RECAPTCHA_PRIVATE_KEY")
 
 # log file
 logging.config.dictConfig(

@@ -1,0 +1,126 @@
+2023-02-07 07:58:36,056 django.request ERROR    Internal Server Error: /login/
+Traceback (most recent call last):
+  File "/home/nurmuhammad/.local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/nurmuhammad/.local/lib/python3.10/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+TypeError: login() missing 1 required positional argument: 'user'
+2023-02-07 07:58:38,457 django.request ERROR    Internal Server Error: /login/
+Traceback (most recent call last):
+  File "/home/nurmuhammad/.local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/nurmuhammad/.local/lib/python3.10/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+TypeError: login() missing 1 required positional argument: 'user'
+2023-02-07 07:58:39,446 django.request ERROR    Internal Server Error: /login/
+Traceback (most recent call last):
+  File "/home/nurmuhammad/.local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/nurmuhammad/.local/lib/python3.10/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+TypeError: login() missing 1 required positional argument: 'user'
+2023-02-07 07:58:39,765 django.request ERROR    Internal Server Error: /login/
+Traceback (most recent call last):
+  File "/home/nurmuhammad/.local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/nurmuhammad/.local/lib/python3.10/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+TypeError: login() missing 1 required positional argument: 'user'
+2023-02-07 07:58:40,075 django.request ERROR    Internal Server Error: /login/
+Traceback (most recent call last):
+  File "/home/nurmuhammad/.local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/nurmuhammad/.local/lib/python3.10/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+TypeError: login() missing 1 required positional argument: 'user'
+2023-02-07 07:58:44,686 django.request ERROR    Internal Server Error: /login/
+Traceback (most recent call last):
+  File "/home/nurmuhammad/.local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/nurmuhammad/.local/lib/python3.10/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+TypeError: login() missing 1 required positional argument: 'user'
+2023-02-07 07:59:33,978 django.request ERROR    Internal Server Error: /login/
+Traceback (most recent call last):
+  File "/home/nurmuhammad/.local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/nurmuhammad/.local/lib/python3.10/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+TypeError: login() missing 1 required positional argument: 'user'
+2023-02-07 08:04:15,849 django.request ERROR    Internal Server Error: /login/
+Traceback (most recent call last):
+  File "/home/nurmuhammad/.local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/nurmuhammad/.local/lib/python3.10/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+TypeError: login() missing 1 required positional argument: 'user'
+2023-02-07 10:53:53,724 django.request ERROR    Internal Server Error: /login/
+Traceback (most recent call last):
+  File "/home/nurmuhammad/.local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/nurmuhammad/.local/lib/python3.10/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/nurmuhammad/e-commerce/backend/src/apps/accounts/views/login.py", line 19, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "/home/nurmuhammad/e-commerce/backend/src/apps/accounts/views/login.py", line 40, in login
+    login(request, user)
+  File "/home/nurmuhammad/e-commerce/backend/src/apps/accounts/views/login.py", line 19, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+TypeError: login() takes 1 positional argument but 2 were given
+2023-02-07 10:54:15,265 django.request ERROR    Internal Server Error: /login/
+Traceback (most recent call last):
+  File "/home/nurmuhammad/.local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/nurmuhammad/.local/lib/python3.10/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/nurmuhammad/e-commerce/backend/src/apps/accounts/views/login.py", line 19, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "/home/nurmuhammad/e-commerce/backend/src/apps/accounts/views/login.py", line 40, in login
+    login(request, user)
+  File "/home/nurmuhammad/e-commerce/backend/src/apps/accounts/views/login.py", line 19, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+TypeError: login() takes 1 positional argument but 2 were given
+2023-02-07 10:57:33,654 django.request ERROR    Internal Server Error: /login/
+Traceback (most recent call last):
+  File "/home/nurmuhammad/.local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/nurmuhammad/.local/lib/python3.10/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/nurmuhammad/e-commerce/backend/src/apps/accounts/views/login.py", line 39, in login
+    login(request, user)
+TypeError: login() takes 1 positional argument but 2 were given
+2023-02-07 11:06:08,114 django.request ERROR    Internal Server Error: /login/
+Traceback (most recent call last):
+  File "/home/nurmuhammad/.local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/nurmuhammad/.local/lib/python3.10/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/nurmuhammad/e-commerce/backend/src/apps/accounts/views/login.py", line 39, in login
+    login(request, user)
+TypeError: login() takes 1 positional argument but 2 were given
+2023-02-07 11:07:35,534 django.request ERROR    Internal Server Error: /login/
+Traceback (most recent call last):
+  File "/home/nurmuhammad/.local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/nurmuhammad/.local/lib/python3.10/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/nurmuhammad/e-commerce/backend/src/apps/accounts/views/login.py", line 19, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "/home/nurmuhammad/e-commerce/backend/src/apps/accounts/views/login.py", line 39, in login
+    login(request, user)
+  File "/home/nurmuhammad/e-commerce/backend/src/apps/accounts/views/login.py", line 19, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+TypeError: login() takes 1 positional argument but 2 were given
+2023-02-07 11:09:01,004 django.request ERROR    Internal Server Error: /login/
+Traceback (most recent call last):
+  File "/home/nurmuhammad/.local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/nurmuhammad/.local/lib/python3.10/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/nurmuhammad/e-commerce/backend/src/apps/accounts/views/login.py", line 19, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "/home/nurmuhammad/e-commerce/backend/src/apps/accounts/views/login.py", line 39, in login
+    login(request, user)
+  File "/home/nurmuhammad/e-commerce/backend/src/apps/accounts/views/login.py", line 19, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+TypeError: login() takes 1 positional argument but 2 were given
