@@ -1,0 +1,15 @@
+- id: '1'
+  name: 'mahsulot 1'
+  descriptions: 'mahsulot 1 haqida'
+  price: 1000
+  quantity: 100
+  is_available: true
+
+
+
+- id: '2'
+  name: 'mahsulot 2'
+  descriptions: 'mahsulot 2 haqida'
+  price: 1000
+  quantity: 100
+  is_available: true

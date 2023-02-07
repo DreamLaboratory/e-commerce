@@ -1,16 +1,16 @@
 from django.shortcuts import render
 from ..models.product import Product
 from ..models.category import Category
-from ..models.review import Review
-from ..models.image_product import ProductImage
+# from ..models.review import Review
+# from ..models.image_product import ProductImage
 
 
 def product_detail_view(request,category_slug=None,product_slug = None):
     product = Product.objects.get(
         category__slug = category_slug,slug = product_slug
     )
-    product_reviews = Review.objects.filter(product = product)
-    image_product = ProductImage.objects.filter(product = product)
+    product_reviews = product.reviews.filter(product = product,status=True)
+    image_product = product.images.filter(product = product)
 
     context = {
         'product_reviews':product_reviews,

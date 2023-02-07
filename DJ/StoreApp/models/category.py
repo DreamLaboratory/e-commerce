@@ -27,7 +27,7 @@ class Category(BaseModel):
     def get_absolute_url(self):
         return reverse('product_list_view',args = [self.slug])
 
-    def save(self):
+    def save(self,*args,**kwargs):
         self.slug = slugify(self.name)
         super(Category,self).save()
 
