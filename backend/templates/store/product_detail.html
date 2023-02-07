@@ -71,22 +71,20 @@ Home
     </p>    
     
     <hr>
+    <form action="{% url 'cart:add_cart' %}" method="post">
+      {% csrf_token %}
         <div class="row">
+
             <div class="item-option-select">
                 <h6>Choose Color</h6>
                 <div class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons">
-                  <label class="btn btn-light">
-                    <input type="radio" name="radio_color"> Silver
-                  </label>
-                  <label class="btn btn-light">
-                    <input type="radio" name="radio_color" > Gray
-                  </label>
-                  <label class="btn btn-light active">
-                    <input type="radio" name="radio_color checked"> Gold
-                  </label>
-                  <label class="btn btn-light">
-                    <input type="radio" name="radio_color"> Black
-                  </label>
+                  <select name="" id="" class="form-control">
+                    <option value="" disabled>Select Color</option>
+                    {% for color in product.variants.colors %}
+                      <option value="{{ color }}">{{ color.variant_value }}</option>
+                    {% endfor %}
+                  </select>
+                  
                 </div> 
             </div>
         </div> <!-- row.// -->
@@ -109,19 +107,20 @@ Home
                 </div> 
             </div>
         </div> <!-- row.// -->
+        
         <hr>
-
-          #TODO 
+        
         {% if user.is_authenticated %}
-          {% if product.stock > 0 %}
-          <a href="#" class="btn  btn-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i>  </a>
-          {% else %}
+        {% if product.stock > 0 %}
+        <button type="submit" class="btn  btn-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i>  </button>
+        {% else %}
           <a href="#" class="btn  btn-primary disabled"> <span class="text">Out of Stock</span> <i class="fas fa-shopping-cart"></i>  </a>
         {% endif %}
         {% else %}
-          <a href="{% url 'accounts:login' %}" class="btn  btn-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i>  </a>
+        <a href="{% url 'accounts:login' %}" class="btn  btn-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i>  </a>
         {% endif %}
-
+        
+      </form>
     </article> <!-- product-info-aside .// -->
             </main> <!-- col.// -->
         </div> <!-- row.// -->

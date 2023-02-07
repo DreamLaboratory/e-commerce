@@ -49,3 +49,17 @@ Variation {
     created_at: DateTimeField(auto_now_add=True),
     updated_at: DateTimeField(auto_now=True),
 }
+
+
+
+Cart(
+    user_id: ForeignKey(Account), # user annomous
+
+)
+CartItem(
+    cart_id = ForeignKey(Cart),
+    product = ForeignKey(Product),
+    variation = ManyToManyField(Variation), # pre
+    quantity = Positive(default=1),
+
+)

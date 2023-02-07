@@ -40,6 +40,7 @@ def product_list_view(request, category_slug=None):
 def product_detail_view(request, category_slug, product_slug):
     # TODO try except
     product = Product.objects.get(category__slug=category_slug, slug=product_slug)
+
     product_reviews = product.reviews.filter(status=True)
     product_images = product.images.all()
     context = {

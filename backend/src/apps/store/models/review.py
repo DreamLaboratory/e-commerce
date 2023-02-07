@@ -1,10 +1,9 @@
-from django.db import models
-from ...common.models import BaseModel
-from ...accounts.models import Account
-from .product import Product
 from django.core.exceptions import ValidationError
+from django.db import models
 
-# validators for checking review description
+from ...accounts.models import Account
+from ...common.models import BaseModel
+from .product import Product
 
 
 def validate_desc(value):
@@ -19,7 +18,7 @@ def validate_desc(value):
 class Review(BaseModel):
     user = models.ForeignKey(Account, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="reviews")
-    desc = models.TextField(validators=[validate_desc], help_text="Review haqida izoh")
+    desc = models.TextField(help_text="Review haqida izoh")
     status = models.BooleanField(default=False)
     ip = models.GenericIPAddressField(blank=True, null=True)
     rating = models.FloatField(null=True, blank=True)
