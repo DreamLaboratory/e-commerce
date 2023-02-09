@@ -12,11 +12,9 @@ class ReviewForm(forms.ModelForm):
             "rating": forms.NumberInput(attrs={"class": "form-control"}),
         }
 
-
-# def validate_desc(value):
-#     # TODO move to forms.py
-#     # list of bad words
-#     bad_words = ["yomon"]
-#     # check if bad words in review description
-#     if any(word in value for word in bad_words):
-#         raise forms.ValidationError("Bad words in review description")
+    # def clean_desc(self):
+    #     desc = self.cleaned_data["desc"]
+    #     bad_words = ["yomon", "bad"]
+    #     if any(word in desc for word in bad_words):
+    #         raise forms.ValidationError("Bad words in review description")
+    #     return desc
