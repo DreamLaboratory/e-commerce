@@ -40,7 +40,6 @@
     <h2 class="title">{{product.name}}  </h2>
     <div class="rating-star">
       <span>
-        {{ product.average_rating }}
               <i class="fa fa-star{% if product.average_rating < 0.5 %}-o{% elif product.average_rating >= 0.5 and  product.average_rating < 1 %}-half-o {% endif %} "
                  aria-hidden="true"></i>
               <i class="fa fa-star{% if product.average_rating < 1.5 %}-o{% elif product.average_rating >= 1.5 and product.average_rating < 2 %}-half-o {% endif %} "
@@ -63,22 +62,20 @@
     </p>
 
     <hr>
+         <form action="{% url 'add_cart' %}" method="POST">
+              {% csrf_token %}
+             <input type="hidden" id="id_namer" name="product_id" value="{{product.id}}">
         <div class="row">
             <div class="item-option-select">
                 <h6>Choose Color</h6>
                 <div class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons">
-                  <label class="btn btn-light">
-                    <input type="radio" name="radio_color"> Silver
-                  </label>
-                  <label class="btn btn-light">
-                    <input type="radio" name="radio_color" > Gray
-                  </label>
-                  <label class="btn btn-light active">
-                    <input type="radio" name="radio_color checked"> Gold
-                  </label>
-                  <label class="btn btn-light">
-                    <input type="radio" name="radio_color"> Black
-                  </label>
+                  <select name="color"  class="form-control">
+                    <option value="" disabled>Select Color</option>
+                    {% for color in product_color %}
+                      <option value="{{ color }}">{{ color.variant_value }}</option>
+                    {% endfor %}
+                  </select>
+
                 </div>
             </div>
         </div> <!-- row.// -->
@@ -86,18 +83,12 @@
             <div class="item-option-select">
                 <h6>Select Size</h6>
                 <div class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons">
-                  <label class="btn btn-light">
-                    <input type="radio" name="radio_color"> S
-                  </label>
-                  <label class="btn btn-light active">
-                    <input type="radio" name="radio_color" checked> M
-                  </label>
-                  <label class="btn btn-light">
-                    <input type="radio" name="radio_color"> L
-                  </label>
-                  <label class="btn btn-light">
-                    <input type="radio" name="radio_color"> XL
-                  </label>
+                  <select name="size"  class="form-control">
+                    <option value="" disabled>Select Size</option>
+                    {% for size in product.variants.size %}
+                      <option value="{{ size }}">{{ size.variant_value }}</option>
+                    {% endfor %}
+                  </select>
                 </div>
             </div>
         </div> <!-- row.// -->
@@ -105,14 +96,14 @@
 
         {% if user.is_authenticated %}
           {% if product.quantity > 0 %}
-          <a href="#" class="btn  btn-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i>  </a>
+          <button type="submit" class="btn  btn-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i>  </button>
           {% else %}
           <a href="#" class="btn  btn-primary disabled"> <span class="text">Out of Stock</span> <i class="fas fa-shopping-cart"></i>  </a>
         {% endif %}
         {% else %}
           <a href="{% url 'login' %}" class="btn  btn-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i>  </a>
         {% endif %}
-
+         </form>
     </article> <!-- product-info-aside .// -->
             </main> <!-- col.// -->
         </div> <!-- row.// -->
@@ -124,7 +115,7 @@
     <div class="row">
         <div class="col-md-9">
 
-          <form method="POST" action="{% url 'add_review' product.id %}">
+          <form method="POST" action="">
             {% csrf_token %}
             <h5>Write your review</h5>
             <div>
@@ -132,7 +123,7 @@
                 How do you rate this product?
               </label>
               <br>
-              <div class="fa fa-star-o">
+              <div class="rate">
                 <input type="radio" name="rating" id="rating10" value="5" required> </input> <label
                     for="rating10" title="5"></label>
                 <input type="radio" name="rating" id="rating9" value="4.5" required> </input> <label
@@ -154,9 +145,11 @@
                 <input type="radio" name="rating" id="rating1" value="0.5" required> </input> <label
                     for="rating1" title="0.5" class="half"></label>
             </div>
+
               <br>
-                Write comment:
-              <textarea name="desc" class="form-control" rows="5" cols="40"></textarea>
+                Write comment:{% include 'parts/message.html' %}
+
+                <textarea name="desc" class="form-control" rows="5" cols="40"></textarea>
               <br>
             </div>
 
@@ -183,12 +176,11 @@
                 aria-hidden="true"></i>
                 <i class="fa fa-star{% if product.average_rating < 4.5 %}-o{% elif product.average_rating >= 4.5 and product.average_rating < 5 %}-half-o {% endif %} "
                 aria-hidden="true"></i>
-                <span>{{ product.countReview }} feedback</span>
+                <span>{{ product.get_review_count }} feedback</span>
                 </span>
             </div>
 
-
-            <h6>O'rtacha: {{ product.average_rating }}<i class="fa fa-star-o"></i></h6>
+            <h6>O'rtacha: {{average_rating|slice:":4" }}</h6>
         </header>
 
         {% for review in product_reviews %}
@@ -197,7 +189,7 @@
             <div class="icontext w-100">
                 <img src="" class="img-xs icon rounded-circle">
                 <div class="text">
-                    <span class="date text-muted float-md-right">24.04.2020 </span>
+                    <span class="date text-muted float-md-right">{{review.created_at}}</span>
                     <h6 class="mb-1">Mike John </h6>
 
                 </div>

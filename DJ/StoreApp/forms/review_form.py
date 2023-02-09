@@ -11,17 +11,11 @@ class ReviewForm(forms.ModelForm):
             "rating": forms.NumberInput(attrs={"class": "form-control"}),
         }
 
-    def clean(self):
-        bad_words = ['iflos', 'tentak', 'ahmoq']
-        cleaned_data = super(ReviewForm, self).clean()
-        desc = cleaned_data.get("desc")
+    def clean_description(self):
+        desc = self.cleaned_data["desc"]
+        print(desc)
+        bad_words = ['iflos', 'tentak', 'ahmoq','bad']
+        if any(word in desc for word in bad_words):
+            raise forms.ValidationError("Bad words validate!")
+        return desc
 
-        for bad in bad_words:
-            if bad in desc:
-                print('sux sdksdknsd')
-                raise forms.ValidationError("bu suzni yozish mumkin emas!")
-
-    # def __init__(self, *args, **kwargs):
-    #     super(ReviewForm, self).__init__(*args, **kwargs)
-    #     for field in self.fields:
-    #         self.fields[field].widget.attrs["class"] = "form-control"

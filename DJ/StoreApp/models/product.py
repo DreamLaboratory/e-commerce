@@ -7,7 +7,8 @@ from HomeApp.models import BaseModel
 from django.urls import reverse
 from HomeApp.file_renamer import PathAndRename
 from django.utils.text import slugify
-from django.db.models import Avg
+from django.db.models import Avg,Count
+
 
 sys.path.append("...")
 
@@ -43,9 +44,15 @@ class Product(BaseModel):
         reviews_count = reviews.count()
         if reviews_count > 0:
             average = reviews
-            return "{:.2f}".format(reviews_average['rating__avg'])
+            # return "{:.2f}".format(reviews_average['rating__avg'])
+            return reviews_average['rating__avg']
         else:
             return '0'
+
+    @property
+    def get_review_count(self):
+        review_count = self.reviews.filter(status=True).aggregate(count=Count('rating'))
+        return review_count['count']
 
     @property
     def get_image_url(self):

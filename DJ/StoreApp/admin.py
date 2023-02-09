@@ -3,7 +3,7 @@ from .models.product import Product
 from .models.category import Category
 from .models.image_product import ProductImage
 from .models.review import Review
-
+from .models.variants import ProductVariants
 class ReviewAdmin(admin.ModelAdmin):
     list_display = ("product", "user", "rating", "status", "created_at")
     list_filter = ("rating", "created_at")
@@ -20,3 +20,5 @@ admin.site.register(Review, ReviewAdmin)
 admin.site.register(Product)
 admin.site.register(Category)
 admin.site.register(ProductImage)
+admin.site.register(ProductVariants)
+

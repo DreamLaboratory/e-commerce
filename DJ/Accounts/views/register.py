@@ -18,16 +18,14 @@ def register_view(request):
             password = form.cleaned_data.get('password')
             new_form.set_password(password)
             new_form.save()
-            auth_token = str(uuid.uuid4())
             email = form.cleaned_data.get('email')
             profile_obj = Profile.objects.create(
-                auth_token=auth_token,
                 email = email
             )
             profile_obj.save()
 
             ###Email send
-            send_mail_after(email,auth_token)
+            send_mail_after(request,email)
             return redirect('token')
     else:
         form = RegistrationForm()
@@ -36,35 +34,3 @@ def register_view(request):
         'accounts/register.html',
         context={'form':form}
     )
-
-# if request.method == "POST":
-#     first_name = request.POST.get('first_name',None)
-#     last_name = request.POST.get('last_name',None)
-#     email = request.POST.get('email','None')
-#     phone_number = request.POST.get('phone',None)
-#     password1 = request.POST.get('password1')
-#     password2 = request.POST.get('password2')
-#     username = request.POST.get('username')
-#
-#
-#
-#     if password1==password2:
-#         user=Account.objects.create(
-#             first_name=first_name,
-#             last_name=last_name,
-#             username=username,
-#             email =email,
-#             password=password1,
-#             phone_number=phone_number,
-#         )
-#
-#         user.set_password(password1)
-#         user.save()
-#         if user:
-#             return redirect('login')
-
-
-
-
-
-

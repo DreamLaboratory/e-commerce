@@ -4,12 +4,10 @@ from ..models import Account, Profile
 from django.contrib import messages
 
 
-def login_view(request):
-    # if request.user.is_authenticated:
-    #     return redirect(
-    #         'index'
-    #     )
 
+
+
+def login_view(request):
     if request.method == 'POST':
         email = request.POST.get('email', None)
         password = request.POST.get('password', None)

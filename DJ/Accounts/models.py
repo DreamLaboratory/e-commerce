@@ -52,7 +52,7 @@ class Account(AbstractBaseUser):
     objects = MyAccountManager()
 
     def __str__(self):
-        return self.email
+        return str(self.email)
 
     # For checking permissions. to keep it simple all admin have ALL permissons
     def has_perm(self, perm, obj=None):
@@ -70,12 +70,11 @@ class Profile(models.Model):
     first_name = models.CharField(verbose_name='Name', max_length=202, null=True, blank=True)
     last_name = models.CharField(verbose_name="Last Name", max_length=200, null=True, blank=True)
     email = models.CharField(max_length=30, null=True, blank=True)
-    auth_token = models.CharField(max_length=200, null=True)
     is_verified = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.email
+        return str(self.email)
 
     class Meta:
         verbose_name = 'UserProfile'

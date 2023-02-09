@@ -31,7 +31,8 @@ INSTALLED_APPS = [
 
     'HomeApp',
     'Accounts',
-    'StoreApp'
+    'StoreApp',
+    'Cart',
 ]
 
 CKEDITOR_UPLOAD_PATH = 'uploads/'
