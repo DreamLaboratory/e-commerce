@@ -37,8 +37,12 @@ INSTALLED_HOME = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.humanize",
     "ckeditor",
 ]
+
+# {1,2,3,4,4}
+# (1,2,3,4,5,5,6)
 
 INSTALLED_OUT = [
     "src.apps.accounts",
@@ -148,3 +152,27 @@ EMAIL_HOST_USER = "fayzulloh00010003@gmail.com"
 EMAIL_HOST_PASSWORD = "yauwzixxyhcylioi"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+import logging.config
+
+logging.config.dictConfig(
+    {
+        "version": 1,
+        "disable_existing_loggers": False,
+        "formatters": {
+            "file": {"format": "%(asctime)s %(name)-12s %(levelname)-8s %(message)s"},
+        },
+        "handlers": {
+            "file": {
+                "level": "ERROR",
+                "class": "logging.FileHandler",
+                "formatter": "file",
+                "filename": "errors.log",
+            },
+        },
+        "loggers": {
+            "": {"level": "ERROR", "handlers": ["file"]},
+            "django.request": {"level": "INFO", "handlers": ["file"]},
+        },
+    }
+)

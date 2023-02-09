@@ -90,9 +90,7 @@ def auth_email(request):
         email = request.POST.get("email")
         # user=auth.authenticate(request=request,email=email)
         user = MyUser.objects.filter(email=email).exists()
-        print("000000", user)
         if user:
-            print("kirdi")
             subject = "Please click below url"
             current_site = get_current_site(request=request)
             uuid = urlsafe_base64_encode(force_bytes(email))
@@ -119,7 +117,6 @@ def forgot_password(request, uidb64):
             password = request.POST.get("password")
             confirm_password = request.POST.get("confirm_password")
             if password == confirm_password:
-                print(password, confirm_password)
                 decode_email = force_text(urlsafe_base64_decode(uidb64))
                 user = MyUser.objects.get(email=decode_email)
                 user.set_password(password)
@@ -133,3 +130,6 @@ def forgot_password(request, uidb64):
 
 def redirect_login(request):
     return render(request=request, template_name="register/redirect_login.html")
+
+
+MyUser.objects

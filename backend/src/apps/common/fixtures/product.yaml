@@ -1,0 +1,14 @@
+- id: '1'
+  name : 'fayzulloh'
+  description : 'abdullayev'
+  price: 100
+  stock: 1000
+  is_availabel: True
+  category_id: 0
+- id: '2'
+  name: 'fayzulloh2'
+  description: 'abdullayev'
+  price: 100
+  stock: 1000
+  is_availabel: True
+  category_id: 0
