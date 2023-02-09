@@ -11,7 +11,7 @@ User = get_user_model()
 
 
 class Cart(BaseModel):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="carts")  # must be OneToOneField
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="cart")
 
     class Meta:
         ordering = ("-created_at",)
@@ -22,12 +22,19 @@ class Cart(BaseModel):
         return f"{self.user}"
 
 
+class StatusChoices(models.TextChoices):
+    # TODO Move to common
+    ACTIVE = "active"
+    INACTIVE = "inactive"
+
+
 # Product item in cart
 class CartItem(BaseModel):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name="items")
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="cart_items")
     variations = models.ManyToManyField(ProductVariants, blank=True)
     quantity = models.PositiveIntegerField(default=1)
+    status = models.CharField(max_length=100, choices=StatusChoices.choices, default=StatusChoices.ACTIVE)
 
     class Meta:
         ordering = ("-created_at",)

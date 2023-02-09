@@ -45,7 +45,7 @@ Home
             <main class="col-md-6 border-left">
     <article class="content-body">
     
-    <h2 class="title">{{product.name}}  </h2>
+    <h2 class="title">{{product.name}} </h2>
     <div class="rating-star">
       <span>
         {{ product.average_rating }}
@@ -71,17 +71,21 @@ Home
     </p>    
     
     <hr>
+
+
+
+
     <form action="{% url 'cart:add_cart' %}" method="post">
       {% csrf_token %}
         <div class="row">
-
+            <input type="hidden" name="product_id" value="{{ product.id }}">
             <div class="item-option-select">
                 <h6>Choose Color</h6>
                 <div class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons">
-                  <select name="" id="" class="form-control">
-                    <option value="" disabled>Select Color</option>
+                  <select name="color" id="" class="form-control" required>
+                    <option  disabled selected>Select Color</option>
                     {% for color in product.variants.colors %}
-                      <option value="{{ color }}">{{ color.variant_value }}</option>
+                      <option value="{{ color.variant_value }}">{{ color.variant_value }}</option>
                     {% endfor %}
                   </select>
                   
@@ -92,18 +96,13 @@ Home
             <div class="item-option-select">
                 <h6>Select Size</h6>
                 <div class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons">
-                  <label class="btn btn-light">
-                    <input type="radio" name="radio_color"> S
-                  </label>
-                  <label class="btn btn-light active">
-                    <input type="radio" name="radio_color" checked> M
-                  </label>
-                  <label class="btn btn-light">
-                    <input type="radio" name="radio_color"> L
-                  </label>
-                  <label class="btn btn-light">
-                    <input type="radio" name="radio_color"> XL
-                  </label>
+                  <select name="size" id="" class="form-control" required>
+                    <option value="" disabled selected>Select Size</option>
+                    {% for size in product.variants.sizes %}
+                      <option value="{{ size.variant_value }}">{{ size.variant_value }}</option>
+                    {% endfor %}
+                  </select>
+                  
                 </div> 
             </div>
         </div> <!-- row.// -->
@@ -121,6 +120,8 @@ Home
         {% endif %}
         
       </form>
+
+
     </article> <!-- product-info-aside .// -->
             </main> <!-- col.// -->
         </div> <!-- row.// -->

@@ -7,4 +7,7 @@ class ProductVariansManager(models.Manager):
 
         return self.filter(variant_category=CategoryChoices.COLOR)
 
-    # TODO size method
+    def sizes(self):
+        from .models.variants import CategoryChoices
+
+        return self.filter(variant_category=CategoryChoices.SIZE)
