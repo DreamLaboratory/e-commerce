@@ -8,6 +8,7 @@ from ..models.category import Category
 from ..models.review import Reviews
 from ..models.image import ImageProduct
 import logging
+from ..models.variant import ProductVariant
 
 logger = logging.getLogger(__name__)
 
@@ -68,10 +69,14 @@ def product_detail_view(request, category_slug=None, product_slug=None):
     product = Product.objects.get(category__slug=category_slug, slug=product_slug)
     reviews = Reviews.objects.filter(product=product)
     image_products = ImageProduct.objects.filter(product=product)
+    colors=ProductVariant.objects.colors().filter(product=product)  
+    
     context = {
         "product": product,
         "reviews": reviews,
         "image_products": image_products,
-    }
-
+        'colors':colors,
+        
+        }
     return render(request, template_name="product/detail.html", context=context)
+    

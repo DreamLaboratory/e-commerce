@@ -4,7 +4,7 @@
 {% load humanize %}
 
 {% block content %}
-link href="{% static 'css/rate.css' %}" rel="stylesheet" type="text/css"/>
+<link href="{% static 'css/rate.css' %}" rel="stylesheet" type="text/css"/>
 
     
 
@@ -39,7 +39,8 @@ link href="{% static 'css/rate.css' %}" rel="stylesheet" type="text/css"/>
     <h2 class="title">{{ product.name }}</h2>
     <div class="rating-star">
     <span>
-      {{ product.average_rating }}
+      {{ product.average_rating }} <br>
+      
       
             <i class="fa fa-star{% if product.average_rating < 0.5 %}-o{% elif product.average_rating >= 0.5 and  product.average_rating < 1 %}-half-o {% endif %} "
                aria-hidden="true"></i>
@@ -64,21 +65,20 @@ link href="{% static 'css/rate.css' %}" rel="stylesheet" type="text/css"/>
     
     
     <hr>
+    <form action="">
         <div class="row">
             <div class="item-option-select">
+
                 <h6>Choose Color</h6>
                 <div class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons">
-                  <label class="btn btn-light">
-                    <input type="radio" name="radio_color"> Silver
-                  </label>
-                  <label class="btn btn-light">
-                    <input type="radio" name="radio_color" > Gray
-                  </label>
-                  <label class="btn btn-light active">
-                    <input type="radio" name="radio_color checked"> Gold
-                  </label>
-                  <label class="btn btn-light">
-                    <input type="radio" name="radio_color"> Black
+                
+                    {% for color in colors %}
+                    <label class="btn btn-light">
+                      <input type="radio" name="radio_color"> {{ color.variant_value }}
+                    </label>
+                    
+                  {% endfor %}
+                  </select>
                   </label>
                 </div> 
             </div>
@@ -102,6 +102,7 @@ link href="{% static 'css/rate.css' %}" rel="stylesheet" type="text/css"/>
                 </div> 
             </div>
         </div> <!-- row.// -->
+      </form>
         <hr>
         
         
@@ -171,8 +172,9 @@ link href="{% static 'css/rate.css' %}" rel="stylesheet" type="text/css"/>
                         <input type="radio" name="rating" id="rating1" value="0.5" required> </input> <label
                             for="rating1" title="0.5" class="half"></label>
                     </div>
-                      <br>
-                        Write comment:
+                   
+                      
+                        <p style="color:blue"> Write comment: <p style="color:brown"> {{ product.get_view_count }}</p></p>
                       <textarea name="desc" class="form-control" rows="5" cols="40"></textarea>
                       <br>
                     </div>

@@ -39,10 +39,10 @@ INSTALLED_HOME = [
     "django.contrib.staticfiles",
     "django.contrib.humanize",
     "ckeditor",
+    'smart_selects',
 ]
 
-# {1,2,3,4,4}
-# (1,2,3,4,5,5,6)
+
 
 INSTALLED_OUT = [
     "src.apps.accounts",
@@ -138,6 +138,8 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
+
+USE_DJANGO_JQUERY = True
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
