@@ -3,7 +3,7 @@
 
 {% block title %}
 
-Login
+Register
 
 {% endblock %}
 
@@ -29,11 +29,10 @@ Login
           <form method="post" action="{% url 'accounts:login' %}">
             {% csrf_token %}
               <div class="form-group">
-                {{ form.as_p }}
-                 {% comment %} <input type="email" class="form-control" placeholder="Email Address" name="email"> {% endcomment %}
+                 <input type="email" class="form-control" placeholder="Email Address" name="email">
               </div> <!-- form-group// -->
               <div class="form-group">
-                {% comment %} <input type="password" class="form-control" placeholder="Password" name="password"> {% endcomment %}
+                <input type="password" class="form-control" placeholder="Password" name="password">
               </div> <!-- form-group// -->
               
               <div class="form-group">

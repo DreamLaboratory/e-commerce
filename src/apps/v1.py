@@ -21,4 +21,14 @@ urlpatterns = [
             namespace="store",
         ),
     ),
+    path(
+        "cart/",
+        include(
+            (
+                "src.apps.cart.urls",
+                "src.apps.cart.urls",
+            ),
+            namespace="cart",
+        ),
+    ),
 ]

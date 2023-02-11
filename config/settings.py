@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
+
 THIRD_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -40,13 +41,13 @@ THIRD_APPS = [
     "django.contrib.messages",
     "django.contrib.humanize",
     "django.contrib.staticfiles",
-    "captcha",
 ]
 
 LOCAL_APPS = [
     "src.apps.accounts",
     "src.apps.common",
     "src.apps.store",
+    "src.apps.cart",
 ]
 
 INSTALLED_APPS = THIRD_APPS + LOCAL_APPS

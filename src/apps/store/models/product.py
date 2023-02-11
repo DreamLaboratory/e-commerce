@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from django.db.models import Avg
+from django.db.models import Avg, Count
 
 # Create your models here.
 from ...common.models import BaseModel
@@ -49,6 +49,11 @@ class Product(BaseModel):
     def average_rating(self):
         reviews = self.reviews.filter(status=True).aggregate(Avg("rating"))
         return float(reviews["rating__avg"]) if reviews["rating__avg"] else 0
+
+    @property
+    def get_review_count(self):
+        reviews = self.reviews.filter(status=True).aggregate(count=Count("rating"))
+        return reviews["count"]
 
 
 class ProductImage(BaseModel):
