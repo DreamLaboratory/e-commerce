@@ -4,7 +4,33 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="030e6417-a3de-458e-95ee-717bfed6fc1b" name="Changes" comment="signals, custom command, Avg, aggregate, related_name" />
+    <list default="true" id="030e6417-a3de-458e-95ee-717bfed6fc1b" name="Changes" comment="signals, custom command, Avg, aggregate, related_name">
+      <change afterPath="$PROJECT_DIR$/backend/src/apps/cart/item_counter.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/apps/cart/signals.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/apps/cart/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/apps/store/manager.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/apps/store/migrations/0008_auto_20230209_1508.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/apps/store/migrations/0009_auto_20230209_1511.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/apps/store/models/variants.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/templates/store/cart_items.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/config/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/config/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/migrate.sh" beforeDir="false" afterPath="$PROJECT_DIR$/backend/commands/migrate.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/migrations.sh" beforeDir="false" afterPath="$PROJECT_DIR$/backend/commands/migrations.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/apps/accounts/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/apps/accounts/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/apps/accounts/signals.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/apps/accounts/signals.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/apps/common/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/apps/common/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/apps/store/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/apps/store/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/apps/store/forms/review_form.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/apps/store/forms/review_form.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/apps/store/models/product.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/apps/store/models/product.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/apps/store/views/product.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/apps/store/views/product.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/apps/store/views/review.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/apps/store/views/review.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/apps/v1.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/apps/v1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/start.sh" beforeDir="false" afterPath="$PROJECT_DIR$/backend/commands/start.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/templates/includes/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/templates/includes/header.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/templates/store/product-detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/templates/store/product-detail.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,8 +39,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="CSS File" />
+        <option value="HTML File" />
         <option value="Python Script" />
       </list>
     </option>
@@ -61,11 +87,11 @@
       <recent name="$PROJECT_DIR$/backend/src/apps/accounts/forms" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/backend/src/apps" />
+      <recent name="$PROJECT_DIR$/backend/commands" />
       <recent name="$PROJECT_DIR$/backend/src/apps/store/views" />
       <recent name="$PROJECT_DIR$/backend/src/apps/store/models" />
-      <recent name="$PROJECT_DIR$/backend/src/apps" />
       <recent name="$PROJECT_DIR$/backend/templates/accounts" />
-      <recent name="$PROJECT_DIR$/backend/src/apps/accounts/views" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -97,7 +123,10 @@
       <workItem from="1675593863694" duration="3168000" />
       <workItem from="1675618133850" duration="6149000" />
       <workItem from="1675631839465" duration="8181000" />
-      <workItem from="1675678034065" duration="1584000" />
+      <workItem from="1675678034065" duration="2412000" />
+      <workItem from="1675953053041" duration="2760000" />
+      <workItem from="1675969221026" duration="27000" />
+      <workItem from="1676123014646" duration="7828000" />
     </task>
     <servers />
   </component>

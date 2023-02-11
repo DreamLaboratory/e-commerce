@@ -2,6 +2,7 @@ from django.contrib import admin
 from .models.category import Category
 from .models.product import Product, ProductImage
 from .models.review import Review
+from .models.variants import ProductVariants
 
 admin.site.register(Category)
 admin.site.register(Product)
@@ -21,3 +22,4 @@ class ReviewAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Review, ReviewAdmin)
+admin.site.register(ProductVariants)

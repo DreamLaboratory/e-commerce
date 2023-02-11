@@ -1,4 +1,6 @@
 # Register your models here.
+from django.utils.html import format_html
+
 from .models import Account, UserProfile
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
@@ -40,6 +42,25 @@ class UserProfileAdmin(admin.ModelAdmin):
     list_display = ("user", "city", "state", "address")
     list_filter = ("city", "state")
     list_display_links = ("user", "city", "state")
+
+    def thumbnail(self, object):
+        if object.profile_pic:
+            return format_html(
+                f'<img src="{object.profile_pic.url}" width="80px" height="80px" style="border-radius: 50px;" />'
+            )
+        else:
+            return format_html(
+                '<img src="https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png" width="40" style="border-radius: 50px;" />'
+            )
+
+    thumbnail.short_description = "Profile Pic"
+
+    def set_defult_city(self, request, queryset):
+        queryset.update(city="Tashkent City", state="Tashkent")
+
+    set_defult_city.short_description = "Set default Tashkent city"
+
+    actions = ["set_defult_city"]
 
 
 admin.site.register(UserProfile, UserProfileAdmin)

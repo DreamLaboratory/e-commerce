@@ -1,4 +1,5 @@
 from django.shortcuts import redirect
+from django.contrib import messages
 
 from ..forms.review_form import ReviewForm
 from ..models.review import Review
@@ -18,5 +19,6 @@ def add_review(request, product_id):
             data.user = request.user
             data.product_id = product_id
             data.save()
-    print(data)
+            messages.success(request, "Sizning fikringiz qabul qilindi")
+        messages.error(request, f"Xatolik {form.errors.as_text()}")
     return redirect(url)
