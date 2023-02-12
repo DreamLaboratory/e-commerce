@@ -33,7 +33,7 @@ def register(request):
                     new_forms.save()
 
                     # how to send email message
-                    # TODO: emailga borishiga segnalda qilish  
+                    # TODO: emailga borishiga segnalda qilish
                     uuid = urlsafe_base64_encode(force_bytes(new_forms))
                     username = forms.cleaned_data.get("username")
                     to_email = forms.cleaned_data.get("email")

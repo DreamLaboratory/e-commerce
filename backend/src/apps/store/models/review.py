@@ -2,9 +2,6 @@ from ...common.models import BaseModel
 from django.db import models
 from ...accounts.models import MyUser
 from .product import Product
-from django.core.exceptions import ValidationError
-
-  
 
 
 class Reviews(BaseModel):
@@ -13,7 +10,7 @@ class Reviews(BaseModel):
     ip = models.GenericIPAddressField(null=True, blank=True)
     desc = models.TextField()
     status = models.BooleanField(default=False)
-    rating = models.FloatField() 
+    rating = models.FloatField()
     # reply = models.ForeignKey("self", on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):

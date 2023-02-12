@@ -4,7 +4,7 @@ from .models.product import Category
 from .models.review import Reviews
 from .models.image import ImageProduct
 from django.contrib import admin
-from .models.variant import ProductVariant   
+from .models.variant import ProductVariant
 
 
 # Register your models here.
@@ -20,8 +20,6 @@ class ReviewsModel(admin.ModelAdmin):
 admin.site.register(Reviews, ReviewsModel)
 
 
-
-
 class ImageProductModel(admin.ModelAdmin):
     list_display = ["product", "image"]
     list_display_links = ["product"]
@@ -32,11 +30,11 @@ class ImageProductModel(admin.ModelAdmin):
 admin.site.register(ImageProduct, ImageProductModel)
 
 
-# TODO: amke AdminModel all model  
-# 
+# TODO: amke AdminModel all model
+#
 class ProductVarisntsModel(admin.ModelAdmin):
-    list_display=['product','variant_category','variant_value','is_active']
-    list_display_links=['product','variant_category']
+    list_display = ["product", "variant_category", "variant_value", "is_active"]
+    list_display_links = ["product", "variant_category"]
 
 
-admin.site.register(ProductVariant,ProductVarisntsModel)
+admin.site.register(ProductVariant, ProductVarisntsModel)

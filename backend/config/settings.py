@@ -39,15 +39,15 @@ INSTALLED_HOME = [
     "django.contrib.staticfiles",
     "django.contrib.humanize",
     "ckeditor",
-    'smart_selects',
+    "smart_selects",
 ]
-
 
 
 INSTALLED_OUT = [
     "src.apps.accounts",
     "src.apps.common",
     "src.apps.store",
+    "src.apps.cart",
 ]
 
 INSTALLED_APPS = INSTALLED_HOME + INSTALLED_OUT

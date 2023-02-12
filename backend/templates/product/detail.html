@@ -65,7 +65,7 @@
     
     
     <hr>
-    <form action="">
+    <form action="{% url 'cart:cart_item' %}" method="POST">
         <div class="row">
             <div class="item-option-select">
 
@@ -87,43 +87,42 @@
             <div class="item-option-select">
                 <h6>Select Size</h6>
                 <div class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons">
-                  <label class="btn btn-light">
-                    <input type="radio" name="radio_color"> S
-                  </label>
-                  <label class="btn btn-light active">
-                    <input type="radio" name="radio_color" checked> M
-                  </label>
-                  <label class="btn btn-light">
-                    <input type="radio" name="radio_color"> L
-                  </label>
-                  <label class="btn btn-light">
-                    <input type="radio" name="radio_color"> XL
+                  
+                  {% for size in sizes %}
+                  
+                <label class="btn btn-light">
+                  <input type="radio" value=" {{ size.variant_value }}" name="radio_color"> {{ size.variant_value }}
+                </label>
+               
+                    
+                  {% endfor %}
                   </label>
                 </div> 
             </div>
         </div> <!-- row.// -->
-      </form>
         <hr>
         
         
-    
-   
-           # TODO: agarda fodalanuvchi ruyxatdan utmagan bulsa: add Cartga qusha olmadi  
-    
-          {% if product.stock > 0 %}
-
+        
+        
+          
+       
+          
+          {% if user.is_authenticated  %}
           
           
-          <a href="./product-detail.html" class="btn  btn-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i>  </a>
           
-         
-
-            
+          <a href="{% url 'cart:cart_item' %}" class="btn  btn-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i>  </a>
+          
+          
+          
+          
           {% else %} 
-
-          <a href="./product-detail.html" class="btn  btn-primary"> <span class="text">Add out cart</span> <i class="fas fa-shopping-cart"></i>  </a>  
+          
+          <a href="{% url 'accounts:loggin' %}" class="btn  btn-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i>  </a>  
           {% endif %}
-
+          
+        </form>
       
 
          

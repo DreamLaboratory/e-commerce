@@ -5,7 +5,7 @@ from .activate import activate_decode
 urlpatterns = [
     path("", index, name="index"),
     path("login/", login, name="login"),
-    path("login/", logout, name="logout"),
+    path("logout/", logout, name="logout"),
     path("register/", register, name="register"),
     path("forgot_password/<uidb64>/", forgot_password, name="forgot_password"),
     path("auth_email/", auth_email, name="auth_email"),

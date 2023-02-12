@@ -6,7 +6,7 @@ from .category import Category
 from django.utils.text import slugify
 from ckeditor.fields import RichTextField
 from django.urls import reverse
-from django.db.models import Avg,Sum,Count
+from django.db.models import Avg, Count
 
 
 # Create your models here.
@@ -52,9 +52,10 @@ class Product(BaseModel):
     def average_rating(self):
 
         reviews = self.reviews.filter().aggregate(Avg("rating"))
-        
+
         return float(reviews["rating__avg"] if reviews["rating__avg"] else 0)
+
     @property
     def get_view_count(self):
-        reviews=self.reviews.all().aggregate(count=Count('desc'))
-        return int(reviews['count'] if reviews['count'] else 0)
+        reviews = self.reviews.all().aggregate(count=Count("desc"))
+        return int(reviews["count"] if reviews["count"] else 0)

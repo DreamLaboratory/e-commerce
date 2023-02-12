@@ -1,8 +1,8 @@
 from ..forms.reviewform import ReviewsModelForm
 from django.shortcuts import redirect
-from django.http import HttpResponse
 from ..models.review import Reviews
 from django.contrib import messages
+
 
 def add_review(request, product_id):
     url = request.META.get("HTTP_REFERER")
@@ -16,7 +16,7 @@ def add_review(request, product_id):
             data.user = request.user
             data.product_id = product_id
             data.save()
-            messages.success(request,'accept your comment')
+            messages.success(request, "accept your comment")
         else:
-            messages.error(request,f'bad comment:{form.errors.as_text()}')
+            messages.error(request, f"bad comment:{form.errors.as_text()}")
     return redirect(url)
