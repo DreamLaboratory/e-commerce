@@ -24,7 +24,7 @@ def store_view(request, category_slug=None):
 
     count_products = products.count()
     page = request.GET.get('page')
-    paginator = Paginator(products, 2)
+    paginator = Paginator(products, 5)
     products = paginator.get_page(page)
 
     return render(

@@ -1,11 +1,8 @@
 from django.shortcuts import render
 import sys
+
 sys.path.append("..")
-
-from django.shortcuts import render
 from StoreApp.models.product import Product
-
-
 
 
 def index_view(request):
@@ -13,6 +10,5 @@ def index_view(request):
     return render(
         request,
         'index.html',
-        {'products':objects}
+        {'products': objects}
     )
-

@@ -64,15 +64,16 @@
     <hr>
          <form action="{% url 'add_cart' %}" method="POST">
               {% csrf_token %}
-             <input type="hidden" id="id_namer" name="product_id" value="{{product.id}}">
+
         <div class="row">
+            <input type="hidden" id="id_namer" name="product_id" value="{{product.id}}">
             <div class="item-option-select">
                 <h6>Choose Color</h6>
                 <div class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons">
-                  <select name="color"  class="form-control">
-                    <option value="" disabled>Select Color</option>
+                  <select name="color" id="" class="form-control" required>
+                    <option  disabled selected>Select Color</option>
                     {% for color in product_color %}
-                      <option value="{{ color }}">{{ color.variant_value }}</option>
+                      <option value="{{ color.variant_value }}">{{ color.variant_value }}</option>
                     {% endfor %}
                   </select>
 
@@ -83,10 +84,10 @@
             <div class="item-option-select">
                 <h6>Select Size</h6>
                 <div class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons">
-                  <select name="size"  class="form-control">
-                    <option value="" disabled>Select Size</option>
+                  <select name="size"  class="form-control" required>
+                    <option  disabled selected>Select Size</option>
                     {% for size in product.variants.size %}
-                      <option value="{{ size }}">{{ size.variant_value }}</option>
+                      <option value="{{ size.variant_value }}">{{ size.variant_value }}</option>
                     {% endfor %}
                   </select>
                 </div>
@@ -104,6 +105,9 @@
           <a href="{% url 'login' %}" class="btn  btn-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i>  </a>
         {% endif %}
          </form>
+
+
+
     </article> <!-- product-info-aside .// -->
             </main> <!-- col.// -->
         </div> <!-- row.// -->
@@ -115,7 +119,7 @@
     <div class="row">
         <div class="col-md-9">
 
-          <form method="POST" action="">
+          <form method="POST" action="{% url 'add_review' product.id %}">
             {% csrf_token %}
             <h5>Write your review</h5>
             <div>
@@ -187,10 +191,10 @@
 
         <article class="box mb-3">
             <div class="icontext w-100">
-                <img src="" class="img-xs icon rounded-circle">
+                <img src="https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png" class="img-xs icon rounded-circle">
                 <div class="text">
                     <span class="date text-muted float-md-right">{{review.created_at}}</span>
-                    <h6 class="mb-1">Mike John </h6>
+                    <h6 class="mb-1">{{review.user.username}}</h6>
 
                 </div>
             </div> <!-- icontext.// -->

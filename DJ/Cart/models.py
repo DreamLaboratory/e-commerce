@@ -1,5 +1,6 @@
 from django.db import models
 import sys
+
 sys.path.append("...")
 from HomeApp.models import BaseModel
 from django.contrib.auth import get_user_model
@@ -10,7 +11,7 @@ User = get_user_model()
 
 
 class Cart(BaseModel):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='carts')
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='carts')
 
     class Meta:
         verbose_name = 'Cart'
@@ -21,11 +22,18 @@ class Cart(BaseModel):
         return f'{self.user}'
 
 
+class StatusChoices(models.TextChoices):
+    ACTIVE = 'active'
+    INACTIVE = 'inactive'
+
+
 class CartItems(BaseModel):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name='items')
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='cart_items')
     quantity = models.PositiveIntegerField(default=1)
     variants = models.ManyToManyField(ProductVariants, blank=True)
+    status = models.CharField(max_length=100, choices=StatusChoices.choices, default=StatusChoices.ACTIVE)
+
 
     class Meta:
         verbose_name = 'Cart Item'
@@ -33,4 +41,4 @@ class CartItems(BaseModel):
         ordering = ['-created_at']
 
     def __str__(self):
-        return f'{self.product}'
+        return f'{self.cart}'

@@ -114,8 +114,9 @@
 #     def sub_method(self, b):
 #         print('B sinfidan korstailmoqda:', b)
 #         super().sub_method(b + 1)
-#
-#
+
+
+
 # class C(B):
 #     def __init__(self):
 #         print('C sinfi initsializatsiyalanmoqda...')
@@ -129,6 +130,10 @@
 # if __name__ == '__main__':
 #     c = C()
 #     c.sub_method(3)
+
+
+
+
 
 
 
