@@ -20,4 +20,5 @@ def add_review(request, product_id):
             data.save()
             messages.success(request, "Successfully added review")
         messages.warning(request, form.errors)
+        
     return redirect(url)
