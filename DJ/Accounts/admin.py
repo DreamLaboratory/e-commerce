@@ -31,7 +31,6 @@ class UserProfileAdmin(admin.ModelAdmin):
             return format_html(
                 '<img src="https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png" width="40" style="border-radius: 50px;" />'
             )
-
     image_profile.short_description = 'Profile Image'
 
     def set_default_city(self, request, queryset):

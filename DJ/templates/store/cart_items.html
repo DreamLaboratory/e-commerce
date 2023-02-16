@@ -26,7 +26,8 @@
 </tr>
 </thead>
 <tbody>
-
+<form  method="POST" action="{% url 'carts' %}">
+	{% csrf_token %}
 {% for item in cart_items %}
 <tr>
 	<td>
@@ -43,32 +44,39 @@
 					<div class="col">
 						<div class="input-group input-spinner">
 							<div class="input-group-prepend">
-							<button class="btn btn-light" type="button" id="button-plus"> <i class="fa fa-minus"></i> </button>
+							<button class="btn btn-light" name="plus" type="button" id="button-plus"> <i class="fa fa-minus"></i> </button>
 							</div>
-							<input type="text" class="form-control"  value="1">
+							<input type="text" name="" class="form-control"  value="1">
 							<div class="input-group-append">
-							<button class="btn btn-light" type="button" id="button-minus"> <i class="fa fa-plus"></i> </button>
+							<button class="btn btn-light" name="menus" type="button" id="button-minus"> <i class="fa fa-plus"></i> </button>
 							</div>
 						</div> <!-- input-group.// -->
 					</div> <!-- col.// -->
+
 	</td>
 	<td>
 		<div class="price-wrap">
 			<var class="price">{{item.product.price}}</var>
-			<small class="text-muted"> $315.20 each </small>
+			<small class="text-muted">{{item.product.price}}</small>
 		</div> <!-- price-wrap .// -->
 	</td>
 	<td class="text-right">
-	<a href="" class="btn btn-danger"> Remove</a>
+	<a href="{% url 'remove_cart' item.id %}"  class="btn btn-danger">Remove</a>
 		{% empty %}
 <h3>
-	Sizning savatchangiz bo'sh
+	<form>
+		<div style="color: red" class="text-center">
+			<h3>Sizning savatchangiz bo'sh</h3>
+		</div>
+	</form>
+
 </h3>
 	</td>
 
 </tr>
-
 {% endfor %}
+
+	</form>
 
 </tbody>
 </table>
@@ -81,22 +89,35 @@
 		<div class="card-body">
 			<dl class="dlist-align">
 			  <dt>Total price:</dt>
+				{% if total_price %}
 			  <dd class="text-right">{{total_price}}</dd>
+				{% else  %}
+				  <dd class="text-right">0</dd>
+				{% endif %}
 			</dl>
 			<dl class="dlist-align">
 			  <dt>Tax:</dt>
+				{% if delevery %}
 			  <dd class="text-right">{{delevery}}</dd>
+				{% else  %}
+				<dd class="text-right">0</dd>
+				{% endif %}
 			</dl>
 			<dl class="dlist-align">
 			  <dt>Total:</dt>
+				{% if grand_total %}
 			  <dd class="text-right text-dark b"><strong>{{grand_total}}</strong></dd>
+				 {% else  %}
+			  <dd class="text-right text-dark b"><strong>0</strong></dd>
+				{% endif %}
+
 			</dl>
 			<hr>
 			<p class="text-center mb-3">
-				<img src="./images/misc/payments.png" height="26">
+				<img src="{% static './images/misc/payments.png'  %}" height="26">
 			</p>
 			<a href="./place-order.html" class="btn btn-primary btn-block"> Checkout </a>
-			<a href="./store.html" class="btn btn-light btn-block">Continue Shopping</a>
+			<a href="{% url 'store' %}" class="btn btn-light btn-block">Continue Shopping</a>
 		</div> <!-- card-body.// -->
 		</div> <!-- card.// -->
 
@@ -109,6 +130,5 @@
 </div> <!-- container .//  -->
 </section>
 <!-- ========================= SECTION CONTENT END// ========================= -->
-
 
 {% endblock content %}
