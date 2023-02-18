@@ -2,5 +2,7 @@ from .models.category import Category
 
 
 def categories_all(request):
-
-    return dict(catigories=Category.objects.all())
+    try:
+        return dict(catigories=Category.objects.all())
+    except:
+        return dict(catigories=None)

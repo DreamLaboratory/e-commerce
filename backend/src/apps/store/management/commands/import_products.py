@@ -20,7 +20,6 @@ class Command(BaseCommand):
             ) as yaml_file:
                 data = yaml.safe_load(yaml_file)
                 i = 0
-                print("----", data)
                 for item in data:
                     Product.objects.create(
                         name=item["name"],

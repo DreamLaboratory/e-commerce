@@ -16,6 +16,7 @@ from .models import MyUser
 
 
 def index(request):
+
     return render(request=request, template_name="index.html")
 
 
@@ -67,6 +68,7 @@ def register(request):
 
 
 def login(request):
+
     if request.method == "POST":
         email = request.POST.get("email")
         password = request.POST.get("password")

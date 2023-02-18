@@ -15,7 +15,7 @@ class ProductVariant(BaseModel):
     objects = ProductVariantManager()
 
     def __str__(self) -> str:
-        return f"{self.variant_category} {self.variant_value}"
+        return f"{self.variant_category} - {self.variant_value}"
 
     class Meta:
         verbose_name = "ProductVaraint"

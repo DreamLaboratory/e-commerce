@@ -2,6 +2,8 @@ from ..common.models import BaseModel
 from django.db import models
 from django.contrib.auth import get_user_model
 from ..store.models.product import Product
+from ..store.models.variant import ProductVariant
+from .choose import StatusChoices
 
 # Create your models here.
 
@@ -9,7 +11,7 @@ User = get_user_model()
 
 
 class Cart(BaseModel):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="carts")
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="carts")
 
     class Meta:
         ordering = ["-created_date"]
@@ -24,6 +26,8 @@ class CartItem(BaseModel):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name="items")
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="cartitems")
     quantity = models.PositiveIntegerField(default=1)
+    variants = models.ManyToManyField(ProductVariant)
+    status = models.CharField(max_length=15, choices=StatusChoices.choices, default=StatusChoices.ACTIVE)
 
     class Meta:
         ordering = ["-created_date"]

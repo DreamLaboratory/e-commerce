@@ -6,6 +6,6 @@ migrations/    bu ikkalsini farqi nimada
 .sorf.cfg nima uchun kerak va qanday urnatmiz
 start.sh ihlamadi
 BaseCommand xam ishamadi
-get_abdolute_url ishlamadi
+get_absolute_url ishlamadi
 logout ishlamadi
 erros.log xam ishlamadi 

@@ -56,6 +56,10 @@ class Product(BaseModel):
         return float(reviews["rating__avg"] if reviews["rating__avg"] else 0)
 
     @property
+    def get_absolute_url(self):
+        return reverse("store:product_detail_view", args=[self.category.slug, self.slug])
+
+    @property
     def get_view_count(self):
         reviews = self.reviews.all().aggregate(count=Count("desc"))
         return int(reviews["count"] if reviews["count"] else 0)
