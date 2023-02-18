@@ -45,7 +45,10 @@ def add_to_cart(request, cart_item_id):
 
 
 def cart(request):
-    cart = Cart.objects.filter(cart_id_pk=_cart_id(request)).first()
+    if request.user.is_authenticated:
+        cart = Cart.objects.get(user=request.user)
+    else:
+        cart = Cart.objects.filter(cart_id_pk=_cart_id(request)).first()
     cart_items = CartItem.objects.filter(cart=cart, status=StatusChoices.ACTIVE)
     # total_price = cart_items.aggregate(
     #     total_price=Sum(
@@ -55,7 +58,6 @@ def cart(request):
     # annotate
     cart_item = cart_items.annotate(total_price=F("product__price") * F("quantity"))
     total_price = cart_item.aggregate(Sum("total_price"))
-    print(total_price)
     total_price = total_price["total_price__sum"] or 0
 
     delevery = Decimal(total_price * Decimal(0.1)).quantize(Decimal("0.01"))  # 10% of total price

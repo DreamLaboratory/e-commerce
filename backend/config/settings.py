@@ -32,6 +32,8 @@ ALLOWED_HOSTS = ["*"]
 # Application definition
 
 THIRD_APPS = [
+    # admin_interface
+    # colorfield
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -39,6 +41,12 @@ THIRD_APPS = [
     "django.contrib.messages",
     "django.contrib.humanize",
     "django.contrib.staticfiles",
+    # TODO install Admin Honeypot
+    # django-ckeditor
+    # django-crispy-forms
+    "import_export"  # https://django-import-export.readthedocs.io/en/latest/installation.html
+    # django_extensions
+    # debug_toolbar
 ]
 
 LOCAL_APPS = [
@@ -46,6 +54,7 @@ LOCAL_APPS = [
     "src.apps.common",
     "src.apps.store",
     "src.apps.cart",
+    "src.apps.order",
 ]
 
 INSTALLED_APPS = THIRD_APPS + LOCAL_APPS
@@ -119,9 +128,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "uz"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "Asia/Tashkent"
 
 USE_I18N = True
 
@@ -174,3 +183,9 @@ logging.config.dictConfig(
         },
     }
 )
+
+# SET session expire time
+SESSION_COOKIE_AGE = 60 * 60 * 24 * 7  # 7 days
+
+# TTL for cache
+CACHE_TTL = 60 * 60 * 24 * 7  # 7 days

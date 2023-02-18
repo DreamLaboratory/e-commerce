@@ -1,13 +1,31 @@
+import admin_thumbnails
 from django.contrib import admin
+from import_export import resources
+from import_export.admin import ImportExportModelAdmin
+
+from .models.category import Category
+from .models.product import Product, ProductImage
+from .models.review import Review
+from .models.variants import ProductVariants
 
 # Register your models here.
 
-from .models.product import Product
-from .models.category import Category
-from .models.review import Review
-from .models.product import ProductImage
-from .models.variants import ProductVariants
-import admin_thumbnails
+
+class CategoryResource(resources.ModelResource):
+    class Meta:
+        model = Category
+        fields = "__all__"
+        exclude = ("image",)
+
+
+@admin.register(Category)
+class CategoryAdmin(ImportExportModelAdmin):
+    resource_class = CategoryResource
+    list_display = ("name", "slug", "created_at")
+    list_filter = ("created_at",)
+    search_fields = ("name",)
+    prepopulated_fields = {"slug": ("name",)}
+    date_hierarchy = "created_at"
 
 
 @admin_thumbnails.thumbnail("image")
@@ -42,6 +60,7 @@ class ReviewAdmin(admin.ModelAdmin):
 admin.site.register(Review, ReviewAdmin)
 
 # TODO - configure admin
-admin.site.register(Category)
+# admin.site.register(Category)
+
 # TODO - configure admin
 admin.site.register(ProductVariants)
