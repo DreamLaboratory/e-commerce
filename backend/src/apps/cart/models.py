@@ -11,7 +11,8 @@ User = get_user_model()
 
 
 class Cart(BaseModel):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="cart")
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="cart", blank=True, null=True)
+    cart_id_pk = models.CharField(max_length=255, blank=True, null=True, unique=True)  # session key
 
     class Meta:
         ordering = ("-created_at",)
@@ -42,7 +43,7 @@ class CartItem(BaseModel):
         verbose_name_plural = "Cart Items"
 
     def __str__(self):
-        return f"{self.product}"
+        return str(self.product)
 
     @property
     def get_price(self):

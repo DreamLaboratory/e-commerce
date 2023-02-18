@@ -1,4 +1,5 @@
 from django.views.generic.base import TemplateView
+from ..common.get_cardd_id import _cart_id
 
 
 class IndexView(TemplateView):

@@ -6,8 +6,7 @@ from django.shortcuts import render
 
 from ..models.category import Category
 from ..models.product import Product
-
-# import logging
+from ...common.alerter import tg_alert
 
 
 logger = logging.getLogger(__name__)
@@ -33,6 +32,7 @@ def product_list_view(request, category_slug=None):
         return render(request, "store/store.html", {"products": products, "product_count": product_count})
     except Exception as e:
         logger.error(e)
+        tg_alert.custom_alert(f"Error in product_list_view: {e}")
         return render(request, "store/store.html", {"products": None, "product_count": 0})
 
 

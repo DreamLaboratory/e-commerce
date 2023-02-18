@@ -1,25 +1,47 @@
 from django.contrib import admin
+
+# Register your models here.
+
+from .models.product import Product
 from .models.category import Category
-from .models.product import Product, ProductImage
 from .models.review import Review
+from .models.product import ProductImage
 from .models.variants import ProductVariants
-
-admin.site.register(Category)
-admin.site.register(Product)
-admin.site.register(ProductImage)
+import admin_thumbnails
 
 
-#
+@admin_thumbnails.thumbnail("image")
+class ProductImageModelAdmin(admin.TabularInline):
+    model = ProductImage
+    extra = 2
+
+
+@admin.register(Product)
+class ProductModelAdmin(admin.ModelAdmin):
+    list_display = ("name", "price", "stock", "category", "created_at")
+    list_filter = ("category", "created_at")
+    search_fields = ("name",)
+    raw_id_fields = ("category",)
+    date_hierarchy = "created_at"
+    list_editable = ("price", "stock")
+    prepopulated_fields = {"slug": ("name",)}  # TODO - add slug field all models
+    inlines = [ProductImageModelAdmin]
+
+
 class ReviewAdmin(admin.ModelAdmin):
     list_display = ("product", "user", "rating", "status", "created_at")
     list_filter = ("rating", "created_at")
-    list_display_links = ("product", "user")
+    search_fields = ("user",)
+    # autocomplete_fields = ("product",)
     raw_id_fields = ("user",)
-    search_fields = ["product", "user"]
-    # autocomplete_fields = ["product"]
     date_hierarchy = "created_at"
     list_editable = ("status",)
 
 
+# admin.site.register(ProductImage)
 admin.site.register(Review, ReviewAdmin)
+
+# TODO - configure admin
+admin.site.register(Category)
+# TODO - configure admin
 admin.site.register(ProductVariants)
