@@ -1,3 +1,5 @@
+from ..common.get_cart_id import _cart_id
+from ..cart.models import Cart
 from django.shortcuts import render, redirect
 from .forms.forms import RegisterForm
 from django.contrib import messages
@@ -11,6 +13,8 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_text
 from django.contrib.sites.shortcuts import get_current_site
 from .models import MyUser
+from ..common.send_email import send_email_async
+import asyncio
 
 # Create your views here.
 
@@ -34,7 +38,7 @@ def register(request):
                     new_forms.save()
 
                     # how to send email message
-                    # TODO: emailga borishiga segnalda qilish
+                    # TODO: emailga borishiga saqlanishni qilish
                     uuid = urlsafe_base64_encode(force_bytes(new_forms))
                     username = forms.cleaned_data.get("username")
                     to_email = forms.cleaned_data.get("email")
@@ -42,7 +46,7 @@ def register(request):
                     domain = f"http://{current_site.domain}/activate/{uuid}/"
                     subject = "Welcome to site"
                     message = f"HI {username}, welcome to site"
-                    context_message = render_to_string(
+                    body = render_to_string(
                         ["register/verification.html"],
                         {
                             "subject": subject,
@@ -52,13 +56,14 @@ def register(request):
                         },
                     )
 
-                    body = strip_tags(context_message)
-                    sendmail = EmailMessage(
-                        subject=subject,
-                        body=body,
-                        to=[to_email],
-                    )
-                    sendmail.send()
+                    html_body = strip_tags(body)
+
+                    asyncio.run(send_email_async(subject, html_body, [to_email]))
+                    # cart_id create
+                    cart, _ = Cart.objects.get_or_create(cart_id_pk=_cart_id(request))
+                    cart.user = new_forms
+                    cart.save()
+
                 messages.success(request, f"User created for {username}")
                 return redirect("accounts:redirect_login")
         return render(request=request, template_name="register/register.html", context={"forms": forms})
@@ -132,7 +137,5 @@ def forgot_password(request, uidb64):
 
 
 def redirect_login(request):
+
     return render(request=request, template_name="register/redirect_login.html")
-
-
-MyUser.objects

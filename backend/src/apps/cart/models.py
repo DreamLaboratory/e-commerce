@@ -11,7 +11,8 @@ User = get_user_model()
 
 
 class Cart(BaseModel):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="carts")
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="carts", null=True, blank=True)
+    cart_id_pk = models.CharField(max_length=255, null=True, blank=True, unique=True)
 
     class Meta:
         ordering = ["-created_date"]
@@ -19,7 +20,7 @@ class Cart(BaseModel):
         verbose_name_plural = "Carts"
 
     def __str__(self):
-        return str(self.user)
+        return str(self.cart_id_pk)
 
 
 class CartItem(BaseModel):

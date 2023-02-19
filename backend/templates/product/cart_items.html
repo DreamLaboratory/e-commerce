@@ -41,6 +41,7 @@
             <td> 
                 <!-- col.// -->
                         <form action="" method="POST" >
+                            {% csrf_token %}
                             <div class="col"> 
                                 <div class="input-group input-spinner">
                                     <div class="input-group-prepend">
@@ -62,7 +63,7 @@
                 </div> <!-- price-wrap .// -->
             </td>
             <td class="text-right"> 
-            <a href="" class="btn btn-danger"> Remove</a>
+         <a href="{% url 'cart:remove_cart' cart.id  %}" class="btn btn-danger"> Remove</a>
             </td>
         </tr> 
     {% endfor %}

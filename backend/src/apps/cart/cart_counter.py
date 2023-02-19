@@ -1,11 +1,17 @@
 from .models import Cart, CartItem
-from django.db.models import Sum
+from ..common.get_cart_id import _cart_id
 
 
 def processor_cart_count(request):
-    if request.user.is_authenticated:
-        user, created = Cart.objects.get_or_create(user=request.user)
-        counter = CartItem.objects.filter(cart=user).aggregate(counter=Sum("quantity"))
-        return counter
-    else:
+    try:
+        if request.path.startswith("admin/"):
+            return {}
+
+        if request.user.is_authenticated:
+            cart = Cart.objects.get(user=request.user)
+        else:
+            cart = Cart.objects.get(cart_id_pk=_cart_id(request))
+        counter = CartItem.objects.filter(cart=cart).count()
+        return {"counter": counter}
+    except Cart.DoesNotExist:
         return {"counter": 0}
