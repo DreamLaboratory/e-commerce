@@ -9,6 +9,7 @@ from ..models.review import Reviews
 from ..models.image import ImageProduct
 import logging
 from ..models.variant import ProductVariant
+from ...common.alert import tg_alert
 
 logger = logging.getLogger(__name__)
 
@@ -33,35 +34,44 @@ def product_list_view(request, category_slug=None):
 
             category = Category.objects.get(slug=category_slug)
             products = products.filter(price__gte=price_min, price__lte=price_max)
-
+    
         products_count = products.count()
         page = request.GET.get("page")
         paginator = Paginator(products, 2)
         products = paginator.get_page(page)
 
         context = {"products": products, "products_count": products_count}
+        return render(request=request, template_name="product/store.html", context=context)
     except Exception as e:
+
         logger.error(e)
+        tg_alert.custom_alert(f'Error Product views in Accountapp {e}')
         context = {"products_count": 0, "products": None}
-    return render(request=request, template_name="product/store.html", context=context)
+        return render(request=request, template_name="product/store.html", context=context)
 
 
 def search_view(request):
-    products = Product.objects.all()
-    if "q" in request.GET:
-        if request.method == "GET":
-            search_product = request.GET.get("q")
-            if search_product:
-                products = Product.objects.filter(
-                    Q(name__icontains=search_product) | Q(description__icontains=search_product), is_availabel=True
-                )
+    try:
 
-    else:
-        return HttpResponse("You can'n use any letter other than q  ")
-    context = {
-        "products": products,
-    }
-    return render(request=request, template_name="product/store.html", context=context)
+        products = Product.objects.get()
+        if "q" in request.GET:
+            if request.method == "GET":
+                search_product = request.GET.get("q")
+                if search_product:
+                    products = Product.objects.filter(
+                        Q(name__icontains=search_product) | Q(description__icontains=search_product), is_availabel=True
+                    )
+
+        else:
+            return HttpResponse("You can'n use any letter other than q  ")
+        context = {
+            "products": products,
+        }
+        return render(request=request, template_name="product/store.html", context=context)
+    except Exception as e:
+        logger.error(e)
+        return tg_alert.custom_alert(f'Can\'t search caouse {e}  this error ')
+        # return render(request=request, template_name="product/store.html", context={'products':None})
 
 
 def product_detail_view(request, category_slug=None, product_slug=None):

@@ -5,7 +5,7 @@ from django.db.models import Sum, F
 from django.db import models
 from decimal import Decimal
 from ..common.get_cart_id import _cart_id
-
+from ..common.alert import tg_alert
 # Create your views here.
 
 
@@ -17,8 +17,8 @@ def add_cart(request):
     color = request.POST.get("color")
     productid = request.POST.get("productid")
 
-    cart = Cart.objects.get(cart_id_pk=_cart_id(request))
-    print("---x", cart)
+    cart,created = Cart.objects.get_or_create(cart_id_pk=_cart_id(request))
+    print("---1", cart)
 
     cart_items, created = CartItem.objects.get_or_create(cart=cart, product_id=productid)
     variations = ProductVariant.objects.filter(product_id=productid, variant_value=[size, color])
@@ -31,8 +31,14 @@ def add_cart(request):
 
 
 def cart(request):
-
-    cart = Cart.objects.get(user=request.user)
+    if request.user.is_authenticated:
+        cart = Cart.objects.get(user=request.user)
+        
+            
+    else:
+        cart = Cart.objects.filter(cart_id_pk=_cart_id(request)).first()
+        print('----3',cart)
+    
     cart_items = CartItem.objects.filter(cart=cart)
     total_price = (
         cart_items.aggregate(
@@ -42,6 +48,7 @@ def cart(request):
         )["total_price"]
         or 0
     )
+    print('----4',cart_items)
     delevery = Decimal(total_price * Decimal(0.1).quantize(Decimal("0.01")))
     grand_total = total_price + delevery
 
@@ -55,6 +62,12 @@ def cart(request):
 
 
 def remove_cart(request, cart_items_id):
-    cart_items = CartItem.objects.get(id=cart_items_id)
-    cart_items.delete()
-    return redirect("cart:cart")
+    try:
+
+        cart_items = CartItem.objects.get(id=cart_items_id)
+        cart_items.delete()
+        return redirect("cart:cart")
+    except Exception as e:
+
+        tg_alert.custom_alert(f'Not id Cart in Cart Items {e}')
+        return redirect('cart:cart')

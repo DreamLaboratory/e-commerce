@@ -55,6 +55,7 @@
                             </div> <!-- col.// -->
                         
                         </form>
+                       
             </td>
             <td> 
                 <div class="price-wrap"> 
@@ -64,8 +65,7 @@
             </td>
             <td class="text-right"> 
          <a href="{% url 'cart:remove_cart' cart.id  %}" class="btn btn-danger"> Remove</a>
-            </td>
-        </tr> 
+         
     {% endfor %}
 
 

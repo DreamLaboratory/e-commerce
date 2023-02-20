@@ -14,7 +14,7 @@ file_rename_class = PathAndRename("product_images")
 
 
 class Product(BaseModel):
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="categories", null=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="categories", null=True,blank=True)
     name = models.CharField(max_length=255, unique=True, db_index=True)
     description = RichTextField(max_length=255, blank=True)  # TODA: richTExtFields qilish
 
