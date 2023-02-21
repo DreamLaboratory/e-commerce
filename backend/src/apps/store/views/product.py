@@ -34,7 +34,7 @@ def product_list_view(request, category_slug=None):
 
             category = Category.objects.get(slug=category_slug)
             products = products.filter(price__gte=price_min, price__lte=price_max)
-    
+
         products_count = products.count()
         page = request.GET.get("page")
         paginator = Paginator(products, 2)
@@ -45,7 +45,7 @@ def product_list_view(request, category_slug=None):
     except Exception as e:
 
         logger.error(e)
-        tg_alert.custom_alert(f'Error Product views in Accountapp {e}')
+        tg_alert.custom_alert(f"Error Product views in Accountapp {e}")
         context = {"products_count": 0, "products": None}
         return render(request=request, template_name="product/store.html", context=context)
 
@@ -53,7 +53,7 @@ def product_list_view(request, category_slug=None):
 def search_view(request):
     try:
 
-        products = Product.objects.get()
+        products = Product.objects.all()
         if "q" in request.GET:
             if request.method == "GET":
                 search_product = request.GET.get("q")
@@ -70,8 +70,8 @@ def search_view(request):
         return render(request=request, template_name="product/store.html", context=context)
     except Exception as e:
         logger.error(e)
-        return tg_alert.custom_alert(f'Can\'t search caouse {e}  this error ')
-        # return render(request=request, template_name="product/store.html", context={'products':None})
+        tg_alert.custom_alert(f"Can't search caouse {e}  this error ")
+        return render(request=request, template_name="product/store.html", context={"products": None})
 
 
 def product_detail_view(request, category_slug=None, product_slug=None):

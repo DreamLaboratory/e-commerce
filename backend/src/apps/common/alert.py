@@ -21,7 +21,6 @@ except Exception as e:
 """
 
 from __future__ import annotations
-import os
 from urllib import parse, request
 
 # load_dotenv() .env file in root folder

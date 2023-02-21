@@ -45,11 +45,13 @@
                             <div class="col"> 
                                 <div class="input-group input-spinner">
                                     <div class="input-group-prepend">
-                                    <button class="btn btn-light" type="button" id="button-plus"> <i class="fa fa-minus"></i> </button>
+                                    <a  id="button-minus" class="btn btn-light" href="{% url 'cart:remove_cart_item' cart.id %}"> <i class="fa fa-minus"></i></a>
                                     </div>
-                                    <input type="text" class="form-control"  value="1">
+                                    <input type="text" class="form-control"  value="{{ cart.quantity }}">
                                     <div class="input-group-append">
-                                    <button class="btn btn-light" type="button" id="button-minus"> <i class="fa fa-plus"></i> </button>
+                                    <!-- <a  id="button-minus" class="btn btn-light" href="{% url 'cart:remove_cart_item' cart.id %}"></a> -->
+                                    <a  id="button-minus" class="btn btn-light" href="{% url 'cart:add_cart_item' cart.id %}"> <i class="fa fa-plus"></i></a>
+                                    <!-- <button class="btn btn-light" type="button" id="button-minus"> <i class="fa fa-plus"></i> </button> -->
                                     </div>
                                 </div> <!-- input-group.// -->
                             </div> <!-- col.// -->
