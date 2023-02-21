@@ -63,3 +63,5 @@ CartItem(
     quantity = Positive(default=1),
 
 )
+
+#TODO User Profile -> My order (order list) -> Order detail
