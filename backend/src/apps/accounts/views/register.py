@@ -6,6 +6,7 @@ from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes
 from django.utils.html import strip_tags
 from django.utils.http import urlsafe_base64_encode
+from ...cart.models import Cart
 
 from ..forms.register_form import RegistrationForm
 from ...common.send_email import send_email_async
@@ -46,6 +47,10 @@ def register(request):
                     html_body = strip_tags(body)
                     asyncio.run(send_email_async(subject, html_body, [email]))
                     new_form.save()
+                    cart, _ = Cart.objects.get_or_create(cart_id_pk=_cart_id(request))
+                    cart.user = new_form
+                    cart.save()
+
                 messages.success(request, f"Account created for {username}!")
                 return redirect("accounts:login")
         return render(request, "accounts/register.html", {"form": form})

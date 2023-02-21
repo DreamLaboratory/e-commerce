@@ -39,7 +39,6 @@ class Account(AbstractBaseUser, PermissionsMixin):
         verbose_name_plural = "Accounts"
 
 
-# TODO Account Profile
 class UserProfile(models.Model):
     user = models.OneToOneField(Account, on_delete=models.CASCADE)
     profile_pic = models.ImageField(upload_to="profile_pics", default="profile_pics/default.png", blank=True, null=True)

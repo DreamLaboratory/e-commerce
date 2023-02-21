@@ -39,6 +39,7 @@ THIRD_APPS = [
     "django.contrib.messages",
     "django.contrib.humanize",
     "django.contrib.staticfiles",
+    "import_export",
 ]
 
 LOCAL_APPS = [
@@ -46,6 +47,7 @@ LOCAL_APPS = [
     "src.apps.common",
     "src.apps.store",
     "src.apps.cart",
+    # "src.apps.order",
 ]
 
 INSTALLED_APPS = THIRD_APPS + LOCAL_APPS
@@ -174,3 +176,10 @@ logging.config.dictConfig(
         },
     }
 )
+
+
+# SET session expire time
+SESSION_COOKIE_AGE = 60 * 60 * 24 * 7  # 7 days
+
+# TTL for cache
+CACHE_TTL = 60 * 60 * 24 * 7  # 7 days
