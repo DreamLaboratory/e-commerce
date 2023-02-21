@@ -47,7 +47,7 @@ LOCAL_APPS = [
     "src.apps.common",
     "src.apps.store",
     "src.apps.cart",
-    # "src.apps.order",
+    "src.apps.order",
 ]
 
 INSTALLED_APPS = THIRD_APPS + LOCAL_APPS

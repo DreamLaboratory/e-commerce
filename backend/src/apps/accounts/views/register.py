@@ -11,6 +11,7 @@ from ...cart.models import Cart
 from ..forms.register_form import RegistrationForm
 from ...common.send_email import send_email_async
 import asyncio
+from ...common.get_cart_id import _cart_id
 
 
 @transaction.atomic

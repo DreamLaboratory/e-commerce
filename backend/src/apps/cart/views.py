@@ -1,24 +1,29 @@
-from django.shortcuts import render, redirect
-from .models import Cart, CartItem, StatusChoices
-from ..store.models.variants import ProductVariants
-from django.db.models import Sum, F
 from decimal import Decimal
+
+from django.db.models import F, Sum
+from django.shortcuts import redirect, render
+
 from ..common.get_cart_id import _cart_id
+from ..store.models.variants import ProductVariants
+from .models import Cart, CartItem, StatusChoices
 
 
+# TODO get_object_or_404
 def add_cart(request):
-
     # get product variations
     if request.method != "POST":
         return render(request, "store/cart_items.html", {"cart_items": None})
     product_id = request.POST.get("product_id")
     size = request.POST.get("size")
     color = request.POST.get("color")
-    # check if cart exists
-    cart, created = Cart.objects.get_or_create(user=request.user)
+    # check if user is authenticated
+    if request.user.is_authenticated:
+        cart = Cart.objects.get(user=request.user)
+    else:
+        cart, _ = Cart.objects.get_or_create(cart_id_pk=_cart_id(request))
+    print(cart)
 
     variations = ProductVariants.objects.filter(product_id=product_id, variant_value__in=[size, color])
-    print(variations)
     # check if cart item exists
     cart_item, created = CartItem.objects.get_or_create(cart=cart, product_id=product_id)
 
@@ -31,6 +36,7 @@ def add_cart(request):
     return redirect("cart:cart")
 
 
+# +
 def add_to_cart(request, cart_item_id):
     """
     TODO: Optimize this function
@@ -66,6 +72,7 @@ def cart(request):
     return render(request, "store/cart_items.html", context)
 
 
+#  Delete cart item
 def delete_cart(request, cart_item_id):
     # TODO use get_object_or_404
     cart_item = CartItem.objects.get(id=cart_item_id)
@@ -73,6 +80,7 @@ def delete_cart(request, cart_item_id):
     return redirect("cart:cart")
 
 
+#  -
 def remove_cart_item(request, cart_item_id):
     try:
         # TODO use get_object_or_404

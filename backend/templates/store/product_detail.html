@@ -4,7 +4,7 @@
 
 {% block title %}
 
-Home
+Product Detail
 
 {% endblock %}
 
@@ -73,8 +73,6 @@ Home
     <hr>
 
 
-
-
     <form action="{% url 'cart:add_cart' %}" method="post">
       {% csrf_token %}
         <div class="row">
@@ -109,15 +107,11 @@ Home
         
         <hr>
         
-        {% if user.is_authenticated %}
-        {% if product.stock > 0 %}
-        <button type="submit" class="btn  btn-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i>  </button>
-        {% else %}
-          <a href="#" class="btn  btn-primary disabled"> <span class="text">Out of Stock</span> <i class="fas fa-shopping-cart"></i>  </a>
-        {% endif %}
-        {% else %}
-        <a href="{% url 'accounts:login' %}" class="btn  btn-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i>  </a>
-        {% endif %}
+          {% if product.stock > 0 %}
+            <button type="submit" class="btn  btn-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i>  </button>
+          {% else %}
+            <a href="#" class="btn  btn-primary disabled"> <span class="text">Out of Stock</span> <i class="fas fa-shopping-cart"></i>  </a>
+          {% endif %}
         
       </form>
 

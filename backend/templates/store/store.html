@@ -36,7 +36,7 @@ Home
                     <h6 class="title">Categories</h6>
                 </a>
             </header>
-            <div class="filter-content collapse show" id="collapse_1" >
+            <div class="filter-content collapse show" id="collapse_1">
                 <div class="card-body">
                     
                     <ul class="list-menu">
@@ -173,13 +173,12 @@ Home
             {% endif %}
 
             {% for page in products.paginator.page_range %}
-                {% if products.number == page %}
+                 {% if products.number == page %}
                     <li class="page-item active"><a class="page-link" href="?page={{page}}">{{page}}</a></li>
                 {% else %}
                 <li class="page-item"><a class="page-link" href="?page={{page}}">{{page}}</a></li>
                 {% endif %}
             {% endfor %}
-
             {% if products.has_next %}
             <li class="page-item"><a class="page-link" href="?page={{products.next_page_number}}">Next</a></li>
             {% endif %}
@@ -196,4 +195,4 @@ Home
     <!-- ========================= SECTION CONTENT END// ========================= -->
 
         
-{% endblock %}
+{% endblock %} 
