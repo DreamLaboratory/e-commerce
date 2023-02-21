@@ -29,9 +29,6 @@ class Order(BaseModel):
     status = models.CharField(max_length=255, choices=OrderStatus.choices, default=OrderStatus.NEW)
     cart_items = models.ManyToManyField(CartItem, related_name="orders")
 
-    def __str__(self):
-        return f"{self.user} - {self.product}"
-
     @property
     def get_full_name(self):
         return f"{self.f_name} {self.l_name}"

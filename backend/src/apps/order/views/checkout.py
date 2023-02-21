@@ -4,6 +4,8 @@ from decimal import Decimal
 from ...common.get_cart_id import _cart_id
 from django.shortcuts import render
 
+from ..forms.order_form import OrderForm
+
 
 def checkout(request):
     if request.user.is_authenticated:
@@ -19,5 +21,12 @@ def checkout(request):
     delevery = Decimal(total_price * Decimal(0.1)).quantize(Decimal("0.01"))  # 10% of total price
 
     grand_total = total_price + delevery
-    context = {"cart_items": cart_items, "total_price": total_price, "delevery": delevery, "grand_total": grand_total}
+    form = OrderForm()
+    context = {
+        "cart_items": cart_items,
+        "total_price": total_price,
+        "delevery": delevery,
+        "grand_total": grand_total,
+        "form": form,
+    }
     return render(request, "order/checkout.html", context)
