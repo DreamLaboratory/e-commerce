@@ -65,10 +65,10 @@ float: left;
             {% for item in cart_items %}
             <div class="col-md-6">
                 <figure class="itemside  mb-4">
-                    <div class="aside"><img src="./images/items/1.jpg" class="border img-sm"></div>
+                    <div class="aside"><img src="{{item.product.get_image_url}}" class="border img-sm"></div>
                     <figcaption class="info">
-                        <p>Apple iPad (2019) 32Gb Wi-Fi gold </p>
-                        <span class="text-muted">2x = $560 </span>
+                        <p>{{item.product.name}} </p>
+                        <span class="text-muted">{{item.quantity}}x = $560 </span>
                     </figcaption>
                 </figure>
             </div> <!-- col.// -->
@@ -155,7 +155,6 @@ float: left;
                     <input type="hidden" name="card_type" value="uzcard/humo"/>
                     <button type="submit" class="click_logo"><i></i>Оплатить через CLICK</button>
                 </form>
-
                 </p>
                 
             </div> <!-- card body .// -->

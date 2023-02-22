@@ -1,3 +1,4 @@
+import contextlib
 from decimal import Decimal
 
 from django.db.models import F, Sum
@@ -21,11 +22,10 @@ def add_cart(request):
         cart = Cart.objects.get(user=request.user)
     else:
         cart, _ = Cart.objects.get_or_create(cart_id_pk=_cart_id(request))
-    print(cart)
 
     variations = ProductVariants.objects.filter(product_id=product_id, variant_value__in=[size, color])
     # check if cart item exists
-    cart_item, created = CartItem.objects.get_or_create(cart=cart, product_id=product_id)
+    cart_item, created = CartItem.objects.get_or_create(cart=cart, product_id=product_id, status=StatusChoices.ACTIVE)
 
     # add variations to cart item
     for variation in variations:
@@ -54,11 +54,6 @@ def cart(request):
     else:
         cart = Cart.objects.filter(cart_id_pk=_cart_id(request)).first()
     cart_items = CartItem.objects.filter(cart=cart, status=StatusChoices.ACTIVE)
-    # total_price = cart_items.aggregate(
-    #     total_price=Sum(
-    #         F("product__price") * F("quantity"), output_field=models.DecimalField(max_digits=10, decimal_places=2)
-    #     )
-    # )
     # annotate
     cart_item = cart_items.annotate(total_price=F("product__price") * F("quantity"))
     total_price = cart_item.aggregate(Sum("total_price"))
@@ -82,7 +77,7 @@ def delete_cart(request, cart_item_id):
 
 #  -
 def remove_cart_item(request, cart_item_id):
-    try:
+    with contextlib.suppress(Exception):
         # TODO use get_object_or_404
         cart_item = CartItem.objects.get(id=cart_item_id)
         if cart_item.quantity > 1:
@@ -90,7 +85,4 @@ def remove_cart_item(request, cart_item_id):
             cart_item.save()
         else:
             cart_item.delete()
-    except Exception:
-        # TODO tg alert
-        pass
     return redirect("cart:cart")

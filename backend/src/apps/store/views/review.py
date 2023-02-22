@@ -20,5 +20,6 @@ def add_review(request, product_id):
             data.product_id = product_id
             data.save()
             messages.success(request, "Sizning fikringiz qabul qilindi")
+            return redirect(url)
         messages.error(request, f"Xatolik {form.errors.as_text()}")
     return redirect(url)

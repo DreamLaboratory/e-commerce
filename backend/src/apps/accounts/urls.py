@@ -1,13 +1,6 @@
 from django.urls import path
 
-from .views import (
-    index,
-    register,
-    login,
-    logout_user,
-    activate,
-    reset_password,
-)
+from .views import activate, index, login, logout_user, register, reset_password
 
 urlpatterns = [
     path("", index.index_page, name="index_page"),
