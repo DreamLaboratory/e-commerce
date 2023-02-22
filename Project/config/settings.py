@@ -18,6 +18,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # admin_interface
+    # colorfield
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -26,6 +28,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'ckeditor',
+    'import_export',
+    # django-ckeditor
+    # django-crispy-forms
+    # django_extensions
+    # debug_toolbar
 
     ####Local
 
@@ -33,6 +40,7 @@ INSTALLED_APPS = [
     'Accounts',
     'StoreApp',
     'Cart',
+    'Order',
 ]
 
 CKEDITOR_UPLOAD_PATH = 'uploads/'
@@ -156,4 +164,8 @@ EMAIL_HOST_PASSWORD = 'rtfutsoprvolyarg'
 EMAIL_USE_TLS = True
 
 
+# SET session expire time
+SESSION_COOKIE_AGE = 60 * 60 * 24 * 7  # 7 days
 
+# TTL for cache
+CACHE_TTL = 60 * 60 * 24 * 7  # 7 days

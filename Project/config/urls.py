@@ -18,6 +18,9 @@ urlpatterns = [
     path(
         "", include('Cart.urls'),
     ),
+    path(
+        "", include('Order.urls'),
+    ),
 
 ]
 

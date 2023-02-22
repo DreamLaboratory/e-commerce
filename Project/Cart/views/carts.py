@@ -15,7 +15,6 @@ def carts(request):
             cart = Cart.objects.get(user=request.user)
         else:
             cart = Cart.objects.filter(cart_id=cart_id(request)).first()
-            print(cart,'sedsdsd')
 
         cart_items = CartItems.objects.filter(cart=cart, status=StatusChoices.ACTIVE)
         if cart_items.count() != 0:

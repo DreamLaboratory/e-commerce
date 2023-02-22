@@ -21,7 +21,7 @@ class Cart(BaseModel):
         ordering = ['-created_at']
 
     def __str__(self):
-        return f'{self.user}'
+        return f'{self.cart_id}'
 
 
 class StatusChoices(models.TextChoices):
@@ -42,4 +42,4 @@ class CartItems(BaseModel):
         ordering = ['-created_at']
 
     def __str__(self):
-        return f'{self.cart}'
+        return f'{self.product}'

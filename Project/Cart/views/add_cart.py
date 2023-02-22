@@ -22,7 +22,7 @@ def add_cart(request):
         cart, created = Cart.objects.get_or_create(cart_id=cart_id(request))
 
     cart_item, created = CartItems.objects.get_or_create(cart=cart, product_id=product_id)
-    print(variations)
+
 
     for variation in variations:
         cart_item.variants.add(variation)

@@ -6,6 +6,8 @@ from .models.review import Review
 from .models.variants import ProductVariants
 from django.utils.html import format_html
 import admin_thumbnails
+from import_export import resources
+from import_export.admin import ImportExportModelAdmin
 
 
 @admin_thumbnails.thumbnail('image')
@@ -14,7 +16,7 @@ class ProductImageModelAdmin(admin.TabularInline):
     extra = 2
 
 
-
+@admin.register(Review)
 class ReviewAdmin(admin.ModelAdmin):
     list_display = ("product", "user", "rating", "status", "created_at")
     list_filter = ("rating", "created_at")
@@ -23,7 +25,6 @@ class ReviewAdmin(admin.ModelAdmin):
     raw_id_fields = ("user", 'product')
     date_hierarchy = "created_at"
     list_editable = ("status",)
-
 
     def active_status(self, request, queryset):
         queryset.update(status=True)
@@ -38,16 +39,25 @@ class ReviewAdmin(admin.ModelAdmin):
     actions = ['active_status', 'inactive_status']
 
 
-class ProductAdmin(admin.ModelAdmin):
+class ResourceProduct(resources.ModelResource):
+    class Meta:
+        model = Product
+        fields = ('id', 'name', 'price', 'quantity')
+
+
+@admin.register(Product)
+class ProductAdmin(ImportExportModelAdmin):
+    resource_class = ResourceProduct
     list_display = ('image', 'name', 'is_available', 'created_at', 'updated_at')
     list_display_links = ('image', 'name')
     list_editable = ('is_available',)
-    search_fields = ('product',)
-    prepopulated_fields = {"slug":('name',)}
+    list_filter = ('created_at',)
+    search_fields = ('name',)
+    date_hierarchy = 'created_at'
+    prepopulated_fields = {"slug": ('name',)}
     inlines = [ProductImageModelAdmin]
 
     def image_product(self, object):
-        print('assasas')
         if object.image:
             return format_html(
                 f'<img src="{object.image.url}" width="45px" height="45px" style="border-radius: 45px;" />'
@@ -72,12 +82,22 @@ class ProductAdmin(admin.ModelAdmin):
     actions = ['is_available_true', 'is_available_false']
 
 
-class CategoryAdmin(admin.ModelAdmin):
+######## Category
+class CategoryResource(resources.ModelResource):
+    class Meta:
+        model = Category
+        fields = ('name', 'created_at', 'updated_at')
+
+
+@admin.register(Category)
+class CategoryAdmin(ImportExportModelAdmin):
+    resource_class = CategoryResource
     list_display = ('name', 'created_at', 'updated_at')
+    list_filter = ('created_at',)
+    search_fields = ('name',)
+    prepopulated_fields = {"slug": ('name',)}
+    date_hierarchy = "created_at"
 
 
-admin.site.register(Review, ReviewAdmin)
-admin.site.register(Product, ProductAdmin)
-admin.site.register(Category, CategoryAdmin)
 admin.site.register(ProductImage)
 admin.site.register(ProductVariants)
