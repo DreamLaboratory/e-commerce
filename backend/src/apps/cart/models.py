@@ -20,7 +20,7 @@ class Cart(BaseModel):
         verbose_name_plural = "Carts"
 
     def __str__(self):
-        return str(self.cart_id_pk)
+        return str(self.user)
 
 
 class CartItem(BaseModel):

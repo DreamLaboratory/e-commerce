@@ -6,14 +6,21 @@ from .models.image import ImageProduct
 from django.contrib import admin
 from .models.variant import ProductVariant
 import admin_thumbnails
+from import_export.admin import ImportExportActionModelAdmin
+from import_export import resources
 
 # Register your models here.
-class CategoryModel(admin.ModelAdmin):
+
+
+class CategoryResource(resources.ModelResource):
+    class Meta:
+        model = Category
+
+
+@admin.register(Category)
+class CategoryModel(ImportExportActionModelAdmin):
+    resource_class = CategoryResource
     list_display = ["name", "description", "image"]
-    # prepopulated_fields = ['slug', ('name')]
-
-
-admin.site.register(Category, CategoryModel)
 
 
 class ReviewsModel(admin.ModelAdmin):

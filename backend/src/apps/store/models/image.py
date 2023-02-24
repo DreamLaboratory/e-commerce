@@ -13,3 +13,10 @@ class ImageProduct(BaseModel):
     @property
     def get_image_url(self):
         return self.image.url if self.image and hasattr(self.image, "url") else "rasim yuq"
+
+    @property
+    def get_image_url(self):
+        if self.get_image_url and hasattr(self.image, "url"):
+            return self.image.url
+        else:
+            return "#"

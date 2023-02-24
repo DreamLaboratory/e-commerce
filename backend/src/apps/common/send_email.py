@@ -19,7 +19,6 @@ async def send_email_async(subject, body, to):
             to=to,
         )
         await sendmail.send()
-    except Exception as e:
-        print(e)
+    except Exception:
         return False
     return True

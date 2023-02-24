@@ -40,19 +40,20 @@ INSTALLED_HOME = [
     "django.contrib.humanize",
     "ckeditor",
     "smart_selects",
+    "import_export",
+    # 'colorfield'
+    # 'admin_interface'
+    # 'django_extensions'     adminga uchun ko'tibxonalar
+    # 'debug_toolbar'
 ]
 
 
-INSTALLED_OUT = [
-    "src.apps.accounts",
-    "src.apps.common",
-    "src.apps.store",
-    "src.apps.cart",
-]
+INSTALLED_OUT = ["src.apps.accounts", "src.apps.common", "src.apps.store", "src.apps.cart", "src.apps.order"]
 
 INSTALLED_APPS = INSTALLED_HOME + INSTALLED_OUT
 AUTH_USER_MODEL = "accounts.MyUser"
 
+IMPORT_EXPORT_USE_TRANSACTIONS = True
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",

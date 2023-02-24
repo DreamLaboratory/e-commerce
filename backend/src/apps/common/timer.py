@@ -3,10 +3,9 @@ import time
 
 def timer(func):
     def wrapper(*args, **kwargs):
-        start = time.time()
+        time.time()
         result = func(*args, **kwargs)
-        end = time.time()
-        print(f"Function {func.__name__} took {end - start} seconds")
+        time.time()
         return result
 
     return wrapper

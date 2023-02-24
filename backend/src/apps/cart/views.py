@@ -17,12 +17,16 @@ def add_cart(request):
     size = request.POST.get("size")
     color = request.POST.get("color")
     productid = request.POST.get("productid")
+    if request.user.is_authenticated:
 
-    cart, created = Cart.objects.get_or_create(cart_id_pk=_cart_id(request))
+        cart = Cart.objects.get(user=request.user)
+    else:
+        cart, created = Cart.objects.get_or_create(cart_id_pk=_cart_id(request))
+    print("----00", cart)
     variations = ProductVariant.objects.filter(product_id=productid, variant_value=[size, color])
-    print("---1", cart)
 
-    cart_items, created = CartItem.objects.get_or_create(cart=cart, product_id=productid)
+    cart_items, created = CartItem.objects.get_or_create(cart=cart, product_id=productid, status=StatusChoices.ACTIVE)
+    print("-----04", cart_items)
 
     for variation in variations:
         cart_items.variants.add(variation)
@@ -32,16 +36,16 @@ def add_cart(request):
 
 
 def cart(request):
-    cart = Cart.objects.filter(cart_id_pk=_cart_id(request)).first()
+    if request.user.is_authenticated:
+
+        cart = Cart.objects.get(user=request.user)
+        print("----01", cart)
+    else:
+        cart = Cart.objects.filter(cart_id_pk=_cart_id(request)).first()
+        print("-----02", cart)
     cart_items = CartItem.objects.filter(cart=cart, status=StatusChoices.ACTIVE)
-    # total_price = (
-    #     cart_items.aggregate(
-    #         total_price=Sum(
-    #             F("product__price") * F("quantity"), out_fields=models.DecimalField(max_digits=10, decimal_places=2)
-    #         )
-    #     )["total_price"]
-    #     or 0
-    # )
+    print("-----03", cart_items)
+
     cart_item = cart_items.annotate(total_price=F("product__price") * F("quantity"))
 
     total_price = cart_item.aggregate(Sum("total_price"))

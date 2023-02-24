@@ -78,6 +78,7 @@ def login(request):
         email = request.POST.get("email")
         password = request.POST.get("password")
         user = auth.authenticate(request, email=email, password=password)
+        print("user", user)
         if user:
             auth.login(request, user)
             messages.success(request, "You are soccessed login")
