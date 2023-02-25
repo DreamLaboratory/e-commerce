@@ -17,12 +17,11 @@ def add_cart(request):
     size = request.POST.get('size', None)
     variations = ProductVariants.objects.filter(product_id=product_id, variant_value__in=[size, color])
     if request.user.is_authenticated:
-        cart, created = Cart.objects.get_or_create(user=request.user)
+        cart = Cart.objects.get(user=request.user)
     else:
-        cart, created = Cart.objects.get_or_create(cart_id=cart_id(request))
+        cart, _ = Cart.objects.get_or_create(cart_id=cart_id(request))
 
-    cart_item, created = CartItems.objects.get_or_create(cart=cart, product_id=product_id)
-
+    cart_item, _ = CartItems.objects.get_or_create(cart=cart, product_id=product_id)
 
     for variation in variations:
         cart_item.variants.add(variation)

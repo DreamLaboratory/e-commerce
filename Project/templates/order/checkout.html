@@ -1,14 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% load mathfilters %}
 
 
 {% block content  %}
 
 <section class="section-content padding-y bg">
 <div class="container">
-
-
 
 <!-- ============================ COMPONENT 2 ================================= -->
 <div class="row">
@@ -24,7 +22,9 @@
 				<div class="aside"><img src="{{ item.product.get_image_url }}" class="border img-sm"></div>
 				<figcaption class="info">
 					<p>{{ item.product.name }}</p>
-					<span class="text-muted">{{ item.product.price }} </span>
+
+					<span class="text-muted">{{ item.quantity }}x = {{ item.quantity|mul:item.product.price }}</span>
+
 				</figcaption>
 			</figure>
 		</div> <!-- col.// -->
@@ -37,75 +37,56 @@
 <article class="card mb-4">
 <div class="card-body">
 	<h4 class="card-title mb-4">Contact info</h4>
-	<form action="">
-		<div class="row">
-			<div class="form-group col-sm-6">
-				<label>First name</label>
-				<input type="text" placeholder="Type here" class="form-control" value="{{ user.username }}">
-			</div>
-			<div class="form-group col-sm-6">
-				<label>Last name</label>
-				<input type="text" placeholder="Type here" class="form-control" value="{{ user.username }}">
-			</div>
-			<div class="form-group col-sm-6">
-				<label>Phone</label>
-				<input type="text" value="{{ user.phone_number }}" class="form-control">
-			</div>
-			<div class="form-group col-sm-6">
-				<label>Email</label>
-				<input type="email" placeholder="example@gmail.com" class="form-control" value="{{ user.email }}">
-			</div>
-		</div> <!-- row.// -->
-	</form>
+	        <form method="post" action="{% url 'order_save' %}">
+            {% csrf_token %}
+            <div class="row">
+
+                <div class="form-group col-sm-6">
+                    <label>First name</label>
+                    {{form.f_name}}
+                    {{form.f_name.errors}}
+                </div>
+                <div class="form-group col-sm-6">
+                    <label>Last name</label>
+                    {{form.l_name}}
+                    {{form.l_name.errors}}
+                </div>
+                <div class="form-group col-sm-6">
+                    <label>Phone</label>
+                    {{form.phone}}
+                    {{form.phone.errors}}
+                </div>
+                <div class="form-group col-sm-6">
+                    <label>regions</label>
+                    {{form.regions}}
+                    {{form.regions.errors}}
+                </div>
+                <div class="form-group col-sm-6">
+                    <label>city</label>
+                    {{form.city}}
+                    {{form.city.errors}}
+                </div>
+                <div class="form-group col-sm-6">
+                    <label>address</label>
+                    {{form.address}}
+                    {{form.address.errors}}
+                </div>
+                <div class="form-group col-sm-6">
+                    <label>order_note</label>
+                    {{form.order_note}}
+                    {{form.order_note.errors}}
+                </div>
+
+                <input type="submit" class="btn btn-primary btn-block" value="Place Order">
+
+            </div> <!-- row.// -->
+        </form>
 </div> <!-- card-body.// -->
 </article> <!-- card.// -->
 
 
 
 
-<article class="accordion" id="accordion_pay">
-	<div class="card">
-		<header class="card-header">
-			<img src="{% static 'images/misc/payment-paypal.png' %}" class="float-right" height="24">
-			<label class="form-check collapsed" data-toggle="collapse" data-target="#pay_paynet">
-				<input class="form-check-input" name="payment-option" checked type="radio" value="option2">
-				<h6 class="form-check-label">
-					Paypal
-				</h6>
-			</label>
-		</header>
-		<div id="pay_paynet" class="collapse show" data-parent="#accordion_pay">
-		<div class="card-body">
-			<p class="text-center text-muted">Connect your PayPal account and use it to pay your bills. You'll be redirected to PayPal to add your billing information.</p>
-			<p class="text-center">
-				<a href="#"><img src="{% static 'images/misc/btn-paypal.png' %}" height="32"></a>
-				<br><br>
-			</p>
-		</div> <!-- card body .// -->
-		</div> <!-- collapse .// -->
-	</div> <!-- card.// -->
-	<div class="card">
-	<header class="card-header">
-		<img src="{% static 'images/misc/payment-card.png' %}" class="float-right" height="24">
-		<label class="form-check" data-toggle="collapse" data-target="#pay_payme">
-			<input class="form-check-input" name="payment-option" type="radio" value="option2">
-			<h6 class="form-check-label"> Credit Card  </h6>
-		</label>
-	</header>
-	<div id="pay_payme" class="collapse" data-parent="#accordion_pay">
-		<div class="card-body">
-			<p class="alert alert-success">Some information or instruction</p>
-			<form class="form-inline">
-				<input type="text" class="form-control mr-2" placeholder="xxxx-xxxx-xxxx-xxxx" name="">
-				<input type="text" class="form-control mr-2" style="width: 100px"  placeholder="dd/yy" name="">
-				<input type="number" maxlength="3" class="form-control mr-2"  style="width: 100px"  placeholder="cvc" name="">
-				<button class="btn btn btn-success">Button</button>
-			</form>
-		</div> <!-- card body .// -->
-	</div> <!-- collapse .// -->
-	</div> <!-- card.// -->
-
-</article>
 <!-- accordion end.// -->
 
 		</main> <!-- col.// -->
@@ -128,7 +109,7 @@
 			<p class="text-center mb-3">
 				<img src="{% static 'images/misc/payments.png' %}" height="26">
 			</p>
-			<a href="./place-order.html" class="btn btn-primary btn-block"> Place Order </a>
+
 
 		</div> <!-- card-body.// -->
 		</div> <!-- card.// -->

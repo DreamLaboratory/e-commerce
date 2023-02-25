@@ -3,7 +3,8 @@ from HomeApp.models import BaseModel
 from Cart.models import Cart, CartItems, StatusChoices
 from decimal import Decimal
 from HomeApp.get_cart_id import cart_id
-from django.db.models import F,Sum,Count
+from django.db.models import F, Sum
+from ..forms.order_forms import OrderForm
 
 
 def checkout(request):
@@ -15,12 +16,15 @@ def checkout(request):
     cart_items = CartItems.objects.filter(cart=cart, status=StatusChoices.ACTIVE)
 
     # annotate
-    cart_item = cart_items.annotate(total_price=F("product__price") * F("quantity"))
-    total_price = cart_item.aggregate(Sum("total_price"))
-    total_price = total_price['total_price__sum'] or 0
-
+    price = cart_items.annotate(price=F("product__price") * F("quantity"))
+    total_price = price.aggregate(Sum("price"))
+    total_price = total_price['price__sum'] or 0
     delevery = Decimal(total_price * Decimal(0.1)).quantize(Decimal("0.01"))  # 10% of total price
-
+    form = OrderForm()
     grand_total = total_price + delevery
-    context = {"cart_items": cart_items, "total_price": total_price, "delevery": delevery, "grand_total": grand_total}
+    context = {"cart_items": cart_items,
+               "total_price": total_price,
+               "delevery": delevery,
+               "grand_total": grand_total,
+               'form': form}
     return render(request, "order/checkout.html", context)

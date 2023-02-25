@@ -1,11 +1,13 @@
+import logging
+
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Sum, F
 from django.db import models
-from StoreApp.models.product import Product
-from StoreApp.models.variants import ProductVariants
 from ..models import Cart, CartItems, StatusChoices
 from decimal import Decimal
 from HomeApp.get_cart_id import cart_id
+
+logger = logging.getLogger(__name__)
 
 
 def carts(request):
@@ -33,5 +35,6 @@ def carts(request):
             return render(request, "store/cart_items.html")
 
     except Exception as e:
-        # tg_alert.custom_alert(f"{e}")
-        print(e)
+        print('logging')
+        tg_alert.custom_alert(f"{e}")
+        logger.error(e)

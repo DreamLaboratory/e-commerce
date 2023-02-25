@@ -1,7 +1,6 @@
 from .models import Cart, CartItems
 from HomeApp.get_cart_id import cart_id
-from django.db.models import Count
-from django.shortcuts import redirect,render
+from .models import StatusChoices
 
 
 def counter(request):
@@ -13,7 +12,7 @@ def counter(request):
         else:
             cart = Cart.objects.get(cart_id=cart_id(request))
 
-        count = CartItems.objects.filter(cart=cart).count()
+        count = CartItems.objects.filter(cart=cart,status = StatusChoices.ACTIVE).count()
         return {"counter": count}
 
     except Exception as e:

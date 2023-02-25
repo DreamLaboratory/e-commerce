@@ -64,14 +64,17 @@ class Account(AbstractBaseUser):
 
 
 class Profile(models.Model):
+    username = models.CharField(max_length=40,unique=True)
     user = models.OneToOneField(Account, on_delete=models.CASCADE, null=True, blank=True)
     address = models.CharField(max_length=200, null=True, blank=True)
+    phone_number = models.CharField(max_length=60,unique=True)
     image = models.ImageField(upload_to='profile_image', null=True, blank=True)
     first_name = models.CharField(verbose_name='Name', max_length=202, null=True, blank=True)
     last_name = models.CharField(verbose_name="Last Name", max_length=200, null=True, blank=True)
     email = models.CharField(max_length=30, null=True, blank=True)
     is_verified = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
+    country = models.CharField(max_length=40,blank=True, null=True)
 
     def __str__(self):
         return str(self.email)

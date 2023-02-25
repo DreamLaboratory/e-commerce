@@ -7,8 +7,10 @@ from django.core.paginator import Paginator
 def store_view(request, category_slug=None):
     category = None
     products = Product.objects.filter(is_available=True)
+    xs = request.GET.get('xs',None)
     min_price = request.GET.get('min', None)
     max_price = request.GET.get('max', None)
+    print(min_price,max_price,xs)
 
     if min_price and max_price and category_slug:
         category = Category.objects.get(slug=category_slug)

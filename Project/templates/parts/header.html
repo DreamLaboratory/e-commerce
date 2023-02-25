@@ -65,8 +65,12 @@
                             {% if user.is_authenticated %}
                                 <small class="title text-muted">Welcome {{ user.username }}!</small>
                                 <div>
-                                    <a href="{% url 'logout' %}">Sign out
+                                    <a class="mr-2" href="{% url 'logout' %}">Sign out
                                <i class="fa fa-sign-out" style="font-size:19px;color:black"></i>
+                                    </a>|
+                                    <i class="fa fa-cart-arrow-down" style="font-size:19px;color:black"></i>
+                                 <a href="{% url 'order_list' %}">My Orders
+
                                     </a>
                                 </div>
                             {% else %}

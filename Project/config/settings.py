@@ -2,6 +2,11 @@ from pathlib import Path
 # Build paths inside the Project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+import logging.config
+from pathlib import Path
+
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -29,6 +34,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'ckeditor',
     'import_export',
+    'mathfilters',
     # django-ckeditor
     # django-crispy-forms
     # django_extensions
@@ -162,6 +168,29 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'jasurbekidrisov@gmail.com'
 EMAIL_HOST_PASSWORD = 'rtfutsoprvolyarg'
 EMAIL_USE_TLS = True
+
+###logginh file
+logging.config.dictConfig(
+    {
+        "version": 1,
+        "disable_existing_loggers": False,
+        "formatters": {
+            "file": {"format": "%(asctime)s %(name)-12s %(levelname)-8s %(message)s"},
+        },
+        "handlers": {
+            "file": {
+                "level": "ERROR",
+                "class": "logging.FileHandler",
+                "formatter": "file",
+                "filename": "errors.log",
+            },
+        },
+        "loggers": {
+            "": {"level": "ERROR", "handlers": ["file"]},
+            "django.request": {"level": "INFO", "handlers": ["file"]},
+        },
+    }
+)
 
 
 # SET session expire time

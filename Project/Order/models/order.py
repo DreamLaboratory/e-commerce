@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.db import models
-from ...Cart.models import Cart, CartItems
-from ...HomeApp.models import BaseModel
+from HomeApp.models import BaseModel
+from Cart.models import CartItems
 
 User = get_user_model()
 
