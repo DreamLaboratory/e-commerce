@@ -14,6 +14,6 @@ def activate(request, uidb64):
         user.is_active = True
         user.save()
         messages.success(request, "Account activated successfully")
-        return redirect("accounts:login")
+        return redirect("accounts:index_page")
     except Exception:
-        return HttpResponse("Invalid activation link!")
+        return HttpResponse("Invalid activation link")

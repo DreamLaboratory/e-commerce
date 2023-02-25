@@ -44,11 +44,13 @@ LOCAL_APPS = [
     "src.apps.common",
     "src.apps.store",
     "src.apps.cart",
+    "src.apps.order",
 ]
 
 EXTRA_MODULES = [
     "ckeditor",
     "captcha",
+    "import_export",
 ]
 
 INSTALLED_APPS = THIRD_APPS + LOCAL_APPS + EXTRA_MODULES
@@ -118,9 +120,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "uz"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "Asia/Tashkent"
 
 USE_I18N = True
 
@@ -184,3 +186,12 @@ logging.config.dictConfig(
         },
     }
 )
+
+IMPORT_EXPORT_USE_TRANSACTIONS = True
+
+SESSION_COOKIE_AGE = 60 * 60 * 24 * 7
+
+CACHE_TTL = 60 * 60 * 24 * 7
+
+
+LOGIN_URL = "/login/"

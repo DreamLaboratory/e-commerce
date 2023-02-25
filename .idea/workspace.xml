@@ -5,14 +5,39 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="030e6417-a3de-458e-95ee-717bfed6fc1b" name="Changes" comment="signals, custom command, Avg, aggregate, related_name">
-      <change afterPath="$PROJECT_DIR$/backend/src/apps/common/get_cardd_id.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/apps/common/fixtures/cities.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/apps/common/fixtures/regions.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/apps/common/management/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/apps/common/management/import_cities.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/apps/common/management/import_regions.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/apps/order/forms/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/apps/order/forms/order_form.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/apps/order/models/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/apps/order/models/order.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/apps/order/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/apps/order/views/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/apps/order/views/checkout.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/apps/order/views/order_list.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/apps/order/views/save_order.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/templates/order/checkout.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/templates/order/my_order_list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/templates/order/order_detail.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/commands/migrate.sh" beforeDir="false" afterPath="$PROJECT_DIR$/backend/commands/migrate.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/commands/migrations.sh" beforeDir="false" afterPath="$PROJECT_DIR$/backend/commands/migrations.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/commands/start.sh" beforeDir="false" afterPath="$PROJECT_DIR$/backend/commands/start.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/config/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/config/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/apps/accounts/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/apps/accounts/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/apps/cart/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/apps/cart/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/apps/accounts/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/apps/accounts/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/apps/accounts/views/activate.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/apps/accounts/views/activate.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/apps/accounts/views/register.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/apps/accounts/views/register.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/apps/accounts/views/sign_in.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/apps/accounts/views/sign_in.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/apps/cart/item_counter.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/apps/cart/item_counter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/apps/cart/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/apps/cart/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/apps/common/alerter.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/apps/common/alerter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/apps/common/get_cardd_id.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/apps/common/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/apps/common/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/apps/store/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/apps/store/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/apps/store/views/product.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/apps/store/views/product.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/apps/v1.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/apps/v1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/templates/includes/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/templates/includes/header.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/templates/store/cart_items.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/templates/store/cart_items.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/templates/store/product-detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/templates/store/product-detail.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -24,8 +49,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="HTML File" />
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -60,6 +85,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.grazie&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -113,6 +139,9 @@
       <workItem from="1676123014646" duration="8708000" />
       <workItem from="1676396686811" duration="2870000" />
       <workItem from="1676408989733" duration="1415000" />
+      <workItem from="1676989054813" duration="235000" />
+      <workItem from="1677003621042" duration="13397000" />
+      <workItem from="1677319474870" duration="5177000" />
     </task>
     <servers />
   </component>

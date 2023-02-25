@@ -4,9 +4,11 @@ from django.core.paginator import Paginator
 from django.db.models import Q
 from django.shortcuts import render
 
+from ...common.alerter import tg_alert
 from ..models.category import Category
 from ..models.product import Product
-from ...common.alerter import tg_alert
+
+# import logging
 
 
 logger = logging.getLogger(__name__)
@@ -26,7 +28,7 @@ def product_list_view(request, category_slug=None):
 
         product_count = products.count()
         page = request.GET.get("page")
-        paginator = Paginator(products, 10)
+        paginator = Paginator(products, 1)
         products = paginator.get_page(page)
 
         return render(request, "store/store.html", {"products": products, "product_count": product_count})
@@ -41,14 +43,13 @@ def product_detail_view(request, category_slug, product_slug):
     # TODO try except
     product = Product.objects.get(category__slug=category_slug, slug=product_slug)
     product_reviews = product.reviews.filter(status=True)
-    product_images = product.prod_imgs.all()
+    product_images = product.images.all()
     context = {
         "product": product,
         "product_reviews": product_reviews,
         "product_images": product_images,
     }
-    print(product_reviews)
-    return render(request, "store/product-detail.html", context)
+    return render(request, "store/product_detail.html", context)
 
 
 def search(request):

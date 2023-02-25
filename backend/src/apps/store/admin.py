@@ -1,7 +1,6 @@
 from django.contrib import admin
-
-# Register your models here.
-
+from import_export import resources
+from import_export.admin import ImportExportModelAdmin
 from .models.product import Product
 from .models.category import Category
 from .models.review import Review
@@ -10,10 +9,27 @@ from .models.variants import ProductVariants
 import admin_thumbnails
 
 
+class CategoryResource(resources.ModelResource):
+    class Meta:
+        model = Category
+        fields = "__all__"
+        exclude = ("image",)
+
+
+@admin.register(Category)
+class CategoryAdmin(ImportExportModelAdmin):
+    resource_class = CategoryResource
+    list_display = ("name", "slug", "created_at")
+    list_filter = ("created_at",)
+    search_fields = ("name",)
+    prepopulated_fields = {"slug": ("name",)}
+    date_hierarchy = "created_at"
+
+
 @admin_thumbnails.thumbnail("image")
 class ProductImageModelAdmin(admin.TabularInline):
     model = ProductImage
-    extra = 2
+    extra = 1
 
 
 @admin.register(Product)
@@ -24,7 +40,7 @@ class ProductModelAdmin(admin.ModelAdmin):
     raw_id_fields = ("category",)
     date_hierarchy = "created_at"
     list_editable = ("price", "stock")
-    prepopulated_fields = {"slug": ("name",)}  # TODO - add slug field all models
+    prepopulated_fields = {"slug": ("name",)}
     inlines = [ProductImageModelAdmin]
 
 
@@ -41,7 +57,5 @@ class ReviewAdmin(admin.ModelAdmin):
 # admin.site.register(ProductImage)
 admin.site.register(Review, ReviewAdmin)
 
-# TODO - configure admin
-admin.site.register(Category)
 # TODO - configure admin
 admin.site.register(ProductVariants)

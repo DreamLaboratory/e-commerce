@@ -9,6 +9,8 @@ from django.utils.html import strip_tags
 from django.utils.http import urlsafe_base64_encode
 
 from ..forms.register_form import RegistrationForm
+from ...cart.models import Cart
+from ...common.get_cart_id import _cart_id
 
 
 @transaction.atomic
@@ -37,7 +39,7 @@ def register(request):
 
                     current_site = get_current_site(request)
                     subject = "Welcome to the site"
-                    domain = f"http://{current_site.domain}/activate/{urlsafe_base64_encode(force_bytes(new_form))}/"
+                    domain = f"http://{current_site.domain}/activate/{urlsafe_base64_encode(force_bytes(email))}/"
                     message = f"Hi {first_name} {last_name}, welcome to the site"
                     body = render_to_string(
                         "accounts/verification.html",
@@ -54,6 +56,9 @@ def register(request):
                         to=[email],
                     )
                     sendmail.send()
+                    cart, _ = Cart.objects.get_or_create(cart_id_pk=_cart_id(request))
+                    cart.user = new_form
+                    cart.save()
 
                 messages.success(request, f"Account created for {username}!")
                 return redirect("accounts:sign_in")

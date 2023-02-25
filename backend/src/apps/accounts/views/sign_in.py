@@ -2,8 +2,6 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.shortcuts import redirect, render
 from ..forms.sign_in_form import SignInForm
-from ...cart.models import Cart
-from ...common.get_cart_id import _cart_id
 
 
 def sign_in(request):
@@ -21,12 +19,8 @@ def sign_in(request):
         )
         if user is not None:
             login(request, user)
-            # TODO filter by session key
-            cart, _ = Cart.objects.get_or_create(cart_id_pk=_cart_id(request))
-            cart.user = user
-            cart.save()
             messages.success(request, f"Hello {user.username}! You have been logged in")
-            return redirect("/")
+            return redirect("accounts:index_page")
 
     else:
         for key, error in list(form.errors.items()):

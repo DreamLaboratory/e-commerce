@@ -43,12 +43,12 @@ class Alerter:
     @classmethod
     def from_environment(cls) -> Alerter:
         try:
-            token: str = "5799450453:AAHsE9kb4wSwttZwwPXWxmtkVzndTZTC64w"
+            token: str = "6001274038:AAFctWAAp9YjXB0a6asK89VcnH3prk33_mY"
         except KeyError as e:
             raise KeyError("ALERT_BOT_TOKEN must be set in environment variables") from e
 
         try:
-            chat_id = "-1001772543402"
+            chat_id = "-1001780717476"
         except KeyError as exc:
             raise KeyError("ALERT_CHAT_ID must be set in environment variables") from exc
 

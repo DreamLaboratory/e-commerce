@@ -3,7 +3,7 @@
     <nav class="navbar p-md-0 navbar-expand-sm navbar-light border-bottom">
         <div class="container">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTop4"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarTop4">
@@ -39,7 +39,7 @@
                         </button>
                         <div class="dropdown-menu">
                             {% for category in categories %}
-                            <a class="dropdown-item" href="{{ category.get_absolute_url }}">{{ category.name }}</a>
+                                <a class="dropdown-item" href="{{ category.get_absolute_url }}">{{ category.name }}</a>
                             {% endfor %}
                         </div>
                     </div> <!-- category-wrap.// -->
@@ -64,16 +64,21 @@
                             <small class="title text-muted">Welcome guest!</small>
                             <div>
                                 {% if user.is_authenticated %}
-                                <a href="{% url 'accounts:log_out' %}"> Log Out</a>
+                                    <a href="{% url 'accounts:log_out' %}"> Log Out</a>
+                                    <a href="{% url 'order:order_list' %}">
+                                        <i class="fa fa-cart"></i>
+                                        My Orders
+                                    </a>
                                 {% else %}
-                                <a href="{% url 'accounts:sign_in' %}">Sign in</a> <span class="dark-transp"> | </span>
-                                <a href="{% url 'accounts:register' %}"> Register</a>
+                                    <a href="{% url 'accounts:sign_in' %}">Sign in</a>
+                                    <span class="dark-transp"> | </span>
+                                    <a href="{% url 'accounts:register' %}"> Register</a>
                                 {% endif %}
                             </div>
                         </div>
                         <a href="{% url 'cart:cart' %}" class="widget-header pl-3 ml-3">
                             <div class="icon icon-sm rounded-circle border"><i class="fa fa-shopping-cart"></i></div>
-                            <span class="badge badge-pill badge-danger notify">{{counter}}</span>
+                            <span class="badge badge-pill badge-danger notify">{{ counter }}</span>
                         </a>
                     </div> <!-- widgets-wrap.// -->
                 </div> <!-- col.// -->

@@ -39,9 +39,9 @@ admin.site.register(Account, CustomUserAdmin)
 
 
 class UserProfileAdmin(admin.ModelAdmin):
-    list_display = ("user", "city", "state", "address")
+    list_display = ("id", "thumbnail", "user", "city", "state", "address")
     list_filter = ("city", "state")
-    list_display_links = ("user", "city", "state")
+    list_display_links = ("id", "user", "city", "state")
 
     def thumbnail(self, object):
         if object.profile_pic:
