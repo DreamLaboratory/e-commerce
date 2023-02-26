@@ -65,3 +65,6 @@ CartItem(
 )
 
 #TODO User Profile -> My order (order list) -> Order detail
+
+
+Checkout(order save) -> Payment Menthod(Payme, Click, Uzcard) -> Order Success(Email, SMS)

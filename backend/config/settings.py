@@ -44,9 +44,10 @@ THIRD_APPS = [
     # TODO install Admin Honeypot
     # django-ckeditor
     # django-crispy-forms
-    "import_export"  # https://django-import-export.readthedocs.io/en/latest/installation.html
+    "import_export",  # https://django-import-export.readthedocs.io/en/latest/installation.html
     # django_extensions
     # debug_toolbar
+    "mathfilters",
 ]
 
 LOCAL_APPS = [

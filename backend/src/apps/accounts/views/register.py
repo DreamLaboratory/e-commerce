@@ -7,12 +7,11 @@ from django.utils.encoding import force_bytes
 from django.utils.html import strip_tags
 from django.utils.http import urlsafe_base64_encode
 
+from ...common.sms_sender import SendSMS
+
 from ..forms.register_form import RegistrationForm
-from ...common.send_email import send_email_async
 from ...cart.models import Cart
 from ...common.get_cart_id import _cart_id
-
-import asyncio
 
 
 @transaction.atomic
@@ -24,14 +23,19 @@ def register(request):
             if form.is_valid():
                 with transaction.atomic():
                     new_form = form.save(commit=False)
-                    # data
-                    email = form.cleaned_data.get("email")
-                    username = email.split("@")[0]  # get username from email
+                    # TODO validate phone number is 12 digits
+                    phone_number = form.cleaned_data.get("phone_number")
+                    firstname = form.cleaned_data.get("firstname")
+                    username = firstname  # get username from firstname
                     password = form.cleaned_data.get("password")
                     new_form.username = username
+                    new_form.phone_number = phone_number
                     new_form.set_password(password)
                     new_form.save()
-                    firstname = form.cleaned_data.get("firstname")
+
+                    # Send SMS
+                    sms = SendSMS()
+
                     # Email data
                     current_site = get_current_site(request)
                     domain = f"http://{current_site.domain}/activate/{urlsafe_base64_encode(force_bytes(new_form))}/"
@@ -46,7 +50,15 @@ def register(request):
                         },
                     )
                     html_body = strip_tags(body)
-                    asyncio.run(send_email_async(subject, html_body, [email]))
+
+                    # Send SMS
+                    result = sms.send_sms(
+                        phone_number,
+                        html_body,
+                    )
+
+                    # asyncio.run(send_email_async(subject, html_body, [email]))
+
                     # get or create cart
                     cart, _ = Cart.objects.get_or_create(cart_id_pk=_cart_id(request))
                     cart.user = new_form
