@@ -1,5 +1,6 @@
 from django.shortcuts import redirect
 from django.contrib import messages
+
 from ..forms.review_form import ReviewForm
 from ..models.review import Review
 
@@ -19,5 +20,6 @@ def add_review(request, product_id):
             data.product_id = product_id
             data.save()
             messages.success(request, "Successfully added review")
+            return redirect(url)
         messages.warning(request, form.errors)
     return redirect(url)

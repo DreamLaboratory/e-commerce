@@ -183,3 +183,7 @@ SESSION_COOKIE_AGE = 60 * 60 * 24 * 7  # 7 days
 
 # TTL for cache
 CACHE_TTL = 60 * 60 * 24 * 7  # 7 days
+
+
+# Login url
+LOGIN_URL = "/login/"
