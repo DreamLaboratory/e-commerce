@@ -23,6 +23,7 @@ class UserForm(UserCreationForm):
         model = User
         fields = ('username', 'phone_number',
                   'email', 'password1', 'password2')
+        
                   
 
 class ProfileForm(forms.ModelForm):
@@ -30,7 +31,8 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = "__all__"
-        exclude = ('user',)
+        exclude = ['user', ]
+
     def __init__(self, *args, **kwargs):
         super(ProfileForm, self).__init__(*args, **kwargs)
         for field in self.fields:
@@ -40,6 +42,7 @@ class ProfileForm(forms.ModelForm):
 
 
 class UserUpdateForm(forms.ModelForm):
+
     username = forms.CharField(widget=forms.TextInput(
         attrs={'class': 'form-control', 'placeholder': 'User Name'}))
 
