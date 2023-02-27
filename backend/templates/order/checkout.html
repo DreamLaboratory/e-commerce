@@ -58,11 +58,11 @@ float: left;
     
         <div class="col-md-6">
             <figure class="itemside  mb-4">
-                <div class="aside"><img src="./images/items/1.jpg" class="border img-sm"></div>
+                <div class="aside"><img src="{{ cart.product.get_image_url }}" class="border img-sm"></div>
                 <figcaption class="info">
                     <p>{{ cart.product }}</p>
                     <span class="text-muted">
-{{ cart.quantity }} x {{ cart.product.price }}={{  cart.quantity|mul:cart.product.price }} 
+{{ cart.quantity }} x {{ cart.product.price }}={{  cart.quantity|mul:cart.product.price |intcomma }} 
 </span>
                 </figcaption>
             </figure>
