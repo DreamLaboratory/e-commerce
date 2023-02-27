@@ -1,9 +1,10 @@
 from django.core.mail import EmailMessage
 from .timer import timer
+import asyncio
 
 
 @timer
-async def send_email_async(subject, body, to):
+def send_email_async(subject, body, to):
     """Send email async
     Args:
         subject (_type_): Subject of email
@@ -13,12 +14,13 @@ async def send_email_async(subject, body, to):
         _type_: True if email sent successfully, False otherwise
     """
     try:
+        print('--------2',subject,body,to)
         sendmail = EmailMessage(
             subject=subject,
             body=body,
             to=to,
         )
-        await sendmail.send()
+        sendmail.send()
     except Exception:
         return False
     return True

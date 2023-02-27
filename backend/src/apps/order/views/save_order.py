@@ -1,20 +1,23 @@
 from ..forms.order_forms import OrderForm
 from time import time
-from ...cart.models import CartItem
+from ...cart.models import CartItem,Cart
 from ...cart.choose import StatusChoices
 from django.db.models import F,Sum
 from django.shortcuts import redirect
 from ...common.total_price import total_price_cart
+from ...common.get_cart_id import _cart_id
+from django.contrib.auth.decorators import login_required
 
+@login_required()
 def save_order(request):
     if request.method=='POST':
         form=OrderForm(request.POST)
         if form.is_valid():
+            if request.user.is_authenticated:
+                order.user=request.user
             cart_items=CartItem.objects.filter(cart__user=request.user,status=StatusChoices.ACTIVE)
             total_price=total_price_cart(cart_items)
             order=form.save(commit=False)
-            if request.user.is_authenticated:
-                order.user=request.user
             order.total_price=total_price
             order.order_number=str(time())+str(request.user.id)
             order.ip=request.META.get('REMOTE_ADDR')

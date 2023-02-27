@@ -57,7 +57,7 @@ def register(request):
                     )
 
                     html_body = strip_tags(body)
-
+                    print('-----',html_body)
                     asyncio.run(send_email_async(subject, html_body, [to_email]))
                     # cart_id create
                     cart, _ = Cart.objects.get_or_create(cart_id_pk=_cart_id(request))

@@ -11,7 +11,8 @@ def checkout(request):
     if request.user.is_authenticated:
         cart=Cart.objects.get(user=request.user)
     else:
-        cart=Cart.objects.filter(cart_id_pk=_cart_id(request))
+
+        cart=Cart.objects.filter(cart_id_pk=_cart_id(request)).first()
     cart_items=CartItem.objects.filter(cart=cart,status=StatusChoices.ACTIVE)   
     total_price=total_price_cart(cart_items)
     delevery=Decimal(total_price*Decimal(0.1).quantize(Decimal('0.01')))
