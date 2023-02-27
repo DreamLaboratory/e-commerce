@@ -10,7 +10,7 @@ User = get_user_model()
 class Order(BaseModel):
     order_number = models.CharField(max_length=255, unique=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    cart_item = models.ManyToManyField(CartItem, related_name="orders")
+    cart_items = models.ManyToManyField(CartItem, related_name="orders")
     last_name = models.CharField(max_length=255)
     phone = models.CharField(max_length=255)
     region = models.CharField(max_length=255)

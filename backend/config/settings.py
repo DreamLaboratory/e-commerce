@@ -41,6 +41,7 @@ INSTALLED_HOME = [
     "ckeditor",
     "smart_selects",
     "import_export",
+    'mathfilters',
     # 'colorfield'
     # 'admin_interface'
     # 'django_extensions'     adminga uchun ko'tibxonalar
@@ -48,7 +49,13 @@ INSTALLED_HOME = [
 ]
 
 
-INSTALLED_OUT = ["src.apps.accounts", "src.apps.common", "src.apps.store", "src.apps.cart", "src.apps.order"]
+INSTALLED_OUT = [
+    "src.apps.accounts", 
+    "src.apps.common", 
+    "src.apps.store",
+    "src.apps.cart",
+    "src.apps.order",
+                ]
 
 INSTALLED_APPS = INSTALLED_HOME + INSTALLED_OUT
 AUTH_USER_MODEL = "accounts.MyUser"
@@ -180,3 +187,7 @@ logging.config.dictConfig(
         },
     }
 )
+
+LOGIN_URL='/login/'
+
+

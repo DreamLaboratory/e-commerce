@@ -6,7 +6,7 @@ from decimal import Decimal
 from ..common.get_cart_id import _cart_id
 from ..common.alert import tg_alert
 from .choose import StatusChoices
-
+from ..common.total_price import total_price_cart
 # Create your views here.
 
 
@@ -22,11 +22,9 @@ def add_cart(request):
         cart = Cart.objects.get(user=request.user)
     else:
         cart, created = Cart.objects.get_or_create(cart_id_pk=_cart_id(request))
-    print("----00", cart)
     variations = ProductVariant.objects.filter(product_id=productid, variant_value=[size, color])
 
     cart_items, created = CartItem.objects.get_or_create(cart=cart, product_id=productid, status=StatusChoices.ACTIVE)
-    print("-----04", cart_items)
 
     for variation in variations:
         cart_items.variants.add(variation)
@@ -39,18 +37,13 @@ def cart(request):
     if request.user.is_authenticated:
 
         cart = Cart.objects.get(user=request.user)
-        print("----01", cart)
     else:
         cart = Cart.objects.filter(cart_id_pk=_cart_id(request)).first()
-        print("-----02", cart)
     cart_items = CartItem.objects.filter(cart=cart, status=StatusChoices.ACTIVE)
-    print("-----03", cart_items)
-
-    cart_item = cart_items.annotate(total_price=F("product__price") * F("quantity"))
-
-    total_price = cart_item.aggregate(Sum("total_price"))
-    total_price = total_price["total_price__sum"] or 0
-
+    # cart_item = cart_items.annotate(total_price=F("product__price") * F("quantity"))
+    # total_price = cart_item.aggregate(Sum("total_price"))
+    # total_price = total_price["total_price__sum"] or 0
+    total_price=total_price_cart(cart_items)
     delevery = Decimal(total_price * Decimal(0.1).quantize(Decimal("0.01")))
     grand_total = total_price + delevery
 
