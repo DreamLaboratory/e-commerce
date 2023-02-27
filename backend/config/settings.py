@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-import logging
+import logging.config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -38,12 +38,19 @@ THIRD_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    'import_export',
+    'django.contrib.humanize',
+    # 'ckeditor',
+
 ]
 
 LOCAL_APPS = [
     "src.apps.accounts",
     "src.apps.common",
     "src.apps.store",
+    'src.apps.cart',
+    'src.apps.order',
+    
 ]
 
 
@@ -76,6 +83,8 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "src.apps.store.category_processors.all_categories",
+                "src.apps.cart.item_counter.counter",
             ],
         },
     },
@@ -158,24 +167,24 @@ MEDIA_ROOT = BASE_DIR / "media"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
-# logging.config.dictConfig(
-#     {
-#         "version": 1,
-#         "disable_existing_loggers": False,
-#         "formatters": {
-#             "file": {"format": "%(asctime)s %(name)-12s %(levelname)-8s %(message)s"},
-#         },
-#         "handlers": {
-#             "file": {
-#                 "level": "ERROR",
-#                 "class": "logging.FileHandler",
-#                 "formatter": "file",
-#                 "filename": "errors.log",
-#             },
-#         },
-#         "loggers": {
-#             "": {"level": "ERROR", "handlers": ["file"]},
-#             "django.request": {"level": "INFO", "handlers": ["file"]},
-#         },
-#     }
-# )
+logging.config.dictConfig(
+    {
+        "version": 1,
+        "disable_existing_loggers": False,
+        "formatters": {
+            "file": {"format": "%(asctime)s %(name)-12s %(levelname)-8s %(message)s"},
+        },
+        "handlers": {
+            "file": {
+                "level": "ERROR",
+                "class": "logging.FileHandler",
+                "formatter": "file",
+                "filename": "errors.log",
+            },
+        },
+        "loggers": {
+            "": {"level": "ERROR", "handlers": ["file"]},
+            "django.request": {"level": "INFO", "handlers": ["file"]},
+        },
+    }
+)

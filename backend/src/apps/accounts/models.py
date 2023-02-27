@@ -41,13 +41,13 @@ class User(AbstractBaseUser, PermissionsMixin):
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_pic = models.ImageField(
-        upload_to="profile_pics", default="profile_pics/default.png")
+        upload_to="profile_pics", default="https://previews.123rf.com/images/triken/triken1608/triken160800029/61320775-male-avatar-profile-picture-default-user-avatar-guest-avatar-simply-human-head-vector.jpg", blank=True, null=True)
     city = models.CharField(max_length=50, blank=True)
     state = models.CharField(max_length=50, blank=True)
     address = models.CharField(max_length=50, blank=True)
 
     def __str__(self):
-        return self.user.first_name
+        return self.user.username
 
     def full_address(self):
         return f"{self.address_1}"

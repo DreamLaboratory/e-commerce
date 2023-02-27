@@ -3,7 +3,8 @@ from django.shortcuts import render, redirect
 
 from django.contrib.auth import login, authenticate
 from django.contrib import messages
-
+from ...common.cart_item_id import _cart_id
+from ...cart.models import Cart
 
 def Login(request):
     if request.user.is_authenticated:
@@ -18,6 +19,7 @@ def Login(request):
     user = authenticate(request, email=email, password=password)
     if user := authenticate(request, email=email, password=password):
         login(request, user)
+
         messages.success(request, "Tabriklaymiz siz Login qildinggiz")
         return redirect('accounts:index_page')
     else:

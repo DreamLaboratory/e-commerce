@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+
+
+{% load static %}
+{% load humanize %}
+{% block title %}
+
+Home
+
+{% endblock %}
+
+
+{% block content %}
+
+<section class="section-conten padding-y bg">
+
+    <div class="container">
+        <div class="row">
+        <aside class="col-md-3">
+            <!--   SIDEBAR   -->
+            <ul class="list-group">
+                <a class="list-group-item active" href="#"> My order history </a>
+                <a class="list-group-item" href="{% url 'accounts:profile_update' %}">Profile </a>
+                <a class="list-group-item" href="#"> My Selling Items </a>
+                <a class="list-group-item" href="#"> Received orders </a>
+            </ul>
+            <br>
+            <a class="btn btn-light btn-block" href="#"> <i class="fa fa-power-off"></i> <span class="text">Log out</span> </a> 
+            <!--   SIDEBAR .//END   -->
+        </aside>
+        <main class="col-md-9">
+            <article class="card">
+
+            <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                      <th scope="col">Order Number</th>
+                      <th scope="col">Phone </th>
+                      <th scope="col">Regions</th>
+                      <th scope="col">Total Price</th>
+                      <th scope="col">Status</th>
+                      <th scope="col">Details</th>
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for order in orders %}
+                    <tr>
+                      <th scope="row">{{order.order_number}}</th>
+                      <td>{{order.phone}}</td>
+                      <td>{{order.regions}}</td>
+                      <td>{{order.total_price}}</td>
+                      <td>{{order.status}}</td>
+                      <td><a href="#" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{order.id}}">View</a></td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+         
+            </table>
+            </div> <!-- table-responsive .end// -->
+            </article> <!-- order-group.// --> 
+        </main>
+    </div> <!-- row.// -->
+    </div>
+
+    </section>
+
+ 
+  
+  <!-- Modal -->
+{% for order in orders %}
+
+  <div class="modal fade" id="exampleModal{{order.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Products</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <!-- Order Number: {{order.order_number}} -->
+            <table class="table">
+                <thead>
+                    <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in order.cart_items.all %}
+                    <tr>
+                    <td>{{ item.product.name }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.product.price }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endfor %}
+{% endblock %}

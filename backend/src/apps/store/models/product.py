@@ -6,8 +6,11 @@ from ...common.renamed import PathAndRename
 from .category import Category
 from ...common.models import BaseModel
 
+from django.urls import reverse
 
 path_name = PathAndRename('product')
+
+
 class Product(BaseModel):
     name = models.CharField(max_length=255, unique=True, db_index=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
@@ -20,12 +23,43 @@ class Product(BaseModel):
 
     class Meta:
         verbose_name = 'product'
-        db_name = 'product'
+        # db_name = 'product'
         verbose_name_plural = 'products'
         ordering = ['-date_joined']
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('store:product_detail_view', args=[self.category.slug, self.slug])
+
+    @property
+    def average_rate(self):
+        from ..models.review import Review
+        reviews = Review.objects.filter(product=self)
+        review_count = reviews.count()
+        average = 0
+        if review_count > 0:
+            average = sum(rereview.rate for rereview in reviews) / review_count
+            return round(average, 2)
+
     def save(self):
         self.slug = slugify(self.name)
         super(Product, self).save()
+
+
+class Product_Image(BaseModel):
+    product = models.ForeignKey(
+        Product, on_delete=models.CASCADE, related_name='product_image')
+    images = models.ImageField(upload_to=path_name)
+
+    class Meta:
+        verbose_name = 'Product_Image'
+        verbose_name_plural = "Product_Images"
+
+    # def get_image_url(self):
+    # if self.image and hasattr(self.images, 'url'):
+    #     return self.image.url
+
+    def __str__(self) -> str:
+        return self.product.name

@@ -6,6 +6,7 @@ from .views.index import index_page
 from .views.logout import Logout
 from .views.activate import activate
 from .views.forgotpassword import forgotpassword, resetpass
+from .views.profile_update import profile
 
 
 urlpatterns = [
@@ -18,5 +19,8 @@ urlpatterns = [
     path("activate/<uidb64>/", activate, name='activate'),
     path('verifyemail/', forgotpassword, name='verifyemail'),
     path('resetpassword/<uidb64>/', resetpass, name='resetpassword'),
+
+    #update
+    path('update/profile', profile, name='profile_update')
 
 ]
