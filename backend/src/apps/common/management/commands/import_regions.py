@@ -1,7 +1,7 @@
 import yaml
 from django.core.management.base import BaseCommand, CommandError
 
-from ...model.address import Region
+from ...models import Region
 
 
 class Command(BaseCommand):

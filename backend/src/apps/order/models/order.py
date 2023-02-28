@@ -2,7 +2,9 @@ from django.contrib.auth import get_user_model
 from django.db import models
 
 from ...cart.models import CartItem
-from ...common.models import BaseModel
+from ...common.models import BaseModel, Region, City
+from smart_selects.db_fields import ChainedForeignKey
+
 
 User = get_user_model()
 
@@ -20,8 +22,17 @@ class Order(BaseModel):
     f_name = models.CharField(max_length=255)
     l_name = models.CharField(max_length=255)
     phone = models.CharField(max_length=50)
-    regions = models.CharField(max_length=255)  # TODO Model Region
-    city = models.CharField(max_length=255)  # TODO Model City
+    region = models.ForeignKey(Region, on_delete=models.SET_NULL, null=True, blank=True)
+    cities = ChainedForeignKey(
+        City,
+        chained_field="region",
+        chained_model_field="region",
+        show_all=False,
+        auto_choose=True,
+        sort=True,
+        on_delete=models.SET_NULL,
+        null=True,
+    )
     address = models.CharField(max_length=255)
     order_note = models.TextField(blank=True, null=True)  # TODO RichTextField
     total_price = models.DecimalField(max_digits=10, decimal_places=2)

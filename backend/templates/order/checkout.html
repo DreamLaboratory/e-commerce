@@ -13,6 +13,7 @@ checked out
 
 {% block content %}
 
+{{ form.media.js }}
 
 <style>
     .click_logo {
@@ -103,13 +104,13 @@ float: left;
                     </div>                
                     <div class="form-group col-sm-6">
                         <label>regions</label>
-                        {{form.regions}}
-                        {{form.regions.errors}}
+                        {{form.region}}
+                        {{form.region.errors}}
                     </div>                
                     <div class="form-group col-sm-6">
                         <label>city</label>
-                        {{form.city}}
-                        {{form.city.errors}}
+                        {{form.cities}}
+                        {{form.cities.errors}}
                     </div>               
                     <div class="form-group col-sm-6">
                         <label>address</label>

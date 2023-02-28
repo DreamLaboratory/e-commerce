@@ -26,6 +26,12 @@ SECRET_KEY = "django-insecure-ithz@*q#q7z*h1x#0)ia5hc9km1*t1p^lrvffnzr3k8z-knvpl
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+if DEBUG:
+    import socket  # only if you haven't already imported this
+
+    hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
+    INTERNAL_IPS = [ip[: ip.rfind(".")] + ".1" for ip in ips] + ["127.0.0.1", "10.0.2.2"]
+
 ALLOWED_HOSTS = ["*"]
 
 
@@ -42,12 +48,14 @@ THIRD_APPS = [
     "django.contrib.humanize",
     "django.contrib.staticfiles",
     # TODO install Admin Honeypot
+    # TODO install django-admin-honeypot
     # django-ckeditor
     # django-crispy-forms
     "import_export",  # https://django-import-export.readthedocs.io/en/latest/installation.html
-    # django_extensions
-    # debug_toolbar
+    "django_extensions",
+    "debug_toolbar",
     "mathfilters",
+    "smart_selects",
 ]
 
 LOCAL_APPS = [
@@ -67,6 +75,7 @@ MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
@@ -191,6 +200,7 @@ SESSION_COOKIE_AGE = 60 * 60 * 24 * 7  # 7 days
 # TTL for cache
 CACHE_TTL = 60 * 60 * 24 * 7  # 7 days
 
+# JQUERY_URL = True
 
 # Login url
 LOGIN_URL = "/login/"
