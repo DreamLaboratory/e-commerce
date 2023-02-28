@@ -17,7 +17,7 @@ class AccountAdmin(UserAdmin,ImportExportModelAdmin):
     resource_class = ResourceAccount
     search_fields = ('email', 'username')
     readonly_fields = ('date_joined', 'last_login')
-    list_display = ('email', 'date_joined', 'last_login', 'is_admin', 'is_staff', 'is_active')
+    list_display = ('phone_number', 'date_joined', 'last_login', 'is_admin', 'is_staff', 'is_active')
     filter_horizontal = ()
     list_filter = ()
     fieldsets = ()
@@ -30,9 +30,9 @@ class AccountAdmin(UserAdmin,ImportExportModelAdmin):
 
 @admin.register(Profile)
 class UserProfileAdmin(admin.ModelAdmin):
-    list_display = ('image_profile', 'first_name', 'email', 'address', 'is_verified')
+    list_display = ('image_profile', 'phone_number', 'email', 'address', 'is_verified')
     list_filter = ('email', 'address', 'is_verified')
-    list_display_links = ('email', 'address', 'is_verified')
+    list_display_links = ('email', 'address','phone_number', 'is_verified')
 
     def image_profile(self, object):
         if object.image:

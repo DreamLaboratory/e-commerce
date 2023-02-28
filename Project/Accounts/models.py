@@ -3,14 +3,14 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
 
 class MyAccountManager(BaseUserManager):
-    def create_user(self, email, username, phone_number, password=None):
-        if not email:
-            raise ValueError('Email Does Not Exist')
+    def create_user(self,username,email, phone_number, password=None):
+        if not phone_number:
+            raise ValueError('Phone Number Does Not Exist')
         if not username:
             raise ValueError("username Does Not Exist")
 
         user = self.model(
-            email=self.normalize_email(email),
+            email = email,
             username=username,
             phone_number=phone_number
         )
@@ -18,9 +18,9 @@ class MyAccountManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, username, phone_number, password):
+    def create_superuser(self, username,email, phone_number, password):
         user = self.create_user(
-            email=self.normalize_email(email),
+            email=email,
             password=password,
             username=username,
             phone_number=phone_number,
@@ -37,8 +37,8 @@ class Account(AbstractBaseUser):
     first_name = models.CharField(verbose_name='first_name', max_length=30, null=True, blank=True)
     last_name = models.CharField(verbose_name='last_name', max_length=30, null=True, blank=True)
     email = models.CharField(verbose_name="email", max_length=60, unique=True)
-    username = models.CharField(max_length=30, unique=True)
-    phone_number = models.CharField(verbose_name='phone_number', max_length=30, null=True, blank=True)
+    username = models.CharField(max_length=30, unique=True,null=True,blank=True)
+    phone_number = models.CharField(verbose_name='phone_number',unique=True, max_length=30)
     date_joined = models.DateTimeField(verbose_name='date joined', auto_now_add=True)
     last_login = models.DateTimeField(verbose_name='last login', auto_now=True)
     is_admin = models.BooleanField(default=False)
@@ -46,13 +46,13 @@ class Account(AbstractBaseUser):
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
 
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username', 'phone_number']
+    USERNAME_FIELD = 'phone_number'
+    REQUIRED_FIELDS = ['username','email']
 
     objects = MyAccountManager()
 
     def __str__(self):
-        return str(self.email)
+        return str(self.phone_number)
 
     # For checking permissions. to keep it simple all admin have ALL permissons
     def has_perm(self, perm, obj=None):
@@ -77,7 +77,7 @@ class Profile(models.Model):
     country = models.CharField(max_length=40,blank=True, null=True)
 
     def __str__(self):
-        return str(self.email)
+        return str(self.phone_number)
 
     class Meta:
         verbose_name = 'UserProfile'

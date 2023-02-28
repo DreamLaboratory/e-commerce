@@ -4,26 +4,24 @@ from ..models import Account, Profile
 from django.contrib import messages
 
 
-
-
-
 def login_view(request):
     if request.method == 'POST':
-        email = request.POST.get('email', None)
+        phone_number = request.POST.get('phone_number', None)
         password = request.POST.get('password', None)
         user = authenticate(
             request,
-            email=email,
+            phone_number=phone_number,
             password=password
         )
+
         if user is None:
             messages.success(request, "User Not Found !")
             return redirect('login')
 
-        profile_obj = Profile.objects.get(email=email)
+        profile_obj = Profile.objects.get(phone_number=phone_number)
 
         if not profile_obj.is_verified:
-            messages.success(request, "Profile is not verified check your email!")
+            messages.success(request, "Profile is not verified check your phone number!")
             return redirect('login')
 
         if user:

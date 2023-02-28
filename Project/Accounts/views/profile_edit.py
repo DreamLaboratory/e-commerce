@@ -1,5 +1,4 @@
 import logging
-
 from django.shortcuts import render, redirect
 from ..models import Profile, Account
 from ..form.profile_form import ProfileForm,UserForm
