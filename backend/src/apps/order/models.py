@@ -3,8 +3,9 @@ from django.db import models
 from ..cart.models import CartItem
 
 from django.contrib.auth import get_user_model
+from smart_selects.db_fields import ChainedForeignKey
 # Create your models here.
-
+from ..common.models import City, Region
 User = get_user_model()
 class OrderStatus(models.TextChoices):
     NEW = "NEW"
@@ -17,8 +18,8 @@ class Order(BaseModel):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='orders')
     f_name = models.CharField(max_length=50)
     l_name = models.CharField(max_length=50)
-    regions = models.CharField(max_length=50)
-    city = models.CharField(max_length=50)
+    regions = models.ForeignKey(Region, on_delete=models.SET_NULL, null=True, blank=True)
+    city = ChainedForeignKey(City, chained_field='regions', chained_model_field='regions', auto_choose=True, show_all=False, sort=True, on_delete=models.SET_NULL, null=True)
     address = models.CharField(max_length=50)
     phone = models.CharField(max_length=40)
     total_price = models.DecimalField(max_digits=10, decimal_places=2)

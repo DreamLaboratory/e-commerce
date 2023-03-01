@@ -23,7 +23,7 @@ urlpatterns = [
 
     #update
     path('update/profile', profile, name='profile_update'),
-    path('update/', profile_save, name='profile_save'),
+    path('', profile_save, name='profile_save'),
     path('update/password', password_update, name='update_password'),
 
 ]

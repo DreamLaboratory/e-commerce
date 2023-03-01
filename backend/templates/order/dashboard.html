@@ -15,16 +15,17 @@ Home
 <section class="section-conten padding-y bg">
 
     <div class="container">
+      {% include 'includes/messages.html' %}
+
         <div class="row">
         <aside class="col-md-3">
             <!--   SIDEBAR   -->
-            {% include 'includes/messages.html' %}
 
             {% include 'includes/sidebar.html' %}
 
         </aside>
         <main class="col-md-9">
-            <article class="card">
+          <article class="card">
 
             <div class="table-responsive">
             <table class="table table-hover">
@@ -51,6 +52,7 @@ Home
                     </tr>
                     {% endfor %}
                   </tbody>
+            
          
             </table>
             </div> <!-- table-responsive .end// -->

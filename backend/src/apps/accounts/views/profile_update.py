@@ -1,11 +1,12 @@
-from ..forms import ProfileForm, UserUpdateForm
-
-from ..models import UserProfile, User
 from django.contrib import messages
-from django.shortcuts import redirect, render
-from ...common.tg_alert import tg_alert
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import get_user_model
+from django.shortcuts import redirect, render
+from django.contrib.auth import login
+
+from ...common.tg_alert import tg_alert
+from ..forms import ProfileForm, UserUpdateForm
+from ..models import User, UserProfile
+
 
 @login_required(login_url='signin/')
 def profile(request):
@@ -32,7 +33,6 @@ def profile_save(request):
                 profile_form.save() 
                 return redirect('order:order_list')
             return redirect('accounts:register')
-
     except Exception as e:
         tg_alert.custom_alert(e)
         return redirect('order:order_list')
@@ -41,22 +41,22 @@ def profile_save(request):
 
 @login_required(login_url='signin/')
 def password_update(request):
-    try:
-        if request.method == 'POST':
-            password = request.POST['password']
-            confirm_password = request.POST['confirm_password']
-            if password == confirm_password:
-                user = User.objects.get(phone_number = request.user)
-                user.set_password(password)
-                user.save()
-                messages.success(request, "Your Password has been updated")
-                return redirect('order:order_list')
-            messages.warning(request, "Don't password equal confirm password") 
-            return redirect('order:order_list')
+
+    if request.method != 'POST':
         return render(request, 'account/update_password.html')
-    except Exception as e:
-        tg_alert.custom_alert(e)
+
+    password = request.POST['password']
+    confirm_password = request.POST['confirm_password']
+    if password == confirm_password:
+        user = User.objects.get(phone_number = request.user)
+        user.set_password(password)
+        user.save()
+        login(request, user)
+        messages.success(request, "Your Password has been updated")
         return redirect('order:order_list')
+    messages.warning(request, "Don't password equal confirm password") 
+    return redirect('accounts:update_password')
+
 
 
 

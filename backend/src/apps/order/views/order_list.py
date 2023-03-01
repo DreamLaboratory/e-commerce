@@ -3,10 +3,9 @@ from ...common.tg_alert import tg_alert
 from ..models import Order
 
 
+from django.contrib.auth.decorators import login_required
+
+@login_required(login_url='/signin/')
 def order_list(request):
-    try:
-        order = Order.objects.filter(user = request.user)
-        return render(request, 'order/dashboard.html', {'orders':order})
-    except Exception as e:
-        tg_alert.custom_alert(e)
-        return redirect('order:order_list')
+    order = Order.objects.filter(user = request.user)
+    return render(request, 'order/dashboard.html', {'orders':order})
