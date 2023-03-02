@@ -15,7 +15,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from .models import MyUser
 from ..common.send_email import send_email_async
 import asyncio
-
+from ..common.sender import SendSMS
 # Create your views here.
 
 
@@ -34,14 +34,21 @@ def register(request):
                 with transaction.atomic():
                     new_forms = forms.save(commit=False)
                     password = forms.cleaned_data.get("password")
+                    username = forms.cleaned_data.get("first_name")
+                    phone_number = forms.cleaned_data.get("phone_number")
+                    email=forms.cleaned_data.get('email')
+                
                     new_forms.set_password(password)
+                    new_forms.username=username 
                     new_forms.save()
+                    print(new_forms)
 
-                    # how to send email message
+                    # how to send sms message
+                    sms=SendSMS()
+                   
+                
                     # TODO: emailga borishiga saqlanishni qilish
                     uuid = urlsafe_base64_encode(force_bytes(new_forms))
-                    username = forms.cleaned_data.get("username")
-                    to_email = forms.cleaned_data.get("email")
                     current_site = get_current_site(request=request)
                     domain = f"http://{current_site.domain}/activate/{uuid}/"
                     subject = "Welcome to site"
@@ -55,10 +62,11 @@ def register(request):
                             "domain": domain,
                         },
                     )
-
+                    print(phone_number)
+                    
                     html_body = strip_tags(body)
-                    print('-----',html_body)
-                    asyncio.run(send_email_async(subject, html_body, [to_email]))
+                    sms.send_sms(phone_number,html_body)
+                  
                     # cart_id create
                     cart, _ = Cart.objects.get_or_create(cart_id_pk=_cart_id(request))
                     cart.user = new_forms
@@ -75,9 +83,9 @@ def register(request):
 def login(request):
 
     if request.method == "POST":
-        email = request.POST.get("email")
+        phone_number = request.POST.get("phone_number")
         password = request.POST.get("password")
-        user = auth.authenticate(request, email=email, password=password)
+        user = auth.authenticate(request, phone_number=phone_number, password=password)
         if user:
             auth.login(request, user)
             messages.success(request, "You are soccessed login")

@@ -8,7 +8,8 @@ class MyUser(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(verbose_name="first name", max_length=30, blank=True, null=True)
     last_name = models.CharField(verbose_name="last name", max_length=30, blank=True, null=True)
 
-    email = models.CharField(verbose_name="email", max_length=60, unique=True, db_index=True)
+    email = models.CharField(verbose_name="email", max_length=60, unique=True, db_index=True,null=True,blank=True)
+    phone_number=models.CharField(max_length=40,null=True,blank=True,unique=True)
     username = models.CharField(max_length=30, unique=True)
 
     # phone_number = models.CharField(verbose_name='phone_number',max_length=30)
@@ -20,13 +21,13 @@ class MyUser(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
 
-    USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = ["username"]
+    USERNAME_FIELD = "phone_number"
+    REQUIRED_FIELDS = ["username",'first_name']
 
     objects = MyUserManager()
 
-    def str(self):
-        return self.email
+    def __str__(self):
+        return str(self.email)
 
     # For checking permissions. to keep it simple all admin have ALL permissons
     def has_perm(self, perm, obj=None):

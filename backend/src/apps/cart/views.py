@@ -1,12 +1,12 @@
 from django.shortcuts import render, redirect
 from .models import Cart, CartItem
 from ..store.models.variant import ProductVariant
-from django.db.models import Sum, F
 from decimal import Decimal
 from ..common.get_cart_id import _cart_id
 from ..common.alert import tg_alert
 from .choose import StatusChoices
 from ..common.total_price import total_price_cart
+
 # Create your views here.
 
 
@@ -43,7 +43,7 @@ def cart(request):
     # cart_item = cart_items.annotate(total_price=F("product__price") * F("quantity"))
     # total_price = cart_item.aggregate(Sum("total_price"))
     # total_price = total_price["total_price__sum"] or 0
-    total_price=total_price_cart(cart_items)
+    total_price = total_price_cart(cart_items)
     delevery = Decimal(total_price * Decimal(0.1).quantize(Decimal("0.01")))
     grand_total = total_price + delevery
 

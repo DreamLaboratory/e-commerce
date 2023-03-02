@@ -41,7 +41,7 @@ INSTALLED_HOME = [
     "ckeditor",
     "smart_selects",
     "import_export",
-    'mathfilters',
+    "mathfilters",
     # 'colorfield'
     # 'admin_interface'
     # 'django_extensions'     adminga uchun ko'tibxonalar
@@ -50,12 +50,12 @@ INSTALLED_HOME = [
 
 
 INSTALLED_OUT = [
-    "src.apps.accounts", 
-    "src.apps.common", 
+    "src.apps.accounts",
+    "src.apps.common",
     "src.apps.store",
     "src.apps.cart",
     "src.apps.order",
-                ]
+]
 
 INSTALLED_APPS = INSTALLED_HOME + INSTALLED_OUT
 AUTH_USER_MODEL = "accounts.MyUser"
@@ -188,7 +188,7 @@ logging.config.dictConfig(
     }
 )
 
-LOGIN_URL='/login/'
+LOGIN_URL = "/login/"
 
 # SET session expire time
 SESSION_COOKIE_AGE = 60 * 60 * 24 * 7  # 7 days
