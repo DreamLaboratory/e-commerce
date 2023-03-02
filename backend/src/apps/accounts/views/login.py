@@ -9,9 +9,9 @@ def login(request):
     if request.method != "POST":
         return render(request, "accounts/login.html")
 
-    email = request.POST["email"]
+    phone = request.POST["phone"]
     password = request.POST["password"]
-    if user := auth.authenticate(request, email=email, password=password):
+    if user := auth.authenticate(request, phone_number=phone, password=password):
         auth.login(request, user)
         messages.success(request, "You are now logged in")
         return redirect("accounts:index_page")

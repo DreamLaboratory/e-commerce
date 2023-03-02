@@ -52,10 +52,11 @@ THIRD_APPS = [
     # django-ckeditor
     # django-crispy-forms
     "import_export",  # https://django-import-export.readthedocs.io/en/latest/installation.html
-    "django_extensions",
-    "debug_toolbar",
-    "mathfilters",
+    "django_extensions",  # https://django-extensions.readthedocs.io/en/latest/installation_instructions.html
+    "debug_toolbar",  # https://django-debug-toolbar.readthedocs.io/en/latest/installation.html
+    "mathfilters",  #
     "smart_selects",
+    "parler",  # https://django-parler.readthedocs.io/en/stable/installation.html
 ]
 
 LOCAL_APPS = [
@@ -74,6 +75,7 @@ AUTH_USER_MODEL = "accounts.Account"
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
     "debug_toolbar.middleware.DebugToolbarMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -134,7 +136,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+from django.utils.translation import gettext_lazy as _
 
+LANGUAGES = (
+    ("en", _("English")),
+    ("uz", _("Uzbek")),
+)
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
@@ -156,6 +163,26 @@ STATIC_URL = "/static/"
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 STATICFILES_DIRS = [BASE_DIR / "static"]
+LOCALE_PATHS = [
+    BASE_DIR / "locale/",
+]
+
+PARLER_LANGUAGES = {
+    None: (
+        {
+            "code": "en",
+        },
+        {
+            "code": "uz",
+        },
+    ),
+    "default": {
+        "fallback": "en",  # defaults to PARLER_DEFAULT_LANGUAGE_CODE
+        "hide_untranslated": False,  # the default; let .active_translations() return fallbacks too.
+    },
+}
+
+PARLER_DEFAULT_LANGUAGE_CODE = "en"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

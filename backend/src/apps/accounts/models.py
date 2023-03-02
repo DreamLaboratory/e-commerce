@@ -35,7 +35,7 @@ class Account(AbstractBaseUser, PermissionsMixin):
         return True
 
     class Meta:
-        verbose_name = "Account"
+        verbose_name = _("Account")
         verbose_name_plural = "Accounts"
 
 

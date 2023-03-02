@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import City, Region
+from .models import City, Region, SMSLog, SMSToken
 from django.contrib.auth.models import Group  # noqa
 
 
@@ -15,3 +15,5 @@ admin.site.empty_value_display = "Mavjud emas"
 
 admin.site.register(Region)
 admin.site.register(City)
+admin.site.register(SMSLog)
+admin.site.register(SMSToken)

@@ -5,7 +5,7 @@ from ...models import City
 
 
 class Command(BaseCommand):
-    help = "Import regions from a yaml file"
+    help = "Import cities from a yaml file"
 
     def handle(self, *args, **options):
         self.stdout.write(

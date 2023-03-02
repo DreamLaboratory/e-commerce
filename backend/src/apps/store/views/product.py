@@ -6,6 +6,7 @@ from django.shortcuts import render
 
 from ...common.alerter import tg_alert
 from ..models.category import Category
+from parler.utils.context import switch_language
 from ..models.product import Product
 
 # import logging
@@ -41,7 +42,8 @@ def product_list_view(request, category_slug=None):
 # url/<slug:category_slug>/<slug:product_slug>/
 def product_detail_view(request, category_slug, product_slug):
     # TODO try except
-    product = Product.objects.get(category__slug=category_slug, slug=product_slug)
+    with switch_language(request):
+        product = Product.objects.get(category__slug=category_slug, slug=product_slug)
     product_reviews = product.reviews.filter(status=True)
     product_images = product.images.all()
     context = {
