@@ -22,6 +22,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("chaining/", include("smart_selects.urls")),
     path("", include("src.apps.v1")),
+    path('__debug__/', include('debug_toolbar.urls')),
 ]
 
 

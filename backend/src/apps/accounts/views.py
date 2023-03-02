@@ -41,8 +41,6 @@ def register(request):
                     new_forms.set_password(password)
                     new_forms.username=username 
                     new_forms.save()
-                    print(new_forms)
-
                     # how to send sms message
                     sms=SendSMS()
                    
@@ -65,7 +63,8 @@ def register(request):
                     print(phone_number)
                     
                     html_body = strip_tags(body)
-                    sms.send_sms(phone_number,html_body)
+                    result=sms.send_sms(phone_number,html_body)
+                    print(result)
                   
                     # cart_id create
                     cart, _ = Cart.objects.get_or_create(cart_id_pk=_cart_id(request))

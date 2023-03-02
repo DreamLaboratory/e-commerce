@@ -3,9 +3,9 @@ from ...common.models import BaseModel
 from ...cart.models import CartItem
 from django.contrib.auth import get_user_model
 from ..choose import OrderStatus
+from smart_selects.db_fields import ChainedForeignKey
 
 User = get_user_model()
-
 
 class Order(BaseModel):
     order_number = models.CharField(max_length=255, unique=True)

@@ -13,7 +13,6 @@ def send_email_async(subject, body, to):
         _type_: True if email sent successfully, False otherwise
     """
     try:
-        print("--------2", subject, body, to)
         sendmail = EmailMessage(
             subject=subject,
             body=body,
