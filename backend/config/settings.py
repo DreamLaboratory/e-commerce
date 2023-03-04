@@ -51,7 +51,9 @@ INSTALLED_HOME = [
     "import_export",
     "mathfilters",
     "debug_toolbar",
-    "django_extensions"
+    "django_extensions",
+    "rosetta",
+    "parler",
     # 'colorfield'
     # 'admin_interface'
     # 'django_extensions'     adminga uchun ko'tibxonalar
@@ -74,6 +76,7 @@ IMPORT_EXPORT_USE_TRANSACTIONS = True
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
     "debug_toolbar.middleware.DebugToolbarMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -147,6 +150,34 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+PARLER_DEFAULT_LANGUAGE_CODE = "en"
+from django.utils.translation import gettext_lazy as _
+
+LANGUAGES = [
+    ("en", _("English")),
+    ("uz", _("Uzbek")),
+]
+
+
+LOCALE_PATHS = [
+    BASE_DIR / "locale",
+]
+
+PARLER_LANGUAGES = {
+    None: (
+        {
+            "code": "en",
+        },
+        {
+            "code": "uz",
+        },
+    ),
+    "default": {
+        "fallback": "en",  # defaults to PARLER_DEFAULT_LANGUAGE_CODE
+        "hide_untranslated": False,  # the default; let .active_translations() return fallbacks too.
+    },
+}
 
 
 # Static files (CSS, JavaScript, Images)

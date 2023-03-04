@@ -7,24 +7,26 @@ from django.utils.text import slugify
 from ckeditor.fields import RichTextField
 from django.urls import reverse
 from django.db.models import Avg, Count
+from parler.models import TranslatableModel, TranslatedFields
 
-
-# Create your models here.
 file_rename_class = PathAndRename("product_images")
 
 
-class Product(BaseModel):
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="categories", null=True, blank=True)
-    name = models.CharField(max_length=255, unique=True, db_index=True)
-    description = RichTextField(max_length=255, blank=True)  # TODA: richTExtFields qilish
-
-    price = models.DecimalField(max_digits=10, decimal_places=3)  # how to have different max_digits and max_length
-    slug = models.SlugField(
-        _("Slug"), unique=True, db_index=True, max_length=500, blank=True
-    )  # what to do gettext_lazy
-    image = models.ImageField(upload_to=file_rename_class, blank=True, null=True)
-    stock = models.PositiveIntegerField(default=0)
-    is_availabel = models.BooleanField(default=True, help_text="is product available?")
+class Product(BaseModel, TranslatableModel):
+    translated_name = TranslatedFields(
+        name=models.CharField(_("category_name"), max_length=255, unique=True, db_index=True),
+        category=models.ForeignKey(
+            Category, on_delete=models.CASCADE, related_name="categories", null=True, blank=True
+        ),
+        description=RichTextField(_("category_description"), max_length=255, blank=True),  # TODA: richTExtFields qilish
+        price=models.DecimalField(max_digits=10, decimal_places=3),  # how to have different max_digits and max_length
+        slug=models.SlugField(
+            _("Slug"), unique=True, db_index=True, max_length=500, blank=True
+        ),  # what to do gettext_lazy
+        image=models.ImageField(upload_to=file_rename_class, blank=True, null=True),
+        stock=models.PositiveIntegerField(default=0),
+        is_availabel=models.BooleanField(default=True, help_text="is product available?"),
+    )
 
     class Meta:
         verbose_name = "Product"
@@ -63,3 +65,6 @@ class Product(BaseModel):
     def get_view_count(self):
         reviews = self.reviews.all().aggregate(count=Count("desc"))
         return int(reviews["count"] if reviews["count"] else 0)
+
+    def __unicode__(self):
+        return self.name

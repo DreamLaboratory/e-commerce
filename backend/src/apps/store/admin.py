@@ -8,6 +8,7 @@ from .models.variant import ProductVariant
 import admin_thumbnails
 from import_export.admin import ImportExportActionModelAdmin
 from import_export import resources
+from parler.admin import TranslatableAdmin
 
 # Register your models here.
 
@@ -37,14 +38,15 @@ class ImageProductModel(admin.TabularInline):
     extra = 1
 
 
-@admin.register(Product)
-class ProductModel(admin.ModelAdmin):
-    list_display = ["category", "name", "image", "is_availabel", "stock"]
-    list_display_links = ["category", "image", "name"]
-    list_editable = ["is_availabel"]
-    # prepopulated_fields={('slug'):('name')}
-    inlines = [ImageProductModel]
+# @admin.register(Product)
+# class ProductModel(admin.ModelAdmin):
+#     list_display = ["category", "name", "image", "is_availabel", "stock"]
+#     list_display_links = ["category", "image", "name"]
+#     list_editable = ["is_availabel"]
+#     # prepopulated_fields={('slug'):('name')}
+#     inlines = [ImageProductModel]
 
+admin.site.register(Product, TranslatableAdmin)
 
 # TODO: amke AdminModel all model
 #
