@@ -13,9 +13,8 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_text
 from django.contrib.sites.shortcuts import get_current_site
 from .models import MyUser
-from ..common.send_email import send_email_async
-import asyncio
 from ..common.sender import SendSMS
+
 # Create your views here.
 
 
@@ -36,15 +35,14 @@ def register(request):
                     password = forms.cleaned_data.get("password")
                     username = forms.cleaned_data.get("first_name")
                     phone_number = forms.cleaned_data.get("phone_number")
-                    email=forms.cleaned_data.get('email')
-                
+                    forms.cleaned_data.get("email")
+
                     new_forms.set_password(password)
-                    new_forms.username=username 
+                    new_forms.username = username
                     new_forms.save()
                     # how to send sms message
-                    sms=SendSMS()
-                   
-                
+                    sms = SendSMS()
+
                     # TODO: emailga borishiga saqlanishni qilish
                     uuid = urlsafe_base64_encode(force_bytes(new_forms))
                     current_site = get_current_site(request=request)
@@ -61,11 +59,11 @@ def register(request):
                         },
                     )
                     print(phone_number)
-                    
+
                     html_body = strip_tags(body)
-                    result=sms.send_sms(phone_number,html_body)
+                    result = sms.send_sms(phone_number, html_body)
                     print(result)
-                  
+
                     # cart_id create
                     cart, _ = Cart.objects.get_or_create(cart_id_pk=_cart_id(request))
                     cart.user = new_forms

@@ -11,8 +11,9 @@ class BaseModel(models.Model):
     class Meta:
         abstract = True
 
+
 class Region(BaseModel):
-    name=models.CharField(max_length=255,null=True,blank=True)
+    name = models.CharField(max_length=255, null=True, blank=True)
 
     # class Meta:
     #     db_table='Region'
@@ -21,10 +22,11 @@ class Region(BaseModel):
 
     def __str__(self):
         return self.name
-    
+
+
 class City(BaseModel):
-    region=models.ForeignKey(Region,on_delete=models.CASCADE)
-    name=models.CharField(max_length=255,null=True,blank=True)
+    region = models.ForeignKey(Region, on_delete=models.CASCADE)
+    name = models.CharField(max_length=255, null=True, blank=True)
 
     # class Meta:
     #     db_table='City'
@@ -32,8 +34,7 @@ class City(BaseModel):
     #     verbos_name_plural='Cities'
 
     def __str__(self):
-        return str(self.region)
-
+        return str(self.name)
 
 
 class SMSToken(BaseModel):

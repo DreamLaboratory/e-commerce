@@ -3,6 +3,7 @@
 {% load mathfilters %}
 {% load humanize %}
 {% block content %}
+{{ form.media.js }}
 <!-- 
     style
  -->
@@ -129,7 +130,7 @@ float: left;
         </div>
         <div class="form-group col-sm-6">
             <label>City</label>
-            {{ form.city }}
+            {{ form.cities }}
             {{ form.error }}
         </div>
         <div class="form-group col-sm-6">

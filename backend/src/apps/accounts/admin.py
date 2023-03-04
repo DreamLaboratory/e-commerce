@@ -6,12 +6,12 @@ from django.utils.html import format_html
 
 # Register your models here.
 class MyUserAdmin(UserAdmin):
-    list_display = ("username", "email", "is_staff", "is_active",'phone_number')
-    list_filter = ("is_staff", "is_active",'phone_number')
+    list_display = ("username", "email", "is_staff", "is_active", "phone_number")
+    list_filter = ("is_staff", "is_active", "phone_number")
     list_display_links = ("username", "email")
     readonly_fields = ("date_joined", "last_login")
     filter_horizontal = ("groups", "user_permissions")
-    list_editable=['phone_number','is_staff']
+    list_editable = ["phone_number", "is_active"]
     fieldsets = (
         ("Personal Info", {"fields": ("username", "email", "password")}),
         ("Permissions", {"fields": ("is_active", "is_staff", "is_superuser", "groups", "user_permissions")}),

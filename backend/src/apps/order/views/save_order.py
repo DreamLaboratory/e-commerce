@@ -13,7 +13,7 @@ def save_order(request):
         form = OrderForm(request.POST)
         if form.is_valid():
             if request.user.is_authenticated:
-               
+
                 order.user = request.user
             cart_items = CartItem.objects.filter(cart__user=request.user, status=StatusChoices.ACTIVE)
             total_price = total_price_cart(cart_items)
