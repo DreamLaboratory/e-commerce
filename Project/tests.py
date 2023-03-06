@@ -130,8 +130,10 @@
 # if __name__ == '__main__':
 #     c = C()
 #     c.sub_method(3)
-
-
+# import random
+# import string
+# a = "".join(random.choice(string.digits) for _ in range(6))
+# print(a)
 
 
 

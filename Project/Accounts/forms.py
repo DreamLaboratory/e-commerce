@@ -3,6 +3,15 @@ from .models import Account
 
 
 class RegistrationForm(forms.ModelForm):
+    phone_number = forms.CharField(
+        widget=forms.NumberInput(
+            attrs={
+                "class": "form-control",
+                "placeholder": "998991234567",
+            }
+        ),
+        max_length=100,
+    )
     password = forms.CharField(
         widget=forms.PasswordInput(
             attrs={

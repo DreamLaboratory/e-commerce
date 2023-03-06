@@ -8,7 +8,7 @@ from django.urls import reverse
 from HomeApp.file_renamer import PathAndRename
 from django.utils.text import slugify
 from django.db.models import Avg,Count
-
+from django.utils.translation import gettext_lazy as _
 
 sys.path.append("...")
 
@@ -16,7 +16,7 @@ path_and_rename = PathAndRename('products')
 
 
 class Product(BaseModel):
-    name = models.CharField(max_length=200, unique=True, db_index=True)
+    name = models.CharField( max_length=200, unique=True, db_index=True)
     slug = models.SlugField(max_length=200, unique=True, db_index=True, blank=True)
     descriptions = RichTextField()
     price = models.DecimalField(max_digits=10, decimal_places=2)

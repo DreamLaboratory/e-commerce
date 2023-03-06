@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load i18n %}
 {% block content  %}
 <section class="section-conten padding-y bg">
 
@@ -8,7 +8,7 @@
         <aside class="col-md-3">
             <!--   SIDEBAR   -->
             <ul class="list-group">
-                <a class="list-group-item" href="{% url 'order_list' %}"> My order history </a>
+                <a class="list-group-item" href="{% url 'order_list' %}">{% trans 'My order history' %}</a>
                 <a class="list-group-item" href="#"> Dashboard </a>
                 <a class="list-group-item active" href="{% url 'profile_edit' %}"> Edit Profile</a>
                 <a class="list-group-item " href="{% url 'password_change' %}"> Change Password</a>

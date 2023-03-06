@@ -1,0 +1,189 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-03-04 22:45+0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: StoreApp/models/product.py:19
+msgid "name"
+msgstr "name"
+
+#: config/settings.py:131
+msgid "English"
+msgstr "English"
+
+#: config/settings.py:132
+msgid "Uzbek"
+msgstr "Uzbek"
+
+#: templates/order/order_list.html:10
+msgid "My order history"
+msgstr ""
+
+#: templates/order/order_list.html:12
+msgid "Edit Profile"
+msgstr ""
+
+#: templates/order/order_list.html:13
+msgid "Change Password"
+msgstr ""
+
+#: templates/order/order_list.html:16
+msgid "Logout"
+msgstr ""
+
+#: templates/order/order_list.html:27
+msgid "#Order"
+msgstr ""
+
+#: templates/order/order_list.html:28
+msgid "Phone"
+msgstr ""
+
+#: templates/order/order_list.html:29
+msgid "Region"
+msgstr ""
+
+#: templates/order/order_list.html:30
+msgid "Total Price"
+msgstr ""
+
+#: templates/order/order_list.html:31
+msgid "Status"
+msgstr ""
+
+#: templates/order/order_list.html:32
+msgid "Date"
+msgstr ""
+
+#: templates/order/order_list.html:33
+msgid "Show"
+msgstr ""
+
+#: templates/order/order_list.html:49
+msgid "View"
+msgstr ""
+
+#: templates/order/order_list.html:71
+msgid "Title"
+msgstr ""
+
+#: templates/order/order_list.html:81
+#, fuzzy
+#| msgid "Popular products"
+msgid "Product"
+msgstr "Popular Products"
+
+#: templates/order/order_list.html:82
+msgid "Quantity"
+msgstr ""
+
+#: templates/order/order_list.html:83
+msgid "Price"
+msgstr ""
+
+#: templates/parts/header.html:33
+msgid "Language"
+msgstr ""
+
+#: templates/parts/header.html:62
+msgid "Call us"
+msgstr ""
+
+#: templates/parts/header.html:79
+msgid "All category"
+msgstr ""
+
+#: templates/parts/header.html:88
+msgid "Store"
+msgstr ""
+
+#: templates/parts/header.html:92
+msgid "Search"
+msgstr ""
+
+#: templates/parts/header.html:106
+msgid "Welcome"
+msgstr ""
+
+#: templates/parts/header.html:108
+msgid "Sign out"
+msgstr ""
+
+#: templates/parts/header.html:112
+msgid "My Orders"
+msgstr ""
+
+#: templates/parts/header.html:117
+msgid "Welcome guest!"
+msgstr ""
+
+#: templates/parts/header.html:119
+msgid "Sign in"
+msgstr ""
+
+#: templates/parts/header.html:120
+msgid "Register"
+msgstr ""
+
+#: templates/parts/section.html:9
+msgid "See all"
+msgstr ""
+
+#: templates/parts/section.html:10
+msgid "Popular products"
+msgstr "Popular Products"
+
+#: templates/store/store.html:10
+msgid "Our Store"
+msgstr ""
+
+#: templates/store/store.html:28
+msgid "Categories"
+msgstr ""
+
+#: templates/store/store.html:48
+msgid "Sizes"
+msgstr ""
+
+#: templates/store/store.html:80
+msgid "Price range"
+msgstr ""
+
+#: templates/store/store.html:117
+msgid "Apply"
+msgstr ""
+
+#: templates/store/store.html:131
+msgid "Items found"
+msgstr ""
+
+#: templates/store/store.html:153
+msgid "View To Cart"
+msgstr ""
+
+#: templates/store/store.html:159
+msgid "Product not Found"
+msgstr ""
+
+#: templates/store/store.html:171
+msgid "Privious"
+msgstr ""
+
+#: templates/store/store.html:184
+msgid "Next"
+msgstr ""

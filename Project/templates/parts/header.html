@@ -1,4 +1,6 @@
 {% load static %}
+{% load i18n %}
+<link href="{% static 'css/language.css' %}" rel="stylesheet" type="text/css"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <header class="section-header">
@@ -10,16 +12,54 @@
   <div class="collapse navbar-collapse" id="navbarTop4">
     <ul class="navbar-nav mr-auto">
     	<li class="nav-item dropdown">
-		 	<a href="#" class="nav-link">   English </a>
+<div class="language-picker js-language-picker" data-trigger-class="btn btn--subtle ">
+  <form action="" class="language-picker__form">
 
-		</li>
-		<li class="nav-item dropdown">
-			<a href="#" class="nav-link"> USD </a>
-		</li>
+
+
+    </select>
+  </form>
+</div>
+        <div class="container">
+            <nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              {% trans 'Language' %}
+          </a>
+          <ul class="dropdown-menu">
+             <div class="container">
+      {% get_current_language as CURRENT_LANGUAGE %}
+      {% get_available_languages as AVAILABLE_LANGUAGES %}
+      {% get_language_info_list for AVAILABLE_LANGUAGES as languages %}
+      <div class="languages">
+        <ul class="languages">
+          {% for language in languages %}
+            <li>
+              <a href="/{{ language.code }}/"
+                {% if language.code == CURRENT_LANGUAGE %} class="active"{% endif %}>
+                {{ language.name_local }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+        </li>
     </ul>
     <ul class="navbar-nav">
 		<li><a href="#" class="nav-link"> <i class="fa fa-envelope"></i> Email </a></li>
-		<li><a href="#" class="nav-link"> <i class="fa fa-phone"></i> Call us </a></li>
+		<li><a href="#" class="nav-link"> <i class="fa fa-phone"></i> {% trans 'Call us' %} </a></li>
 	</ul> <!-- list-inline //  -->
   </div> <!-- navbar-collapse .// -->
 </div> <!-- container //  -->
@@ -36,7 +76,7 @@
 	<div class="col-lg col-sm col-md col-6 flex-grow-0">
 		<div class="category-wrap dropdown d-inline-block float-right">
 			<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-				<i class="fa fa-bars"></i> All category
+				<i class="fa fa-bars"></i> {% trans 'All category' %}
 			</button>
 			<div class="dropdown-menu">
                 {% for category in categories %}
@@ -45,11 +85,11 @@
 			</div>
 		</div>  <!-- category-wrap.// -->
 	</div> <!-- col.// -->
-	<a href="{% url 'store'  %}" class="btn btn-outline-primary">Store</a>
+	<a href="{% url 'store'  %}" class="btn btn-outline-primary">{% trans "Store" %}</a>
 	<div class="col-lg  col-md-6 col-sm-12 col">
 		<form action="{% url 'search' %}" class="search" method="GET">
 			<div class="input-group w-100">
-			    <input type="text" name='q' class="form-control" style="width:60%;" placeholder="Search">
+			    <input type="text" name='q' class="form-control" style="width:60%;" placeholder="{% trans 'Search' %}">
 
 			    <div class="input-group-append">
 			      <button class="btn btn-primary" type="submit">
@@ -63,21 +103,21 @@
 				<div class="d-flex justify-content-end mb-3 mb-lg-0">
                         <div class="widget-header">
                             {% if user.is_authenticated %}
-                                <small class="title text-muted">Welcome {{ user.username }}!</small>
+                                <small class="title text-muted">{% trans 'Welcome' %} {{ user.username }}!</small>
                                 <div>
-                                    <a class="mr-2" href="{% url 'logout' %}">Sign out
+                                    <a class="mr-2" href="{% url 'logout' %}">{% trans 'Sign out' %}
                                <i class="fa fa-sign-out" style="font-size:19px;color:black"></i>
                                     </a>|
                                     <i class="fa fa-cart-arrow-down" style="font-size:19px;color:black"></i>
-                                 <a href="{% url 'order_list' %}">My Orders
+                                 <a href="{% url 'order_list' %}">{% trans 'My Orders' %}
 
                                     </a>
                                 </div>
                             {% else %}
-                                <small class="title text-muted">Welcome guest!</small>
+                                <small class="title text-muted">{% trans 'Welcome guest!' %}</small>
                                 <div>
-                                    <a href="{% url 'login' %}">Sign in</a> <span class="dark-transp"> | </span>
-                                    <a href="{% url 'register' %}"> Register</a>
+                                    <a href="{% url 'login' %}">{% trans 'Sign in' %}</a> <span class="dark-transp"> | </span>
+                                    <a href="{% url 'register' %}"> {% trans 'Register' %}</a>
                                 </div>
                             {% endif %}
                         </div>

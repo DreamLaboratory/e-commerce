@@ -1,4 +1,5 @@
 from pathlib import Path
+
 # Build paths inside the Project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -18,7 +19,11 @@ SECRET_KEY = 'django-insecure-#e4q15!8)@q4#oic3p!pc_s3)^l_7c#7+v^u$e0j*xnj*$lr58
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+INTERNAL_IPS = [
+    # ...
+    "127.0.0.1",
+    # ...
+]
 
 # Application definition
 
@@ -34,14 +39,17 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'ckeditor',
     'import_export',
+    'admin_interface',
+    "colorfield",
     'mathfilters',
-    # django-ckeditor
+    'debug_toolbar',
+    'django_extensions',
+    "smart_selects",
+    'parler',
+
     # django-crispy-forms
-    # django_extensions
-    # debug_toolbar
 
     ####Local
-
     'HomeApp',
     'Accounts',
     'StoreApp',
@@ -49,32 +57,22 @@ INSTALLED_APPS = [
     'Order',
 ]
 
-CKEDITOR_UPLOAD_PATH = 'uploads/'
-CKEDITOR_IMAGE_BACKEND = "pillow"
-CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'
-
-CKEDITOR_CONFIGS = {
-    'default':
-        {
-            'toolbar': 'full',
-            'width': 'auto',
-            'extraPlugins': ','.join([
-                'codesnippet',
-            ]),
-        },
-}
-
+X_FRAME_OPTIONS = "SAMEORIGIN"
+SILENCED_SYSTEM_CHECKS = ["security.W019"]
 
 AUTH_USER_MODEL = 'Accounts.Account'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
+    # 'rosetta.middleware.RosettaLocaleMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -99,7 +97,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
@@ -109,7 +106,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -129,19 +125,39 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
+#    LANGUAGE
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
+from django.utils.translation import gettext_lazy as _
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGES = (
+    ('en', _('English')),
+    ('uz', _('Uzbek')),
+)
+LOCALE_PATHS = [
+    BASE_DIR / 'locale/',
+]
 
-TIME_ZONE = 'UTC'
+LANGUAGE_CODE = 'uz'
+
+TIME_ZONE = 'Asia/Tashkent'
 
 USE_I18N = True
 
 USE_TZ = True
 
+PARLER_LANGUAGES = {
+    None: (
+        {'code': 'en',}, # English
+        {'code': 'uz',}, # Uzbek
+    ),
+    'default': {
+        'fallbacks': ['en'],
+        'hide_untranslated': False,
+    }
+}
 
+#  END LANGUAGE
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 import os
@@ -152,8 +168,8 @@ STATICFILES_DIRS = [
     BASE_DIR / "static/",
 ]
 
-MEDIA_URL='/media/'
-MEDIA_ROOT=os.path.join(BASE_DIR,'media/')
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -191,7 +207,6 @@ logging.config.dictConfig(
         },
     }
 )
-
 
 # SET session expire time
 SESSION_COOKIE_AGE = 60 * 60 * 24 * 7  # 7 days

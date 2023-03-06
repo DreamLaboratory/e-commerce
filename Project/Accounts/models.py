@@ -7,7 +7,7 @@ class MyAccountManager(BaseUserManager):
         if not phone_number:
             raise ValueError('Phone Number Does Not Exist')
         if not username:
-            raise ValueError("username Does Not Exist")
+            raise ValueError("Username Does Not Exist")
 
         user = self.model(
             email = email,

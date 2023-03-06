@@ -1,0 +1,200 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-03-04 22:45+0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: StoreApp/models/product.py:19
+msgid "name"
+msgstr "nomi"
+
+#: config/settings.py:131
+msgid "English"
+msgstr "Ingliz"
+
+#: config/settings.py:132
+msgid "Uzbek"
+msgstr "Uzbek"
+
+#: templates/order/order_list.html:10
+#, fuzzy
+#| msgid "My Orders"
+msgid "My order history"
+msgstr "Mening buyurtmalarim"
+
+#: templates/order/order_list.html:12
+msgid "Edit Profile"
+msgstr "Profileni yangilash"
+
+#: templates/order/order_list.html:13
+msgid "Change Password"
+msgstr "Parolni yangilash"
+
+#: templates/order/order_list.html:16
+msgid "Logout"
+msgstr "Chiqish"
+
+#: templates/order/order_list.html:27
+#, fuzzy
+#| msgid "My Orders"
+msgid "#Order"
+msgstr "Tarix"
+
+#: templates/order/order_list.html:28
+msgid "Phone"
+msgstr "Telefon"
+
+#: templates/order/order_list.html:29
+msgid "Region"
+msgstr "Viloyat"
+
+#: templates/order/order_list.html:30
+msgid "Total Price"
+msgstr "Jami Miqdor"
+
+#: templates/order/order_list.html:31
+msgid "Status"
+msgstr "Status"
+
+#: templates/order/order_list.html:32
+msgid "Date"
+msgstr "Vaqt"
+
+#: templates/order/order_list.html:33
+msgid "Show"
+msgstr "Ko'rsatish"
+
+#: templates/order/order_list.html:49
+msgid "View"
+msgstr "Ko'rish"
+
+#: templates/order/order_list.html:71
+msgid "Title"
+msgstr "Nomi"
+
+#: templates/order/order_list.html:81
+#, fuzzy
+#| msgid "Popular products"
+msgid "Product"
+msgstr "Mashxur Mahsulotlar"
+
+#: templates/order/order_list.html:82
+msgid "Quantity"
+msgstr "Soni"
+
+#: templates/order/order_list.html:83
+#, fuzzy
+#| msgid "Price range"
+msgid "Price"
+msgstr "Narxni tanlash"
+
+#: templates/parts/header.html:33
+msgid "Language"
+msgstr "Tillar"
+
+#: templates/parts/header.html:62
+msgid "Call us"
+msgstr "Bizga bog'lanish"
+
+#: templates/parts/header.html:79
+msgid "All category"
+msgstr "Barcha turkumlar"
+
+#: templates/parts/header.html:88
+msgid "Store"
+msgstr "Mahsulotlar"
+
+#: templates/parts/header.html:92
+msgid "Search"
+msgstr "Izlash"
+
+#: templates/parts/header.html:106
+#, fuzzy
+#| msgid "Welcome guest!"
+msgid "Welcome"
+msgstr "Xush kelibsiz"
+
+#: templates/parts/header.html:108
+msgid "Sign out"
+msgstr "Chiqish"
+
+#: templates/parts/header.html:112
+msgid "My Orders"
+msgstr "Tarix"
+
+#: templates/parts/header.html:117
+msgid "Welcome guest!"
+msgstr "Xush kelibsiz"
+
+#: templates/parts/header.html:119
+msgid "Sign in"
+msgstr "Kirish"
+
+#: templates/parts/header.html:120
+msgid "Register"
+msgstr "Ro'yxatdan o'tish"
+
+#: templates/parts/section.html:9
+msgid "See all"
+msgstr "Barchasi"
+
+#: templates/parts/section.html:10
+msgid "Popular products"
+msgstr "Mashxur Mahsulotlar"
+
+#: templates/store/store.html:10
+#, fuzzy
+#| msgid "Store"
+msgid "Our Store"
+msgstr "Bizning maxsulotlar"
+
+#: templates/store/store.html:28
+msgid "Categories"
+msgstr "Turkumlari"
+
+#: templates/store/store.html:48
+msgid "Sizes"
+msgstr "O'lchamlari"
+
+#: templates/store/store.html:80
+msgid "Price range"
+msgstr "Narxni tanlash"
+
+#: templates/store/store.html:117
+msgid "Apply"
+msgstr "Qabul qilish"
+
+#: templates/store/store.html:131
+msgid "Items found"
+msgstr "Mahsulot topildi"
+
+#: templates/store/store.html:153
+msgid "View To Cart"
+msgstr "Kartni ko'rish"
+
+#: templates/store/store.html:159
+msgid "Product not Found"
+msgstr "Maxsulot topilmadi"
+
+#: templates/store/store.html:171
+msgid "Privious"
+msgstr "Ortga"
+
+#: templates/store/store.html:184
+msgid "Next"
+msgstr "Keyingisi"
+
+

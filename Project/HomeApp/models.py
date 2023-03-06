@@ -9,6 +9,30 @@ class BaseModel(models.Model):
         abstract = True
 
 
+class Region(BaseModel):
+    name = models.CharField(max_length=255, null=False, blank=False)
+
+    class Meta:
+        db_table = "region"
+        verbose_name = "Region"
+        verbose_name_plural = "Regions"
+
+    def __str__(self):
+        return self.name
+
+
+class City(BaseModel):
+    name = models.CharField(max_length=255, null=False, blank=False)
+    region = models.ForeignKey(Region, on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = "City"
+        verbose_name_plural = "Cities"
+
+    def __str__(self):
+        return self.name
+
+
 class SMSToken(BaseModel):
     name = models.CharField(max_length=50)
     token = models.TextField()
