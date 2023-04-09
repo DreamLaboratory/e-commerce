@@ -36,7 +36,7 @@ def add_cart(request):
     return redirect("cart:cart")
 
 
-# +
+# + plus button
 def add_to_cart(request, cart_item_id):
     """
     TODO: Optimize this function
@@ -75,7 +75,7 @@ def delete_cart(request, cart_item_id):
     return redirect("cart:cart")
 
 
-#  -
+#  - minus button
 def remove_cart_item(request, cart_item_id):
     with contextlib.suppress(Exception):
         # TODO use get_object_or_404

@@ -12,15 +12,3 @@ def timer(func):
         return result
 
     return wrapper
-
-
-# usage
-
-# @timer
-# def test():
-#     li = []
-#     for i in range(10_000_000):
-#         li.append(i**10)
-#     return li
-
-# test()

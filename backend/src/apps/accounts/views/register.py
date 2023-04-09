@@ -52,7 +52,7 @@ def register(request):
                     html_body = strip_tags(body)
 
                     # Send SMS
-                    result = sms.send_sms(
+                    sms.send_sms(
                         phone_number,
                         html_body,
                     )

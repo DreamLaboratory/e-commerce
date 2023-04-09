@@ -11,7 +11,6 @@ django-import-export==2.8.0 # https://django-import-export.readthedocs.io/en/lat
 django-debug-toolbar==3.5.0 # https://django-debug-toolbar.readthedocs.io/en/latest/installation.html
 django-filter==22.1
 pytest-django # https://pytest-django.readthedocs.io/en/latest/
-pytest-cov
 django-phonenumber-field==6.1.0
 
 # Postgres
@@ -19,4 +18,6 @@ psycopg2-binary==2.9.2 # https://pypi.org/project/psycopg2-binary/
 
 Pillow==9.2.0 #pip install Pillow
 django-crispy-forms==1.14.0 #pip install django-crispy-forms
-django-mathfilter
+django-ckeditor==6.1.0 #pip install django-ckeditor
+django-modeltranslation # https://django-modeltranslation.readthedocs.io/en/latest/installation.html
+django-rosetta #pip install django-rosetta

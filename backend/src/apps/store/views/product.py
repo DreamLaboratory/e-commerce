@@ -6,7 +6,6 @@ from django.shortcuts import render
 
 from ...common.alerter import tg_alert
 from ..models.category import Category
-from parler.utils.context import switch_language
 from ..models.product import Product
 
 # import logging
@@ -25,7 +24,7 @@ def product_list_view(request, category_slug=None):
             products = products.filter(price__gte=min_price, price__lte=max_price)
         if category_slug:  # TODO - add category filter
             category = Category.objects.get(slug=category_slug)
-            products = products.filter(category=category, is_available=True)
+            products = products.filter(category=category)
 
         product_count = products.count()
         page = request.GET.get("page")
@@ -42,8 +41,7 @@ def product_list_view(request, category_slug=None):
 # url/<slug:category_slug>/<slug:product_slug>/
 def product_detail_view(request, category_slug, product_slug):
     # TODO try except
-    with switch_language(request):
-        product = Product.objects.get(category__slug=category_slug, slug=product_slug)
+    product = Product.objects.get(category__slug=category_slug, slug=product_slug)
     product_reviews = product.reviews.filter(status=True)
     product_images = product.images.all()
     context = {

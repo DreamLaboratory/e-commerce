@@ -1,34 +1,28 @@
 from django.db import models
-from parler.models import TranslatableModel, TranslatedFields
-from django.utils.translation import gettext_lazy as _
-from parler.utils.context import switch_language
-
-# Avg, Count, Min, Sum
 from django.db.models import Avg, Count
-
-# Create your models here.
-from ...common.models import BaseModel
-from ...common.file_renamer import PathAndRename
-from django.utils.text import slugify
 from django.urls import reverse
+from django.utils.text import slugify
+from django.utils.translation import gettext_lazy as _
 
+from ...common.file_renamer import PathAndRename
+from ...common.models import BaseModel
 from .category import Category
 
 # products/file_{id}_{hex4}.{ext}
 path_and_rename = PathAndRename("products")
 
 # Product model
-class Product(BaseModel, TranslatableModel):
-    translations = TranslatedFields(
-        name=models.CharField(max_length=255, unique=True, db_index=True),
-        slug=models.SlugField(_("Slug"), max_length=255, unique=True, db_index=True, blank=True),
-        description=models.TextField(max_length=1000, blank=True),
-        price=models.DecimalField(max_digits=10, decimal_places=2),
-        image=models.ImageField(upload_to=path_and_rename, blank=True, null=True),
-        stock=models.PositiveIntegerField(),
-        is_available=models.BooleanField(default=True, help_text="Is product available?"),
-        category=models.ForeignKey(Category, on_delete=models.CASCADE, related_name="products", blank=True, null=True),
+class Product(BaseModel):
+    name = models.CharField(
+        max_length=255, unique=True, verbose_name=_("Name"), help_text=_("Product name"), null=True, blank=True
     )
+    slug = models.SlugField(_("Slug"), max_length=255, unique=True, blank=True)
+    description = models.TextField(max_length=1000, blank=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2, default=0.0)
+    image = models.ImageField(upload_to=path_and_rename, blank=True, null=True)
+    stock = models.PositiveIntegerField(default=0)
+    is_available = models.BooleanField(default=True, help_text="Is product available?")
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="products", blank=True, null=True)
 
     class Meta:
         verbose_name = "product"
@@ -37,19 +31,14 @@ class Product(BaseModel, TranslatableModel):
 
     @property
     def get_absolute_url(self):
-        with switch_language(self):
-
-            return reverse("store:product_detail_view", args=[self.category.slug, self.slug])
+        return reverse("store:product_detail_view", args=[self.category.slug, self.slug])
 
     def __str__(self):
-        return self.name
+        return str(self.name)
 
     @property
     def get_image_url(self):
         return self.image.url if self.image and hasattr(self.image, "url") else "#"
-
-    def __unicode__(self):
-        return self.name
 
     def save(self, *args, **kwargs):
         if not self.slug:

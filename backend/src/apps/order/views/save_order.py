@@ -1,11 +1,11 @@
-from ..forms.order_form import OrderForm
-from django.shortcuts import redirect
-from ...cart.models import CartItem, StatusChoices
 from time import time
-from django.db.models import Sum, F
-from django.contrib.auth.decorators import login_required
 
-# TODO Function for totak price (total_price(cart_items))->total_price)
+from django.contrib.auth.decorators import login_required
+from django.db.models import F, Sum
+from django.shortcuts import redirect
+
+from ...cart.models import CartItem, StatusChoices
+from ..forms.order_form import OrderForm
 
 
 @login_required

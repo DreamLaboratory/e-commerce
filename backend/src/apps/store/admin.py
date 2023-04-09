@@ -7,7 +7,6 @@ from .models.category import Category
 from .models.product import Product, ProductImage
 from .models.review import Review
 from .models.variants import ProductVariants
-from parler.admin import TranslatableAdmin
 
 # Register your models here.
 
@@ -35,18 +34,17 @@ class ProductImageModelAdmin(admin.TabularInline):
     extra = 2
 
 
-# @admin.register(Product)
-# class ProductModelAdmin(admin.ModelAdmin):
-#     list_display = ("name", "price", "stock", "category", "created_at")
-#     list_filter = ("category", "created_at")
-#     search_fields = ("name",)
-#     raw_id_fields = ("category",)
-#     date_hierarchy = "created_at"
-#     list_editable = ("price", "stock")
-#     prepopulated_fields = {"slug": ("name",)}  # TODO - add slug field all models
-#     inlines = [ProductImageModelAdmin]
+class ProductModelAdmin(admin.ModelAdmin):
+    list_display = ("name", "price", "stock", "category", "created_at")
+    list_filter = ("category", "created_at")
+    search_fields = ("name",)
+    date_hierarchy = "created_at"
+    list_editable = ("price", "stock")
+    prepopulated_fields = {"slug": ("name",)}  # TODO - add slug field all models
+    inlines = [ProductImageModelAdmin]
 
-admin.site.register(Product, TranslatableAdmin)
+
+admin.site.register(Product, ProductModelAdmin)
 
 
 class ReviewAdmin(admin.ModelAdmin):
@@ -62,8 +60,14 @@ class ReviewAdmin(admin.ModelAdmin):
 # admin.site.register(ProductImage)
 admin.site.register(Review, ReviewAdmin)
 
-# TODO - configure admin
-# admin.site.register(Category)
 
-# TODO - configure admin
-admin.site.register(ProductVariants)
+class ProductVariantsAdmin(admin.ModelAdmin):
+    list_display = ("product", "variant_category", "variant_value", "is_active", "created_at")
+    list_filter = ("product", "created_at")
+    search_fields = ("product",)
+    date_hierarchy = "created_at"
+    list_editable = ("is_active",)
+    autocomplete_fields = ("product",)
+
+
+admin.site.register(ProductVariants, ProductVariantsAdmin)

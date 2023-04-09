@@ -55,7 +55,7 @@ class UserProfileAdmin(admin.ModelAdmin):
                 '<img src="https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png" width="40" style="border-radius: 50px;" />'
             )
 
-    thumbnail.short_description = "Profile Pic"
+    thumbnail.short_description = "Profile Picture"
 
     def set_defult_city(self, request, queryset):
         queryset.update(city="Tashkent City", state="Tashkent")

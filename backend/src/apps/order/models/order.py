@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.utils.translation import gettext_lazy as _
 from django.db import models
 
 from ...cart.models import CartItem
@@ -44,5 +45,10 @@ class Order(BaseModel):
     def get_full_name(self):
         return f"{self.f_name} {self.l_name}"
 
+    def __str__(self):
+        return self.order_number
+
     class Meta:
         ordering = ["-created_at"]
+        verbose_name = _("Order")
+        verbose_name_plural = _("Orders")

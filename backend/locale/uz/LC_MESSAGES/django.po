@@ -9,31 +9,32 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-02 21:29+0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2023-03-07 21:09+0437\n"
+"Last-Translator: Anonymous User <None>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-lang = get_language()
+"X-Translated-Using: django-rosetta 0.9.8\n"
 
 #: config/settings.py:140
 msgid "English"
 msgstr "Ingliz tili"
 
 #: config/settings.py:141
+#, fuzzy
 msgid "Uzbek"
-msgstr ""
+msgstr "Uzbekcha"
 
 #: src/apps/accounts/models.py:38
 msgid "Account"
-msgstr ""
+msgstr "Hisob "
 
 #: src/apps/accounts/models.py:45
 msgid "city"
-msgstr ""
+msgstr "Shahar"
 
 #: src/apps/accounts/models.py:57 src/apps/accounts/models.py:58
 msgid "UserProfile"
@@ -45,4 +46,4 @@ msgstr "Sluger"
 
 #: templates/index.html:32
 msgid "Popular products"
-msgstr "Mashxur mahsulotlar"
+msgstr "Top mahsulotlar "
