@@ -17,7 +17,7 @@ class BaseAPI:
 
     base_url = "https://notify.eskiz.uz/api"
     email = "xackercoder@gmail.com"
-    password = "Dnfgx5lXQ6XsKRiQ5BkyS4JJJapjy8SFcXizJ8T5"
+    password = ""
 
     def get_token(self):
         """
